@@ -1,4 +1,11 @@
 .controls {
     display: flex;
     align-items: stretch;
+    justify-content: space-between;
+    font-size: large;
+}
+
+.time_controls, .airport_controls {
+    display: flex;
+    align-items: stretch;
 }
