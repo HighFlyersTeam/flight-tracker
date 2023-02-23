@@ -1,0 +1,21 @@
+.controls {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    font-size: large;
+}
+
+.time_controls, .airport_controls {
+    display: flex;
+    align-items: stretch;
+    font-size: large;
+}
+
+.controls button {
+    display: block;
+    font-size: large;
+}
+
+.airport_controls select {
+    font-size: large;
+}
