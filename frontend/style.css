@@ -1,3 +1,16 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
 .controls {
     display: flex;
     align-items: stretch;
@@ -18,4 +31,9 @@
 
 .airport_controls select {
     font-size: large;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
 }
