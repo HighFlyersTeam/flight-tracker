@@ -5,36 +5,47 @@
         <meta content="IE=edge" http-equiv="X-UA-Compatible">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link href="style.css" rel="stylesheet"/>
+        <script type="module" src="script.js"></script>
         <title>High Flyers</title>
     </body>
-    
-    <div class="controls">
-        <div class="time_controls">
-            <label for="start_time">Start Date:&nbsp;</label>
-            <input type="date" id="start_time" name="start-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
-            <div>&nbsp;&#8594;&nbsp;</div>
-            <label for="end_time">End Date:&nbsp;</label>
-            <input type="date" id="end_time" name="end-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
-        </div>
+    <div class="site">
+        <div class="controls">
+            <div class="time_controls">
+                <label for="start_time">Start Date:&nbsp;</label>
+                <input type="date" id="start_time" name="start-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                <div>&nbsp;&#8594;&nbsp;</div>
+                <label for="end_time">End Date:&nbsp;</label>
+                <input type="date" id="end_time" name="end-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+            </div>
         
-        <div class="airport_controls">
-            <label for="airport1">Airport 1:</label>
-            <select name="airport1" id="airport1">
-                <option value="">EWR</option>
-                <option value="">LAX</option>
-                <option value="">PVG</option>
-            </select>
-            <div>&nbsp;&#8594;&nbsp;</div>
-            <label for="airport2">Airport 2:</label>
-            <select name="airport2" id="airport2">
-                <option value="">EWR</option>
-                <option value="">LAX</option>
-                <option value="" selected>PVG</option>
-            </select>
+            <div class="airport_controls">
+                <label for="airport1">Airport 1:</label>
+                <select name="airport1" id="airport1">
+                    <option value="">EWR</option>
+                    <option value="">LAX</option>
+                    <option value="">PVG</option>
+                </select>
+                <div>&nbsp;&#8594;&nbsp;</div>
+                <label for="airport2">Airport 2:</label>
+                <select name="airport2" id="airport2">
+                    <option value="">EWR</option>
+                    <option value="">LAX</option>
+                    <option value="" selected>PVG</option>
+                </select>
+            </div>
+        
+            <button type="button">Find Route</button>
+    
+            <a href="tutorial.html">
+                <button type="button">Help</button>
+            </a>
+            
+            <button type="button">Filter</button>
         </div>
-    
-        <button type="button">Find Route</button>
-    
-        <button type="button">Filter</button>
+        <div id="map"></div>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&callback=initMap&v=weekly"
+            defer
+        ></script>
     </div>
 </html>
