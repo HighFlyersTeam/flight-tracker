@@ -5,6 +5,7 @@
         <meta content="IE=edge" http-equiv="X-UA-Compatible">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link href="style.css" rel="stylesheet"/>
+        <script type="module" src="script.js"></script>
         <title>High Flyers</title>
     </body>
     <div class="site">
@@ -41,11 +42,10 @@
             
             <button type="button">Filter</button>
         </div>
-        <iframe
-                frameborder="0" style="border:0"
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&q=Eiffel+Tower,Paris+France"
-                allowfullscreen>
-        </iframe>
+        <div id="map"></div>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&callback=initMap&v=weekly"
+            defer
+        ></script>
     </div>
 </html>
