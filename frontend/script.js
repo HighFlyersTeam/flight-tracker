@@ -30,6 +30,17 @@ function initMap() {
     if(map.getZoom() > 15){
         map.setZoom(15);
     }
+
+    const red = "#FF0000";
+    const flightPathCoordinates = [nyc, shanghai];
+    const flightPath = new google.maps.Polyline({
+        path: flightPathCoordinates,
+        geodesic: true,
+        strokeColor: red,
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+    });
+    flightPath.setMap(map);
 }
 
 window.initMap = initMap;
