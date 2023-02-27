@@ -33,7 +33,24 @@ body, html {
     font-size: large;
 }
 
+#map_wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
 #map {
     width: 100%;
     height: 100%;
+    position: absolute;
+}
+
+#filter_content{
+    width: 100px;
+    height: 75px;
+    background-color: lightgrey;
+    padding: 20%;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
