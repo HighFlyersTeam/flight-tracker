@@ -48,6 +48,7 @@ body, html {
 #filter_content{
     width: 100px;
     height: 75px;
+    display: block;
     background-color: lightgrey;
     padding: 20%;
     position: absolute;

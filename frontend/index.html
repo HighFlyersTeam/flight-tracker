@@ -5,7 +5,8 @@
         <meta content="IE=edge" http-equiv="X-UA-Compatible">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link href="style.css" rel="stylesheet"/>
-        <script type="module" src="script.js"></script>
+        <script type="module" src="map_script.js"></script>
+        <script type="text/javascript" src="filter_script.js"></script>
         <title>High Flyers</title>
     </body>
     <div class="site">
@@ -40,7 +41,7 @@
                 <button type="button">Help</button>
             </a>
             
-            <button type="button">Filter</button>
+            <button type="button" onclick="toggleFilterWindow()">Filter</button>
         </div>
         <div id="map_wrapper">
             <div id="map">
