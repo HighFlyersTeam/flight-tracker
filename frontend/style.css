@@ -48,7 +48,8 @@ body, html {
 #filter_content{
     display: none;
     flex-direction: column;
-    align-items: center;
+    gap: 10px;
+    align-items: stretch;
     background-color: lightgrey;
     padding: 2%;
     position: absolute;
@@ -57,19 +58,38 @@ body, html {
     border: 1px solid black;
 }
 
+.filter_title {
+    text-align: center;
+    font-weight: bold;
+}
+
 .filter_item {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    border: 3px solid red;
     box-sizing: border-box;
+}
+
+.filter_item > label {
+    width: 33%;
+    display: inline-block;
+    text-align: right;
+}
+
+.filter_item > filter_components {
+    flex: 1;
 }
 
 .filter_components {
     display: flex;
+    width: 67%;
+    justify-content: center;
     flex-direction: row;
+    margin: auto;
+    gap: 5px;
+    box-sizing: border-box;
 }
 
-.filter_label, .filter_component{
-    border: 1px solid blue;
+.temp_button_id {
+    width: 100%;
 }
