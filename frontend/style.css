@@ -65,11 +65,16 @@ body, html {
     font-weight: bold;
 }
 
-.filter_item {
+.filter_item, .filter_controls {
     display: flex;
     flex-direction: row;
     gap: 10px;
     box-sizing: border-box;
+}
+
+.filter_controls {
+    padding-top: 3%;
+    justify-content: center;
 }
 
 .filter_item > label {
@@ -92,8 +97,12 @@ body, html {
     box-sizing: border-box;
 }
 
-.airline_type_button, .spacer {
+.airline_type_button, .spacer, #airline_companies {
     width: 100%;
+}
+
+.filter_control_button {
+    width: 30%;
 }
 
 .day_of_week_button {

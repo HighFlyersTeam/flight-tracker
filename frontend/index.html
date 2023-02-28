@@ -84,12 +84,28 @@
                     </div>
                 </div>
     
+                <div class="filter_item" id="airline_company">
+                    <label for="airline_company_components">Airlines:</label>
+                    <div class="filter_components" id="airline_company_components">
+                        <select multiple name="airline_companies" id="airline_companies">
+                            <option value="">Delta Airlines</option>
+                            <option value="">United Airlines</option>
+                            <option value="">Southwest Airlines</option>
+                        </select>
+                    </div>
+                </div>
+    
                 <div class="filter_item" id="airline_type">
                     <label for="airline_type_components">Type of Airline:</label>
                     <div class="filter_components" id="airline_type_components">
                         <button type="button" class="airline_type_button">Cargo</button>
                         <button type="button" class="airline_type_button">Passenger</button>
                     </div>
+                </div>
+                
+                <div class="filter_controls">
+                    <button type="button" class="filter_control_button">Confirm</button>
+                    <button type="button" class="filter_control_button">Cancel</button>
                 </div>
             </div>
         </div>
