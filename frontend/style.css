@@ -46,6 +46,7 @@ body, html {
 }
 
 #filter_content{
+    width: 35%;
     display: none;
     flex-direction: column;
     gap: 10px;
@@ -56,6 +57,7 @@ body, html {
     top: 0;
     right: 0;
     border: 1px solid black;
+    flex-basis: auto;
 }
 
 .filter_title {
@@ -71,7 +73,7 @@ body, html {
 }
 
 .filter_item > label {
-    width: 33%;
+    width: 20%;
     display: inline-block;
     text-align: right;
 }
@@ -82,7 +84,7 @@ body, html {
 
 .filter_components {
     display: flex;
-    width: 67%;
+    width: 80%;
     justify-content: center;
     flex-direction: row;
     margin: auto;
@@ -90,6 +92,6 @@ body, html {
     box-sizing: border-box;
 }
 
-.temp_button_id {
+.airline_type_button {
     width: 100%;
 }
