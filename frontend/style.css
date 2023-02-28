@@ -92,6 +92,16 @@ body, html {
     box-sizing: border-box;
 }
 
-.airline_type_button {
+.airline_type_button, .spacer {
     width: 100%;
+}
+
+.day_of_week_button {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    display: grid;
+    place-items: center;
+    text-align: center;
 }
