@@ -16,6 +16,7 @@ body, html {
     align-items: stretch;
     justify-content: space-between;
     font-size: large;
+    padding: 5px;
 }
 
 .time_controls, .airport_controls {
@@ -55,7 +56,7 @@ body, html {
     padding: 2%;
     position: absolute;
     top: 0;
-    right: 0;
+    right: 5px;
     border: 1px solid black;
     flex-basis: auto;
 }
