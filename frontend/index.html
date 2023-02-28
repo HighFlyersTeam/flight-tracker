@@ -20,15 +20,15 @@
             </div>
         
             <div class="airport_controls">
-                <label for="airport1">Airport 1:</label>
-                <select name="airport1" id="airport1">
+                <label for="airport1_taskbar">Airport 1:</label>
+                <select name="airport1_taskbar" id="airport1_taskbar">
                     <option value="">EWR</option>
                     <option value="">LAX</option>
                     <option value="">PVG</option>
                 </select>
                 <div>&nbsp;&#8594;&nbsp;</div>
-                <label for="airport2">Airport 2:</label>
-                <select name="airport2" id="airport2">
+                <label for="airport2_taskbar">Airport 2:</label>
+                <select name="airport2_taskbar" id="airport2_taskbar">
                     <option value="">EWR</option>
                     <option value="">LAX</option>
                     <option value="" selected>PVG</option>
@@ -62,6 +62,25 @@
                         <div>&nbsp;&#8594;&nbsp;</div>
                         <label for="end_time_filter">End Date:&nbsp;</label>
                         <input type="date" id="end_time_filter" name="end-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                    </div>
+                </div>
+                
+                <div class="filter_item" id="start_end_airport">
+                    <label for="start_end_airport_components">Start/End Airport:</label>
+                    <div class="filter_components" id="start_end_airport_components">
+                        <label for="airport1_filter">Airport 1:</label>
+                        <select name="airport1_filter" id="airport1_filter">
+                            <option value="">EWR</option>
+                            <option value="">LAX</option>
+                            <option value="">PVG</option>
+                        </select>
+                        <div>&nbsp;&#8594;&nbsp;</div>
+                        <label for="airport2_filter">Airport 2:</label>
+                        <select name="airport2_filter" id="airport2_filter">
+                            <option value="">EWR</option>
+                            <option value="">LAX</option>
+                            <option value="" selected>PVG</option>
+                        </select>
                     </div>
                 </div>
     
