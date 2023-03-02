@@ -4,9 +4,6 @@ import datetime
 
 
 
-
-
-
 class FlightInfo:
     def __init__(self, filename, airportsfilename):
         self.columns = ["YEAR", "MONTH", "DAY", "DAY_OF_WEEK", "AIRLINE", "FLIGHT_NUMBER", 
@@ -28,6 +25,7 @@ class FlightInfo:
                             "ELAPSED_TIME": "string"}
 
         self.details = pd.read_csv( filename, usecols = self.columns, dtype = self.data_types)
+
 
         #copy of full data for resetting filters    
         self.fullData = self.details.copy()
@@ -52,6 +50,7 @@ class FlightInfo:
 
         #filter to default time frame
         self.changeDateFrame(self.currentDateF[1], self.currentDateF[2])
+
 
 
 
@@ -246,6 +245,7 @@ class Flight:
                                                 hour = int(flightInfo["DEPARTURE_TIME"].zfill(4)[:2]),
                                                 minute = int(flightInfo["DEPARTURE_TIME"].zfill(4)[2:]))
 
+
         self.arrivalTime = self.departureTime + datetime.timedelta(minutes = self.flightTime)
 
         self.origin = flightInfo["ORIGIN_AIRPORT"]
@@ -259,6 +259,7 @@ class Flight:
         ret_val += "Flight Time: " + str(self.flightTime) + " minutes"
 
         return ret_val
+
 
 
 

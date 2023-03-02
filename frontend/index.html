@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <meta charset="UTF-8">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <link href="style.css" rel="stylesheet"/>
+        <script type="module" src="map_script.js"></script>
+        <script type="text/javascript" src="filter_script.js"></script>
+        <title>High Flyers</title>
+    </body>
+    <div class="site">
+        <div class="controls">
+            <div class="time_controls">
+                <label for="start_time_taskbar">Start Date:&nbsp;</label>
+                <input type="date" id="start_time_taskbar" name="start-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                <div>&nbsp;&#8594;&nbsp;</div>
+                <label for="end_time_taskbar">End Date:&nbsp;</label>
+                <input type="date" id="end_time_taskbar" name="end-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+            </div>
+        
+            <div class="airport_controls">
+                <label for="airport1_taskbar">Airport 1:</label>
+                <select name="airport1_taskbar" id="airport1_taskbar">
+                    <option value="">EWR</option>
+                    <option value="">LAX</option>
+                    <option value="">PVG</option>
+                </select>
+                <div>&nbsp;&#8594;&nbsp;</div>
+                <label for="airport2_taskbar">Airport 2:</label>
+                <select name="airport2_taskbar" id="airport2_taskbar">
+                    <option value="">EWR</option>
+                    <option value="">LAX</option>
+                    <option value="" selected>PVG</option>
+                </select>
+            </div>
+        
+            <button type="button">Find Route</button>
+    
+            <a href="tutorial.html">
+                <button type="button">Help</button>
+            </a>
+            
+            <button type="button" onclick="toggleFilterWindow()">Filter</button>
+        </div>
+        <div id="map_wrapper">
+            <div id="map">
+                <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&callback=initMap&v=weekly"
+                    defer
+                ></script>
+            </div>
+            
+            <div id="filter_content">
+                <div class="filter_title">FILTER</div>
+    
+                <div class="filter_item" id="start_end_date">
+                    <label for="start_end_date_components">Start/End Date:</label>
+                    <div class="filter_components" id="start_end_date_components">
+                        <label for="start_time_filter">Start Date:&nbsp;</label>
+                        <input type="date" id="start_time_filter" name="start-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                        <div>&nbsp;&#8594;&nbsp;</div>
+                        <label for="end_time_filter">End Date:&nbsp;</label>
+                        <input type="date" id="end_time_filter" name="end-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                    </div>
+                </div>
+                
+                <div class="filter_item" id="start_end_airport">
+                    <label for="start_end_airport_components">Start/End Airport:</label>
+                    <div class="filter_components" id="start_end_airport_components">
+                        <label for="airport1_filter">Airport 1:</label>
+                        <select name="airport1_filter" id="airport1_filter">
+                            <option value="">EWR</option>
+                            <option value="">LAX</option>
+                            <option value="">PVG</option>
+                        </select>
+                        <div>&nbsp;&#8594;&nbsp;</div>
+                        <label for="airport2_filter">Airport 2:</label>
+                        <select name="airport2_filter" id="airport2_filter">
+                            <option value="">EWR</option>
+                            <option value="">LAX</option>
+                            <option value="" selected>PVG</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="filter_item" id="day_of_week">
+                    <label for="day_of_week_components">Day of Week:</label>
+                    <div class="filter_components" id="day_of_week_components">
+                        <button type="button" class="day_of_week_button">Su</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">Mo</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">Tu</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">We</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">Th</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">Fr</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">Sa</button>
+                    </div>
+                </div>
+    
+                <div class="filter_item" id="airline_company">
+                    <label for="airline_company_components">Airlines:</label>
+                    <div class="filter_components" id="airline_company_components">
+                        <select multiple name="airline_companies" id="airline_companies">
+                            <option value="">Delta Airlines</option>
+                            <option value="">United Airlines</option>
+                            <option value="">Southwest Airlines</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="filter_item" id="airline_type">
+                    <label for="airline_type_components">Type of Airline:</label>
+                    <div class="filter_components" id="airline_type_components">
+                        <button type="button" class="airline_type_button">Cargo</button>
+                        <button type="button" class="airline_type_button">Passenger</button>
+                    </div>
+                </div>
+                
+                <div class="filter_controls">
+                    <button type="button" class="filter_control_button">Confirm</button>
+                    <button type="button" class="filter_control_button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>
