@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
     <body>
         <meta charset="UTF-8">
         <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -67,26 +70,25 @@
                 
                 <div class="filter_item" id="start_end_airport">
                     <label for="start_end_airport_components">
-                        <select name="start_filter" id="start_filter">
-                            <option value="">Starting Airport</option>
-                            <option value="">Starting City</option>
-                            <option value="">Starting Country</option>
-                            <option value="">Starting Continent</option>
+                        <select name="start_filter" data-target="#start_end_airport_components" id="start_filter">
+                            <option value="starting_airport" data-show=".airport_start_info">Starting Airport</option>
+                            <option value="starting_city" data-show=".city_start_info">Starting City</option>
+                            <option value="starting_country">Starting Country</option>
+                            <option value="starting_continent">Starting Continent</option>
                         </select>
                     </label>
+                    
                     <div class="filter_components" id="start_end_airport_components">
-                        <label for="airport1_filter">Airport 1:</label>
-                        <select name="airport1_filter" id="airport1_filter">
+                        <select multiple name="airport_start_filter" class="airport_start_info hide" id="airport_start_filter">
                             <option value="">EWR</option>
                             <option value="">LAX</option>
                             <option value="">PVG</option>
                         </select>
-                        <div>&nbsp;&#8594;&nbsp;</div>
-                        <label for="airport2_filter">Airport 2:</label>
-                        <select name="airport2_filter" id="airport2_filter">
-                            <option value="">EWR</option>
-                            <option value="">LAX</option>
-                            <option value="" selected>PVG</option>
+                    
+                        <select multiple name="city_start_filter" class="city_start_info hide" id="city_start_filter">
+                            <option value="">New York</option>
+                            <option value="">Paris</option>
+                            <option value="">Tokyo</option>
                         </select>
                     </div>
                 </div>
