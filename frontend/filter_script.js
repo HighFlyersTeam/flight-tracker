@@ -11,8 +11,8 @@ function toggleFilterWindow() {
 
 // Changes selection for each item in the dropdown menu
 $(document).on("change", "#start_filter", function() {
-    var target = $(this).data('target');
-    var show = $("option:selected", this).data('show');
+    const target = $(this).data('target');
+    const show = $("option:selected", this).data('show');
     $(target).children().addClass('hide');
     $(show).removeClass('hide');
 });
