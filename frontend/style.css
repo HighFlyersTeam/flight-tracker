@@ -112,7 +112,7 @@ body, html {
     white-space: nowrap;
 }
 
-#start_time_filter, #end_time_filter, .filter_components > select {
+.filter_components > select, .filter_components > input {
     width: 100%;
 }
 

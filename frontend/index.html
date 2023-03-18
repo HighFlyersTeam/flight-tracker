@@ -57,14 +57,19 @@
             <div id="filter_content">
                 <div class="filter_title">FILTER</div>
     
-                <div class="filter_item" id="start_end_date">
-                    <label for="start_end_date_components">Start/End Date:</label>
-                    <div class="filter_components" id="start_end_date_components">
-                        <label for="start_time_filter">Start Date:&nbsp;</label>
-                        <input type="date" id="start_time_filter" name="start-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
-                        <div>&nbsp;&#8594;&nbsp;</div>
-                        <label for="end_time_filter">End Date:&nbsp;</label>
-                        <input type="date" id="end_time_filter" name="end-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                <div class="filter_item" id="earliest_start_time">
+                    <label for="earliest_start_time_components">Earliest Start Time:</label>
+                    <div class="filter_components" id="earliest_start_time_components">
+                        <input type="date" id="start_date" name="start_date" value="2018-07-22" min="2018-01-01" max="2018-12-31" required>
+                        <input type="time" id="start_time" name="start_time" value="10:00" min="09:00" max="18:00" required>
+                    </div>
+                </div>
+    
+                <div class="filter_item" id="latest_end_time">
+                    <label for="latest_end_time_components">Latest End Time:</label>
+                    <div class="filter_components" id="latest_end_time_components">
+                        <input type="date" id="end_date" name="end_date" value="2018-07-22" min="2018-01-01" max="2018-12-31" required>
+                        <input type="time" id="end_time" name="end_time" value="10:00" min="09:00" max="18:00" required>
                     </div>
                 </div>
                 
@@ -193,6 +198,7 @@
                 </div>
                 
                 <div class="filter_controls">
+                    <button type="button" class="filter_control_button">Clear Filter</button>
                     <button type="button" class="filter_control_button">Confirm</button>
                     <button type="button" class="filter_control_button">Cancel</button>
                 </div>
