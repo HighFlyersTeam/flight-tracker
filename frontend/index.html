@@ -72,6 +72,25 @@
                         <input type="time" id="end_time" name="end_time" value="10:00" min="09:00" max="18:00" required>
                     </div>
                 </div>
+    
+                <div class="filter_item" id="day_of_week">
+                    <label for="day_of_week_components">Day of Week:</label>
+                    <div class="filter_components" id="day_of_week_components">
+                        <button type="button" class="day_of_week_button">Su</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">Mo</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">Tu</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">We</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">Th</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">Fr</button>
+                        <div class="spacer"></div>
+                        <button type="button" class="day_of_week_button">Sa</button>
+                    </div>
+                </div>
                 
                 <div class="filter_item" id="start_location">
                     <label for="start_filter">
@@ -159,22 +178,10 @@
                     </div>
                 </div>
     
-                <div class="filter_item" id="day_of_week">
-                    <label for="day_of_week_components">Day of Week:</label>
-                    <div class="filter_components" id="day_of_week_components">
-                        <button type="button" class="day_of_week_button">Su</button>
-                        <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">Mo</button>
-                        <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">Tu</button>
-                        <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">We</button>
-                        <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">Th</button>
-                        <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">Fr</button>
-                        <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">Sa</button>
+                <div class="filter_item" id="number_of_layovers">
+                    <label for="max_layovers_components">Maximum Layovers:</label>
+                    <div class="filter_components" id="max_layovers_components">
+                        <input type="number" id="max_layovers" name="max_layovers" value="0" min="0" max="3">
                     </div>
                 </div>
     
