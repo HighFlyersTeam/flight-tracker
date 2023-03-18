@@ -73,8 +73,8 @@
                         <select name="start_filter" data-target="#start_end_airport_components" id="start_filter">
                             <option value="starting_airport" data-show=".airport_start_info">Starting Airport</option>
                             <option value="starting_city" data-show=".city_start_info">Starting City</option>
-                            <option value="starting_country">Starting Country</option>
-                            <option value="starting_continent">Starting Continent</option>
+                            <option value="starting_country" data-show=".country_start_info">Starting Country</option>
+                            <option value="starting_continent" data-show=".continent_start_info">Starting Continent</option>
                         </select>
                     </label>
                     
@@ -89,6 +89,24 @@
                             <option value="">New York</option>
                             <option value="">Paris</option>
                             <option value="">Tokyo</option>
+                        </select>
+    
+                        <select multiple name="country_start_filter" class="country_start_info hide" id="country_start_filter">
+                            <option value="">United States of America</option>
+                            <option value="">Nigeria</option>
+                            <option value="">Italy</option>
+                            <option value="">China</option>
+                            <option value="">Vietnam</option>
+                        </select>
+    
+                        <select multiple name="continent_start_filter" class="continent_start_info hide" id="continent_start_filter">
+                            <option value="">North America</option>
+                            <option value="">South America</option>
+                            <option value="">Europe</option>
+                            <option value="">Africa</option>
+                            <option value="">Asia</option>
+                            <option value="">Australia</option>
+                            <option value="">Antarctica</option>
                         </select>
                     </div>
                 </div>

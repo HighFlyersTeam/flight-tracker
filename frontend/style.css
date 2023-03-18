@@ -47,7 +47,7 @@ body, html {
 }
 
 #filter_content{
-    width: 50%;
+    width: 40%;
     display: none;
     flex-direction: column;
     gap: 10px;
