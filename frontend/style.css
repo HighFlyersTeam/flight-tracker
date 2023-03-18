@@ -66,6 +66,10 @@ body, html {
     font-weight: bold;
 }
 
+#advanced_controls {
+    margin-top: 2%;
+}
+
 .filter_item, .filter_controls {
     display: flex;
     flex-direction: row;
@@ -96,7 +100,7 @@ body, html {
 
 .filter_components {
     display: flex;
-    width: 80%;
+    width: 100%;
     justify-content: center;
     flex-direction: row;
     margin: auto;
@@ -120,7 +124,7 @@ body, html {
     display: none;
 }
 
-.airline_type_button, .spacer, #airline_companies {
+.airline_type_button, .advanced_controls_button, .spacer, #airline_companies {
     width: 100%;
 }
 

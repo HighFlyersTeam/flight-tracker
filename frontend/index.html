@@ -179,7 +179,7 @@
                 </div>
     
                 <div class="filter_item" id="number_of_layovers">
-                    <label for="max_layovers_components">Maximum Layovers:</label>
+                    <label for="max_layovers_components">Max Layovers:</label>
                     <div class="filter_components" id="max_layovers_components">
                         <input type="number" id="max_layovers" name="max_layovers" value="0" min="0" max="3">
                     </div>
@@ -201,6 +201,31 @@
                     <div class="filter_components" id="airline_type_components">
                         <button type="button" class="airline_type_button">Cargo</button>
                         <button type="button" class="airline_type_button">Passenger</button>
+                    </div>
+                </div>
+    
+                <div class="filter_title" id="advanced_controls">ADVANCED</div>
+    
+                <div class="filter_item" id="added_removed_buttons">
+                    <div class="filter_components" id="added_removed_buttons_components">
+                        <button type="button" class="advanced_controls_button" onclick="advanced_controls_time_display()">Find Added Flights</button>
+                        <button type="button" class="advanced_controls_button" onclick="advanced_controls_time_display()">Find Removed Flights</button>
+                    </div>
+                </div>
+    
+                <div class="filter_item" id="secondary_start_time">
+                    <label for="secondary_start_time_components">Start Time:</label>
+                    <div class="filter_components" id="secondary_start_time_components">
+                        <input type="date" id="start_date2" name="start_date2" value="2018-07-22" min="2018-01-01" max="2018-12-31" required>
+                        <input type="time" id="start_time2" name="start_time2" value="10:00" min="09:00" max="18:00" required>
+                    </div>
+                </div>
+    
+                <div class="filter_item" id="secondary_end_time">
+                    <label for="secondary_end_time_components">End Time:</label>
+                    <div class="filter_components" id="secondary_end_time_components">
+                        <input type="date" id="end_date2" name="end_date2" value="2018-07-22" min="2018-01-01" max="2018-12-31" required>
+                        <input type="time" id="end_time2" name="end_time2" value="10:00" min="09:00" max="18:00" required>
                     </div>
                 </div>
                 
