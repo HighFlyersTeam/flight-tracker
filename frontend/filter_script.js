@@ -10,7 +10,7 @@ function toggleFilterWindow() {
 }
 
 // Changes selection for each item in the dropdown menu
-$(document).on("change", "#start_filter", function() {
+$(document).on("change", "#start_filter, #end_filter", function() {
     const target = $(this).data('target');
     const show = $("option:selected", this).data('show');
     $(target).children().addClass('hide');
@@ -20,4 +20,5 @@ $(document).on("change", "#start_filter", function() {
 // Displays the selection for the first item in the dropdown menu
 $(function(){
     $('#start_filter').trigger('change');
+    $('#end_filter').trigger('change');
 });

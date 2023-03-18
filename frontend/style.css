@@ -85,7 +85,7 @@ body, html {
     border: 1px solid blue;
 }
 
-#start_filter {
+.filter_label {
     width: 100%;
     text-align: right;
 }
