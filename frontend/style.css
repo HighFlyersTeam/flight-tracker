@@ -47,7 +47,7 @@ body, html {
 }
 
 #filter_content{
-    width: 35%;
+    width: 50%;
     display: none;
     flex-direction: column;
     gap: 10px;
@@ -82,6 +82,12 @@ body, html {
     width: 20%;
     display: inline-block;
     text-align: right;
+    border: 1px solid blue;
+}
+
+#start_filter {
+    width: 100%;
+    text-align: right;
 }
 
 .filter_item > filter_components {
@@ -96,6 +102,16 @@ body, html {
     margin: auto;
     gap: 5px;
     box-sizing: border-box;
+    border: 1px solid red;
+}
+
+.filter_components > label{
+    width: 50%;
+    text-align: right;
+}
+
+#start_time_filter, #end_time_filter, #airport1_filter, #airport2_filter {
+    width: 100%;
 }
 
 .airline_type_button, .spacer, #airline_companies {

@@ -44,12 +44,12 @@
             <button type="button" onclick="toggleFilterWindow()">Filter</button>
         </div>
         <div id="map_wrapper">
-            <div id="map">
-                <script
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&callback=initMap&v=weekly"
-                    defer
-                ></script>
-            </div>
+<!--            <div id="map">-->
+<!--                <script-->
+<!--                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&callback=initMap&v=weekly"-->
+<!--                    defer-->
+<!--                ></script>-->
+<!--            </div>-->
             
             <div id="filter_content">
                 <div class="filter_title">FILTER</div>
@@ -66,7 +66,14 @@
                 </div>
                 
                 <div class="filter_item" id="start_end_airport">
-                    <label for="start_end_airport_components">Start/End Airport:</label>
+                    <label for="start_end_airport_components">
+                        <select name="start_filter" id="start_filter">
+                            <option value="">Starting Airport</option>
+                            <option value="">Starting City</option>
+                            <option value="">Starting Country</option>
+                            <option value="">Starting Continent</option>
+                        </select>
+                    </label>
                     <div class="filter_components" id="start_end_airport_components">
                         <label for="airport1_filter">Airport 1:</label>
                         <select name="airport1_filter" id="airport1_filter">
