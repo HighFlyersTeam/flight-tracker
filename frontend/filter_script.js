@@ -9,6 +9,13 @@ function toggleFilterWindow() {
     }
 }
 
+//Removes need for Shift+click in multiselect menus
+$(document).on("mousedown", "option",function(e) {
+    e.preventDefault();
+    $(this).prop('selected', !$(this).prop('selected'));
+    return false;
+});
+
 // Toggling button functionality for non-advanced options
 $(document).on("click",".day_of_week_button, .airline_type_button", function() {
     if ($(this).hasClass("active")) {
