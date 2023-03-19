@@ -9,6 +9,16 @@ function toggleFilterWindow() {
     }
 }
 
+// Toggling button functionality for non-advanced options
+$(document).on("click",".day_of_week_button, .airline_type_button", function() {
+    if ($(this).hasClass("active")) {
+        $(this).removeClass("active");
+    }
+    else {
+        $(this).addClass("active");
+    }
+});
+
 // Changes selection for each item in the dropdown menu
 $(document).on("change", "#start_filter, #end_filter", function() {
     const target = $(this).data('target');
@@ -21,14 +31,11 @@ $(document).on("change", "#start_filter, #end_filter", function() {
 function advanced_controls_time_display() {
     const start_time = document.getElementById("secondary_start_time");
     const end_time = document.getElementById("secondary_end_time");
-    console.log(start_time.style.display);
     if (start_time.style.display === "none") {
-        console.log("true");
         start_time.style.removeProperty("display");
         end_time.style.removeProperty("display");
     }
     else {
-        console.log("false");
         start_time.style.display = "none";
         end_time.style.display = "none";
     }
