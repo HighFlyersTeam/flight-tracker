@@ -19,6 +19,24 @@ $(document).on("click",".day_of_week_button, .airline_type_button", function() {
     }
 });
 
+// Toggling button functionality for advanced options
+$(document).on("click",".advanced_controls_button", function() {
+    const start_time = document.getElementById("secondary_start_time");
+    const end_time = document.getElementById("secondary_end_time");
+
+    if ($(this).hasClass("active")) {
+        $(this).removeClass("active");
+        start_time.style.display = "none";
+        end_time.style.display = "none";
+    }
+    else {
+        $(".advanced_controls_button").removeClass("active");
+        $(this).addClass("active");
+        start_time.style.removeProperty("display");
+        end_time.style.removeProperty("display");
+    }
+});
+
 // Changes selection for each item in the dropdown menu
 $(document).on("change", "#start_filter, #end_filter", function() {
     const target = $(this).data('target');
@@ -26,20 +44,6 @@ $(document).on("change", "#start_filter, #end_filter", function() {
     $(target).children().addClass('hide');
     $(show).removeClass('hide');
 });
-
-// Toggles the time selection for the advanced controls
-function advanced_controls_time_display() {
-    const start_time = document.getElementById("secondary_start_time");
-    const end_time = document.getElementById("secondary_end_time");
-    if (start_time.style.display === "none") {
-        start_time.style.removeProperty("display");
-        end_time.style.removeProperty("display");
-    }
-    else {
-        start_time.style.display = "none";
-        end_time.style.display = "none";
-    }
-}
 
 // Triggers on start of the webpage creation
 $(function(){
