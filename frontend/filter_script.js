@@ -9,7 +9,7 @@ function toggleFilterWindow() {
     }
 }
 
-//Removes need for Shift+click in multiselect menus
+// Removes need for Shift+click in multiselect menus
 $(document).on("mousedown", "option",function(e) {
     e.preventDefault();
     $(this).prop('selected', !$(this).prop('selected'));
