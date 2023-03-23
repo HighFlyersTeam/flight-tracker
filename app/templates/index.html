@@ -5,6 +5,7 @@
         <meta content="IE=edge" http-equiv="X-UA-Compatible">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link href="../static/style.css" rel="stylesheet"/>
+        <link href="../static/help_style.css" rel="stylesheet"/>
         <script type="module" src="../static/map_script.js"></script>
         <script type="text/javascript" src="../static/filter_script.js"></script>
         <script type="text/javascript" src="../static/help_script.js"></script>
@@ -133,9 +134,33 @@
             <!-- Help Window -->
             <div id="help_content">
                 <div class="help_title">HELP</div>
-                <div class="help_text">
+                <div class="help_body">
+                        <img src="Logo.png" alt="Logo" class="help_image">
                     <p>Welcome to <strong>Flight Tracker</strong>, a visualizer for all available and past flights!</p>
-                    <p>cow goes moo</p>
+                    <p>
+                        To find flights, fill in the respective information at the top:
+                        <ul>
+                            <li><strong>Start Date:</strong> The earliest starting date of the desired route(s).</li>
+                            <li><strong>End Date:</strong> The latest end date of the desired route(s)</li>
+                            <br>
+                            <li><strong>Airport 1:</strong> The departure airport of the desired route(s).</li>
+                            <li><strong>Airport 2:</strong> The arrival airport of the desired route(s).</li>
+                        </ul>
+                        After filling in the information, select <strong>Find Route</strong> to filter and visualize flight 
+                        paths that match the given criteria.
+                    </p>
+                    <p>
+                        For more filtering options, select <strong>Filter</strong> at the top right to open up the filter 
+                        window. The additional options are as follows:
+                        <ul>
+                            <li><strong>Day of Week:</strong> The day(s) of a week for the flights to occur on.</li>
+                            <li><strong>Airlines:</strong> The airline(s) that the flights are operated by.</li>
+                            <li><strong>Type of Airline:</strong> The type of airline that the flights are operated by.</li>
+                        </ul>
+                        Once you are finished, select <strong>Confirm</strong> to apply the filters and <strong>Cancel</strong> 
+                        to close the filter window without applying the filters. <strong>Clear Filters</strong> will clear 
+                        all filter information in the filter window.
+                    </p>
                 </div>
             </div>    
         </div>
