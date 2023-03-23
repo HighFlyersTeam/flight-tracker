@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    </head>
     <body>
         <meta charset="UTF-8">
         <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -35,7 +38,7 @@
                 </select>
             </div>
         
-            <button type="button">Find Route</button>
+            <button type="button">Find Routes</button>
     
             <a href="tutorial.html">
                 <button type="button">Help</button>
@@ -54,59 +57,126 @@
             <div id="filter_content">
                 <div class="filter_title">FILTER</div>
     
-                <div class="filter_item" id="start_end_date">
-                    <label for="start_end_date_components">Start/End Date:</label>
-                    <div class="filter_components" id="start_end_date_components">
-                        <label for="start_time_filter">Start Date:&nbsp;</label>
-                        <input type="date" id="start_time_filter" name="start-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
-                        <div>&nbsp;&#8594;&nbsp;</div>
-                        <label for="end_time_filter">End Date:&nbsp;</label>
-                        <input type="date" id="end_time_filter" name="end-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                <div class="filter_item" id="earliest_start_time">
+                    <label for="earliest_start_time_components">Earliest Start Time:</label>
+                    <div class="filter_components" id="earliest_start_time_components">
+                        <input type="date" id="start_date" name="start_date" value="2018-07-22" min="2018-01-01" max="2018-12-31" required>
+                        <input type="time" id="start_time" name="start_time" value="10:00" min="09:00" max="18:00" required>
                     </div>
                 </div>
-                
-                <div class="filter_item" id="start_end_airport">
-                    <label for="start_end_airport_components">Start/End Airport:</label>
-                    <div class="filter_components" id="start_end_airport_components">
-                        <label for="airport1_filter">Airport 1:</label>
-                        <select name="airport1_filter" id="airport1_filter">
-                            <option value="">EWR</option>
-                            <option value="">LAX</option>
-                            <option value="">PVG</option>
-                        </select>
-                        <div>&nbsp;&#8594;&nbsp;</div>
-                        <label for="airport2_filter">Airport 2:</label>
-                        <select name="airport2_filter" id="airport2_filter">
-                            <option value="">EWR</option>
-                            <option value="">LAX</option>
-                            <option value="" selected>PVG</option>
-                        </select>
+    
+                <div class="filter_item" id="latest_end_time">
+                    <label for="latest_end_time_components">Latest End Time:</label>
+                    <div class="filter_components" id="latest_end_time_components">
+                        <input type="date" id="end_date" name="end_date" value="2018-07-22" min="2018-01-01" max="2018-12-31" required>
+                        <input type="time" id="end_time" name="end_time" value="10:00" min="09:00" max="18:00" required>
                     </div>
                 </div>
     
                 <div class="filter_item" id="day_of_week">
                     <label for="day_of_week_components">Day of Week:</label>
                     <div class="filter_components" id="day_of_week_components">
-                        <button type="button" class="day_of_week_button">Su</button>
+                        <button type="button" class="day_of_week_button active">Su</button>
                         <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">Mo</button>
+                        <button type="button" class="day_of_week_button active">Mo</button>
                         <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">Tu</button>
+                        <button type="button" class="day_of_week_button active">Tu</button>
                         <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">We</button>
+                        <button type="button" class="day_of_week_button active">We</button>
                         <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">Th</button>
+                        <button type="button" class="day_of_week_button active">Th</button>
                         <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">Fr</button>
+                        <button type="button" class="day_of_week_button active">Fr</button>
                         <div class="spacer"></div>
-                        <button type="button" class="day_of_week_button">Sa</button>
+                        <button type="button" class="day_of_week_button active">Sa</button>
+                    </div>
+                </div>
+                
+                <div class="filter_item" id="start_location">
+                    <label for="start_filter">
+                        Start Location:
+                        <select name="start_filter" data-target="#start_components" class="filter_label" id="start_filter">
+                            <option value="starting_airport" data-show="#airport_start_info">Airport</option>
+                            <option value="starting_country" data-show="#country_start_info">Country</option>
+                            <option value="starting_continent" data-show="#continent_start_info">Continent</option>
+                        </select>
+                    </label>
+                    
+                    <div class="filter_components" id="start_components">
+                        <select multiple name="airport_start_info" class="info hide" id="airport_start_info">
+                            <option value="">EWR</option>
+                            <option value="">LAX</option>
+                            <option value="">PVG</option>
+                        </select>
+    
+                        <select multiple name="country_start_info" class="info hide" id="country_start_info">
+                            <option value="">United States of America</option>
+                            <option value="">Nigeria</option>
+                            <option value="">Italy</option>
+                            <option value="">China</option>
+                            <option value="">Vietnam</option>
+                        </select>
+    
+                        <select multiple name="continent_start_info" class="info hide" id="continent_start_info">
+                            <option value="">North America</option>
+                            <option value="">South America</option>
+                            <option value="">Europe</option>
+                            <option value="">Africa</option>
+                            <option value="">Asia</option>
+                            <option value="">Australia</option>
+                            <option value="">Antarctica</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="filter_item" id="end_location">
+                    <label for="end_filter">
+                        End Location:
+                        <select name="end_filter" data-target="#end_components" class="filter_label" id="end_filter">
+                            <option value="ending_airport" data-show="#airport_end_info">Airport</option>
+                            <option value="ending_country" data-show="#country_end_info">Country</option>
+                            <option value="ending_continent" data-show="#continent_end_info">Continent</option>
+                        </select>
+                    </label>
+        
+                    <div class="filter_components" id="end_components">
+                        <select multiple name="airport_end_info" class="info hide" id="airport_end_info">
+                            <option value="">EWR</option>
+                            <option value="">LAX</option>
+                            <option value="">PVG</option>
+                        </select>
+            
+                        <select multiple name="country_end_info" class="info hide" id="country_end_info">
+                            <option value="">United States of America</option>
+                            <option value="">Nigeria</option>
+                            <option value="">Italy</option>
+                            <option value="">China</option>
+                            <option value="">Vietnam</option>
+                        </select>
+            
+                        <select multiple name="continent_end_info" class="info hide" id="continent_end_info">
+                            <option value="">North America</option>
+                            <option value="">South America</option>
+                            <option value="">Europe</option>
+                            <option value="">Africa</option>
+                            <option value="">Asia</option>
+                            <option value="">Australia</option>
+                            <option value="">Antarctica</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="filter_item" id="number_of_layovers">
+                    <label for="max_layovers_components">Max Layovers:</label>
+                    <div class="filter_components" id="max_layovers_components">
+                        <input type="number" id="max_layovers" name="max_layovers" value="0" min="0" max="3">
                     </div>
                 </div>
     
                 <div class="filter_item" id="airline_company">
                     <label for="airline_company_components">Airlines:</label>
                     <div class="filter_components" id="airline_company_components">
-                        <select multiple name="airline_companies" id="airline_companies">
+                        <select multiple name="airline_companies" class="info" id="airline_companies">
                             <option value="">Delta Airlines</option>
                             <option value="">United Airlines</option>
                             <option value="">Southwest Airlines</option>
@@ -121,9 +191,35 @@
                         <button type="button" class="airline_type_button">Passenger</button>
                     </div>
                 </div>
+    
+                <div class="filter_title" id="advanced_controls">ADVANCED</div>
+    
+                <div class="filter_item" id="added_removed_buttons">
+                    <div class="filter_components" id="added_removed_buttons_components">
+                        <button type="button" id="find_added_flights_button" class="advanced_controls_button">Find Added Flights</button>
+                        <button type="button" id="find_removed_flights_button" class="advanced_controls_button">Find Removed Flights</button>
+                    </div>
+                </div>
+    
+                <div class="filter_item" id="secondary_start_time">
+                    <label for="secondary_start_time_components">Start Time:</label>
+                    <div class="filter_components" id="secondary_start_time_components">
+                        <input type="date" id="start_date2" name="start_date2" value="2018-07-22" min="2018-01-01" max="2018-12-31" required>
+                        <input type="time" id="start_time2" name="start_time2" value="10:00" min="09:00" max="18:00" required>
+                    </div>
+                </div>
+    
+                <div class="filter_item" id="secondary_end_time">
+                    <label for="secondary_end_time_components">End Time:</label>
+                    <div class="filter_components" id="secondary_end_time_components">
+                        <input type="date" id="end_date2" name="end_date2" value="2018-07-22" min="2018-01-01" max="2018-12-31" required>
+                        <input type="time" id="end_time2" name="end_time2" value="10:00" min="09:00" max="18:00" required>
+                    </div>
+                </div>
                 
                 <div class="filter_controls">
-                    <button type="button" class="filter_control_button">Confirm</button>
+                    <button type="button" class="filter_control_button">Clear Filter</button>
+                    <button type="button" class="filter_control_button">Find Routes</button>
                     <button type="button" class="filter_control_button">Cancel</button>
                 </div>
             </div>
