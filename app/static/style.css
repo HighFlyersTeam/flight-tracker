@@ -5,6 +5,11 @@ body, html {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+button.active {
+    background-color: dimgray;
+    color: #ededed
+}
+
 .site {
     display: flex;
     flex-direction: column;
@@ -48,7 +53,7 @@ body, html {
 }
 
 #filter_content{
-    width: 35%;
+    width: 33%;
     display: none;
     flex-direction: column;
     gap: 10px;
@@ -67,6 +72,10 @@ body, html {
     font-weight: bold;
 }
 
+#advanced_controls {
+    margin-top: 2%;
+}
+
 .filter_item, .filter_controls {
     display: flex;
     flex-direction: row;
@@ -80,8 +89,13 @@ body, html {
 }
 
 .filter_item > label {
-    width: 20%;
+    width: 30%;
     display: inline-block;
+    text-align: right;
+}
+
+.filter_label {
+    width: 100%;
     text-align: right;
 }
 
@@ -91,7 +105,7 @@ body, html {
 
 .filter_components {
     display: flex;
-    width: 80%;
+    width: 100%;
     justify-content: center;
     flex-direction: row;
     margin: auto;
@@ -99,7 +113,21 @@ body, html {
     box-sizing: border-box;
 }
 
-.airline_type_button, .spacer, #airline_companies {
+.filter_components > label{
+    width: 20%;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.filter_components > select, .filter_components > input {
+    width: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+.airline_type_button, .advanced_controls_button, .spacer, #airline_companies {
     width: 100%;
 }
 
@@ -115,4 +143,5 @@ body, html {
     display: grid;
     place-items: center;
     text-align: center;
+
 }
