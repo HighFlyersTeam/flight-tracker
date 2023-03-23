@@ -3,6 +3,14 @@ let map;
 function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 4,
+        restriction: {
+            latLngBounds: {
+                north: 85,
+                south: -85,
+                west: -180,
+                east: 180
+            }
+        },
     });
 
     const shanghai = { lat: 31.224361, lng: 121.469170 };
