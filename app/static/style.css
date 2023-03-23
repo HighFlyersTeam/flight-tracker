@@ -115,3 +115,23 @@ body, html {
     place-items: center;
     text-align: center;
 }
+
+#help_content{
+    width: 35%;
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+    background-color: lightgrey;
+    padding: 2%;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    border: 1px solid black;
+    flex-basis: auto;
+}
+
+.help_title {
+    text-align: center;
+    font-weight: bold;
+}

@@ -6,11 +6,13 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link href="../static/style.css" rel="stylesheet"/>
         <script type="module" src="../static/map_script.js"></script>
-        <script type="text/javascript" src="../static/filter_script.js"></script>
+        <script type="text/javascript" src="../static/text_script.js"></script>
         <title>High Flyers</title>
     </body>
     <div class="site">
+        <!-- Filter Hotbar -->
         <div class="controls">
+            <!-- Time Controls -->
             <div class="time_controls">
                 <label for="start_time_taskbar">Start Date:&nbsp;</label>
                 <input type="date" id="start_time_taskbar" name="start-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
@@ -18,7 +20,7 @@
                 <label for="end_time_taskbar">End Date:&nbsp;</label>
                 <input type="date" id="end_time_taskbar" name="end-time" value="2018-07-22" min="2018-01-01" max="2018-12-31">
             </div>
-        
+            <!-- Airport Controls -->
             <div class="airport_controls">
                 <label for="airport1_taskbar">Airport 1:</label>
                 <select name="airport1_taskbar" id="airport1_taskbar">
@@ -34,15 +36,13 @@
                     <option value="" selected>PVG</option>
                 </select>
             </div>
-        
+            <!-- Buttons -->
             <button type="button">Find Route</button>
-    
-            <a href="tutorial.html">
-                <button type="button">Help</button>
-            </a>
-            
+            <button type="button" onclick="toggleHelpWindow()">Help</button>        
             <button type="button" onclick="toggleFilterWindow()">Filter</button>
         </div>
+
+        <!-- Map -->
         <div id="map_wrapper">
             <div id="map">
                 <script
@@ -51,6 +51,7 @@
                 ></script>
             </div>
             
+            <!-- Filter Window -->
             <div id="filter_content">
                 <div class="filter_title">FILTER</div>
     
@@ -127,6 +128,15 @@
                     <button type="button" class="filter_control_button">Cancel</button>
                 </div>
             </div>
+
+            <!-- Help Window -->
+            <div id="help_content">
+                <div class="help_title">HELP</div>
+                <div class="help_text">
+                    <p>Welcome to <strong>Flight Tracker</strong>, a visualizer for all available and past flights!</p>
+                    <p>cow goes moo</p>
+                </div>
+            </div>    
         </div>
     </div>
 </html>
