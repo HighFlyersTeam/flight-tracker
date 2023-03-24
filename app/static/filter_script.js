@@ -1,3 +1,7 @@
+// Times are in UTC time
+const DEFAULT_START = "2018-01-01T04:00:00";
+const DEFAULT_END = "2018-12-31T17:00:00";
+
 // Toggles the filter window
 function toggleFilterWindow() {
     const filterWindow = document.getElementById("filter_content");
@@ -8,6 +12,27 @@ function toggleFilterWindow() {
         filterWindow.style.display = "none";
     }
 }
+
+// Clear filter button functionality
+$(document).on("click", "#clear_filter", function() {
+    // Reset dates
+    const start = new Date(DEFAULT_START).toISOString();
+    const end = new Date(DEFAULT_END).toISOString();
+    document.getElementById("start_date").value = start.substring(0, 10);
+    document.getElementById("start_time").value = start.substring(11, 16);
+    document.getElementById("end_date").value = end.substring(0, 10);
+    document.getElementById("end_time").value = end.substring(11, 16);
+
+    document.getElementById("start_date2").value = start.substring(0, 10);
+    document.getElementById("start_time2").value = start.substring(11, 16);
+    document.getElementById("end_date2").value = end.substring(0, 10);
+    document.getElementById("end_time2").value = end.substring(11, 16);
+
+    // Reset day of week buttons
+    const dayOfWeekButtons = document.getElementsByClassName("day_of_week_button");
+    for (let i = 0; i < dayOfWeekButtons.length; i++)
+        dayOfWeekButtons[i].classList.add("active");
+});
 
 // Removes need for Shift+click in multiselect menus
 $(document).on("mousedown", "option",function(e) {
@@ -28,19 +53,19 @@ $(document).on("click",".day_of_week_button, .airline_type_button", function() {
 
 // Toggling button functionality for advanced options
 $(document).on("click",".advanced_controls_button", function() {
-    const start_time = document.getElementById("secondary_start_time");
-    const end_time = document.getElementById("secondary_end_time");
+    const startTime = document.getElementById("secondary_start_time");
+    const endTime = document.getElementById("secondary_end_time");
 
     if ($(this).hasClass("active")) {
         $(this).removeClass("active");
-        start_time.style.display = "none";
-        end_time.style.display = "none";
+        startTime.style.display = "none";
+        endTime.style.display = "none";
     }
     else {
         $(".advanced_controls_button").removeClass("active");
         $(this).addClass("active");
-        start_time.style.removeProperty("display");
-        end_time.style.removeProperty("display");
+        startTime.style.removeProperty("display");
+        endTime.style.removeProperty("display");
     }
 });
 
@@ -54,13 +79,19 @@ $(document).on("change", "#start_filter, #end_filter", function() {
 
 // Triggers on start of the webpage creation
 $(function(){
+    // Reset the filter menu
+    $('#clear_filter').trigger('click');
+
     // Displays the selection for the first item in the dropdown menu
     $('#start_filter').trigger('change');
     $('#end_filter').trigger('change');
 
+    // Reset the filter menu
+    $('clear_filter').trigger("click");
+
     // Hide the time selection for the advanced controls
-    const start_time = document.getElementById("secondary_start_time");
-    const end_time = document.getElementById("secondary_end_time");
-    start_time.style.display = "none";
-    end_time.style.display = "none";
+    const startTime = document.getElementById("secondary_start_time");
+    const endTime = document.getElementById("secondary_end_time");
+    startTime.style.display = "none";
+    endTime.style.display = "none";
 });
