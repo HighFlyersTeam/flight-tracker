@@ -115,8 +115,39 @@ $(document).on("click", "#find_routes_filter", function() {
     arrival_location["values"] = arrival_location_values;
     arrival_info["location"] = arrival_location;
 
+    // Max Layovers
     data["max_layovers"] = parseInt(document.getElementById("max_layovers").value);
+
+    // Airlines
     data["airlines"] = $('#airline_companies').val();
+
+    // Type of Airline
+    const airline_type = {};
+    const cargo = document.getElementById("cargo_button").classList.contains("active");
+    const passenger = document.getElementById("passenger_button").classList.contains("active");
+    airline_type["cargo"] = cargo;
+    airline_type["passenger"] = passenger;
+    data["airline_type"] = airline_type;
+
+    // Advanced Options
+    const advanced_options = {};
+    const added = document.getElementById("find_added_flights_button").classList.contains("active");
+    const removed = document.getElementById("find_removed_flights_button").classList.contains("active");
+    const start = {};
+    const start_date = document.getElementById("start_date2").value;
+    const start_time = document.getElementById("start_time2").value;
+    start["date"] = start_date;
+    start["time"] = start_time;
+    const end = {};
+    const end_date = document.getElementById("end_date2").value;
+    const end_time = document.getElementById("end_time2").value;
+    end["date"] = end_date;
+    end["time"] = end_time;
+    advanced_options["find_added"] = added;
+    advanced_options["find_removed"] = removed;
+    advanced_options["start_info"] = start;
+    advanced_options["end_info"] = end;
+    data["advanced_options"] = advanced_options;
 
     console.log(JSON.stringify(data, null, ' '));
 });
