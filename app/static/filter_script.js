@@ -34,6 +34,17 @@ $(document).on("click", "#clear_filter", function() {
     const dayOfWeekButtons = document.getElementsByClassName("day_of_week_button");
     for (let i = 0; i < dayOfWeekButtons.length; i++)
         dayOfWeekButtons[i].classList.add("active");
+
+    // Reset multi-select menus (start location, end location, and airlines)
+    $(".info option:selected").prop("selected", false);
+
+    // Reset max layovers
+    document.getElementById("max_layovers").value = 0;
+
+    // Reset airline type buttons
+    const airlineTypeButtons = document.getElementsByClassName("airline_type_button");
+    for (let i = 0; i < airlineTypeButtons.length; i++)
+        airlineTypeButtons[i].classList.remove("active");
 });
 
 // Removes need for Shift+click in multiselect menus
@@ -87,9 +98,6 @@ $(function(){
     // Displays the selection for the first item in the dropdown menu
     $('#start_filter').trigger('change');
     $('#end_filter').trigger('change');
-
-    // Reset the filter menu
-    $('clear_filter').trigger("click");
 
     // Hide the time selection for the advanced controls
     const startTime = document.getElementById("secondary_start_time");
