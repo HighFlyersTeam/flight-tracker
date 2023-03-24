@@ -5,8 +5,10 @@ const DEFAULT_END = "2018-12-31T17:00:00";
 // Toggles the filter window
 function toggleFilterWindow() {
     const filterWindow = document.getElementById("filter_content");
+    const helpWindow = document.getElementById("help_content");
     if (window.getComputedStyle(filterWindow).display === "none") {
         filterWindow.style.display = "flex";
+        helpWindow.style.display = "none";
     }
     else {
         filterWindow.style.display = "none";
