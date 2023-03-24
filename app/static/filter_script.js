@@ -115,6 +115,9 @@ $(document).on("click", "#find_routes_filter", function() {
     arrival_location["values"] = arrival_location_values;
     arrival_info["location"] = arrival_location;
 
+    data["max_layovers"] = parseInt(document.getElementById("max_layovers").value);
+    data["airlines"] = $('#airline_companies').val();
+
     console.log(JSON.stringify(data, null, ' '));
 });
 
