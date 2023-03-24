@@ -47,6 +47,12 @@ $(document).on("click", "#clear_filter", function() {
         airlineTypeButtons[i].classList.remove("active");
 });
 
+// Filter cancel button functionality
+$(document).on("click", "#cancel_filter", function() {
+    const filterWindow = document.getElementById("filter_content");
+    filterWindow.style.display = "none";
+});
+
 // Removes need for Shift+click in multiselect menus
 $(document).on("mousedown", "option",function(e) {
     e.preventDefault();
