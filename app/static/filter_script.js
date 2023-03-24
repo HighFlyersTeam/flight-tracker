@@ -85,6 +85,36 @@ $(document).on("click", "#find_routes_filter", function() {
     day_of_week_info["saturday"] = saturday;
     data["day_of_week"] = day_of_week_info;
 
+    // Start Location
+    const departure_location = {};
+    const departure_location_type = document.getElementById("start_filter").value;
+    let departure_location_values;
+    if (departure_location_type == "airport") {
+        departure_location_values = $('#airport_start_info').val();
+    } else if (departure_location_type == "country") {
+        departure_location_values = $('#country_start_info').val();
+    } else if (departure_location_type == "continent") {
+        departure_location_values = $('#continent_start_info').val();
+    }
+    departure_location["type"] = departure_location_type;
+    departure_location["values"] = departure_location_values;
+    departure_info["location"] = departure_location;
+
+    // End Location
+    const arrival_location = {};
+    const arrival_location_type = document.getElementById("end_filter").value;
+    let arrival_location_values;
+    if (arrival_location_type == "airport") {
+        arrival_location_values = $('#airport_end_info').val();
+    } else if (arrival_location_type == "country") {
+        arrival_location_values = $('#country_end_info').val();
+    } else if (arrival_location_type == "continent") {
+        arrival_location_values = $('#continent_end_info').val();
+    }
+    arrival_location["type"] = arrival_location_type;
+    arrival_location["values"] = arrival_location_values;
+    arrival_info["location"] = arrival_location;
+
     console.log(JSON.stringify(data, null, ' '));
 });
 
@@ -129,7 +159,7 @@ $(document).on("click",".advanced_controls_button", function() {
     }
 });
 
-// Changes selection for each item in the dropdown menu
+// Changes selection for each location in the dropdown menu
 $(document).on("change", "#start_filter, #end_filter", function() {
     const target = $(this).data('target');
     const show = $("option:selected", this).data('show');
