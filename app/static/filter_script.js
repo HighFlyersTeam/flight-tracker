@@ -47,6 +47,47 @@ $(document).on("click", "#clear_filter", function() {
         airlineTypeButtons[i].classList.remove("active");
 });
 
+// Filter find routes button functionality
+$(document).on("click", "#find_routes_filter", function() {
+    var data = {};
+
+    // Earliest Start Time
+    const departure_info = {};
+    const departure_date = document.getElementById("start_date").value;
+    const departure_time = document.getElementById("start_time").value;
+    departure_info["date"] = departure_date;
+    departure_info["time"] = departure_time;
+    data["departure_info"] = departure_info;
+
+    // Latest End Time
+    const arrival_info = {};
+    const arrival_date = document.getElementById("end_date").value;
+    const arrival_time = document.getElementById("end_time").value;
+    arrival_info["date"] = arrival_date;
+    arrival_info["time"] = arrival_time;
+    data["arrival_info"] = arrival_info
+
+    // Day of Week
+    const day_of_week_info = {};
+    const sunday = document.getElementById("sunday_button").classList.contains("active");
+    const monday = document.getElementById("monday_button").classList.contains("active");
+    const tuesday = document.getElementById("tuesday_button").classList.contains("active");
+    const wednesday = document.getElementById("wednesday_button").classList.contains("active");
+    const thursday = document.getElementById("thursday_button").classList.contains("active");
+    const friday = document.getElementById("friday_button").classList.contains("active");
+    const saturday = document.getElementById("saturday_button").classList.contains("active");
+    day_of_week_info["sunday"] = sunday;
+    day_of_week_info["monday"] = monday;
+    day_of_week_info["tuesday"] = tuesday;
+    day_of_week_info["wednesday"] = wednesday;
+    day_of_week_info["thursday"] = thursday;
+    day_of_week_info["friday"] = friday;
+    day_of_week_info["saturday"] = saturday;
+    data["day_of_week"] = day_of_week_info;
+
+    console.log(JSON.stringify(data, null, ' '));
+});
+
 // Filter cancel button functionality
 $(document).on("click", "#cancel_filter", function() {
     const filterWindow = document.getElementById("filter_content");
