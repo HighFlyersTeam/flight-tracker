@@ -149,6 +149,7 @@ $(document).on("click", "#find_routes_filter", function() {
     advanced_options["end_info"] = end;
     data["advanced_options"] = advanced_options;
 
+    // TODO: replace this with a call that sends the data to the backend
     console.log(JSON.stringify(data, null, ' '));
 });
 
