@@ -2,6 +2,16 @@
 const DEFAULT_START = "2018-01-01T04:00:00";
 const DEFAULT_END = "2018-12-31T17:00:00";
 
+// Cookies!!
+function setCookie(c_name, value, expireminutes)
+{
+   let exdate = new Date();
+   exdate.setMinutes(exdate.getMinutes()+expireminutes);
+   document.cookie=c_name+ "=" +escape(value)+
+   ((expireminutes==null) ? "" : ";expires="+exdate.toUTCString());
+}
+
+
 // Toggles the filter window
 function toggleFilterWindow() {
     const filterWindow = document.getElementById("filter_content");
@@ -150,8 +160,13 @@ $(document).on("click", "#find_routes_filter", function() {
     data["advanced_options"] = advanced_options;
 
     // TODO: replace this with a call that sends the data to the backend
-    console.log(JSON.stringify(data, null, ' '));
-});
+    // console.log(JSON.stringify(data, null, ' '));
+
+    setCookie("form",JSON.stringify(data),5);});
+
+    // Simulate an HTTP redirect:
+    // Simulate a mouse click:
+    // window.location.href = "http://127.0.0.1:5000/form";
 
 // Filter cancel button functionality
 $(document).on("click", "#cancel_filter", function() {
