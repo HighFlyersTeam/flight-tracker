@@ -1,3 +1,7 @@
+window.onload = function() {
+    toggleHelpWindow()
+}
+
 function toggleHelpWindow() {
     const helpWindow = document.getElementById("help_content");
     const filterWindow = document.getElementById("filter_content");
