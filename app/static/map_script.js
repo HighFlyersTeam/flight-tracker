@@ -1,6 +1,14 @@
 let map;
 
-function initMap() {
+async function getAirportData() {
+    const response = await fetch("/app/data/airports.json")
+        .then(response => {
+            return response.json();
+        });
+    return response;
+}
+
+async function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 4,
         restriction: {
@@ -13,21 +21,33 @@ function initMap() {
         },
     });
 
-    const shanghai = { lat: 31.224361, lng: 121.469170 };
+    const airportData = await getAirportData();
+    const airportCodes = Object.keys(airportData);
+    for (let i = 0; i < airportCodes.length; i++) {
+        const currentAirport = airportData[airportCodes[i]];
+        const location = {lat: currentAirport["lat"], lng: currentAirport["lng"]};
+        const marker = new google.maps.Marker( {
+           position: location,
+           map,
+           title: currentAirport["name"],
+        });
+    }
+
+    const shanghai = {lat: 31.224361, lng: 121.469170};
     const shanghaiMarker = new google.maps.Marker({
         position: shanghai,
         map,
         title: "Shanghai",
     });
 
-    const nyc = { lat: 40.7128, lng: -74.006 }
+    const nyc = {lat: 40.7128, lng: -74.006}
     const nycMarker = new google.maps.Marker({
-       position: nyc,
-       map,
-       title: "New York City",
+        position: nyc,
+        map,
+        title: "New York City",
     });
 
-    const berlin = { lat: 52.5200, lng: 13.4050 }
+    const berlin = {lat: 52.5200, lng: 13.4050}
     const berlinMarker = new google.maps.Marker({
         position: berlin,
         map,
@@ -42,7 +62,7 @@ function initMap() {
     map.fitBounds(bounds)
     map.setZoom(map.getZoom() - 1);
 
-    if(map.getZoom() > 15){
+    if (map.getZoom() > 15) {
         map.setZoom(15);
     }
 
