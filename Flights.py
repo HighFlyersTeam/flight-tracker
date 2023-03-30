@@ -204,8 +204,6 @@ class FlightInfo:
         # add error handling later for invalid dates
 
         # copy original flight dataset, apply date range filter
-        self.details = self.fullData.copy()
-
         if (date1[2] == date2[2]):
             if (date1[0] == date2[0]):
                 if (date1[1] == date2[1]):
@@ -325,7 +323,7 @@ class FlightInfo:
     # resets all filters
 
     def resetFilters(self):
-        self.changeDateFrame(currentDateF[1], currentDateF[2])
+        self.details = self.fullData.copy()
 
     def filterByAdded(self, beginTime1, beginTime2, endTime1, endTime2):
         self.changeDateFrame(beginTime1, beginTime2)
@@ -335,10 +333,15 @@ class FlightInfo:
 
         self.changeDateFrame(endTime1, endTime2)
 
+    def filterRemovedFlights(self, beginTime1, beginTime2, endTime1, endTime2):
+        self.changeDateFrame(beginTime1, beginTime2)
+        beginFrame = self.details.copy()
+
+        self.resetDateFrame()
+
+        self.changeDateFrame(endTime1, endTime2)
+
         endframe = self.details.copy()
-
-    # def filterRemovedFlights(self, beginTime1, beginTime2, endTime1, endTime2):
-
     # prints first numRows rows
 
     def printRows(self, numRows):

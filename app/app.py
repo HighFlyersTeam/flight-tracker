@@ -1,6 +1,6 @@
 from flask import Flask, redirect, render_template, url_for, request
 from Flights import *
-FILENAME = "simple_data.csv"
+FILENAME = "/data/data.csv"
 
 app = Flask(__name__)
 flights = FlightInfo(FILENAME, "./data/airports.txt")
@@ -29,11 +29,9 @@ def form():
     flights.filterByAirline(req.airlines)
 
     if flights.advancedRequest.filterAdded:
-        flights.filterByAdded(flights.advancedRequest.start,
-                              flights.advancedRequest.end)
+        flights.filterByAdded(flights.advancedRequest)
 
     if flights.advancedRequest.filterRemoved:
-        flights.filterByRemoved(flights.advancedRequest.start,
-                                flights.advancedRequest.end)
+        flights.filterByRemoved(flights.advancedRequest)
 
     return f'Hello {name}!'
