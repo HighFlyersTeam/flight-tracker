@@ -26,10 +26,16 @@ async function initMap() {
     for (let i = 0; i < airportCodes.length; i++) {
         const currentAirport = airportData[airportCodes[i]];
         const location = {lat: currentAirport["lat"], lng: currentAirport["lng"]};
-        const marker = new google.maps.Marker( {
-           position: location,
-           map,
-           title: currentAirport["name"],
+        const infoWindow = new google.maps.InfoWindow({
+            content: "<strong>" + currentAirport["name"] + "</strong>"
+        });
+        const marker = new google.maps.Marker({
+            position: location,
+            map,
+            title: currentAirport["name"],
+        });
+        marker.addListener("click", function() {
+            infoWindow.open(map, marker);
         });
     }
 
