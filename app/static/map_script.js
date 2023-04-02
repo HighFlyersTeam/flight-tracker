@@ -4,7 +4,7 @@ let mapPaths;
 let airportData;
 
 async function getAirportData() {
-    const response = await fetch("/app/data/airports.json")
+    const response = await fetch("../static/airports.json")
         .then(response => {
             return response.json();
         });
