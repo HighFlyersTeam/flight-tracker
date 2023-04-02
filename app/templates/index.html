@@ -11,10 +11,11 @@
         <!-- Local Files -->
         <link href="../static/style.css" rel="stylesheet"/>
         <link href="../static/help_style.css" rel="stylesheet"/>
+        <script type="module" src="../static/display_routes_script.js"></script>
         <script type="module" src="../static/map_script.js"></script>
-        <script type="text/javascript" src="../static/windows_script.js"></script>
-        <script type="text/javascript" src="../static/filter_script.js"></script>
-        <script type="text/javascript" src="../static/help_script.js"></script>
+        <script src="../static/windows_script.js"></script>
+        <script src="../static/filter_script.js"></script>
+        <script src="../static/help_script.js"></script>
         
         <!-- Bootstrap 5 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -239,8 +240,11 @@
                 
                 <div class="filter_controls">
                     <button type="button" id="clear_filter" class="filter_control_button">Clear Filters</button>
-                    <button type="button" id="find_routes_filter" class="filter_control_button"
-                            onclick="location.href = 'http://127.0.0.1:5000/form';">Find Routes</button>
+                    <button type="button" id="find_routes_filter" class="filter_control_button">Find Routes</button>
+                    <script type="module">
+                        import {displayFilteredFlights} from "../static/display_routes_script.js";
+                        document.querySelector('#find_routes_filter').addEventListener('click', displayFilteredFlights);
+                    </script>
                     <button type="button" id="cancel_filter" class="filter_control_button">Cancel</button>
                 </div>
             </div>

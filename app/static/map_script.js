@@ -1,6 +1,17 @@
 let map;
+let mapMarkers;
+let mapPaths;
+let airportData;
 
-function initMap() {
+async function getAirportData() {
+    const response = await fetch("/app/data/airports.json")
+        .then(response => {
+            return response.json();
+        });
+    return response;
+}
+
+async function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
         zoom: 4,
         restriction: {
@@ -12,62 +23,91 @@ function initMap() {
             }
         },
     });
+    mapMarkers = [];
+    mapPaths = [];
 
-    const shanghai = { lat: 31.224361, lng: 121.469170 };
-    const shanghaiMarker = new google.maps.Marker({
-        position: shanghai,
-        map,
-        title: "Shanghai",
-    });
+    airportData = await getAirportData();
 
-    const nyc = { lat: 40.7128, lng: -74.006 }
-    const nycMarker = new google.maps.Marker({
-       position: nyc,
-       map,
-       title: "New York City",
-    });
+    // Shows all airports by default
+    const airportCodes = Object.keys(airportData);
+    for (let i = 0; i < airportCodes.length; i++)
+        createAirportMarker(airportCodes[i]);
 
-    const berlin = { lat: 52.5200, lng: 13.4050 }
-    const berlinMarker = new google.maps.Marker({
-        position: berlin,
-        map,
-        title: "Berlin"
-    })
-
-    var markers = [nycMarker, shanghaiMarker, berlinMarker];
     var bounds = new google.maps.LatLngBounds();
-    for (let i = 0; i < markers.length; i++)
-        bounds.extend(markers[i].getPosition());
+    for (let i = 0; i < mapMarkers.length; i++)
+        bounds.extend(mapMarkers[i].getPosition());
     map.setCenter(bounds.getCenter());
     map.fitBounds(bounds)
     map.setZoom(map.getZoom() - 1);
-
-    if(map.getZoom() > 15){
+    if (map.getZoom() > 15) {
         map.setZoom(15);
     }
 
-    const red = "#FF0000";
-    const blue = "#0000FF";
+    // updateMapWithFlights([["JFK", "HKG", "LHR"], ["LHR", "JFK"]])
+}
 
-    const flightPathCoordinates = [nyc, shanghai];
-    const flightPath = new google.maps.Polyline({
-        path: flightPathCoordinates,
-        geodesic: true,
-        strokeColor: red,
-        strokeOpacity: 1.0,
-        strokeWeight: 2,
-    });
-    flightPath.setMap(map);
+function clearMap() {
+    for (let i = 0; i < mapMarkers.length; i++)
+        mapMarkers[i].setMap(null);
+    for (let i = 0; i < mapPaths.length; i++)
+        mapPaths[i].setMap(null);
+    mapMarkers = [];
+    mapPaths = [];
+}
 
-    const flightPath2Coordinates = [nyc, berlin, shanghai];
-    const flightPath2 = new google.maps.Polyline({
-        path: flightPath2Coordinates,
-        geodesic: true,
-        strokeColor: blue,
-        strokeOpacity: 1.0,
-        strokeWeight: 2,
+function createAirportMarker(airportCode) {
+    const currentAirport = airportData[airportCode];
+    const location = {lat: currentAirport["lat"], lng: currentAirport["lng"]};
+    const infoWindow = new google.maps.InfoWindow({
+        content: "<strong>" + currentAirport["name"] + "</strong>"
     });
-    flightPath2.setMap(map);
+    const marker = new google.maps.Marker({
+        position: location,
+        map,
+        title: currentAirport["name"],
+    });
+    marker.addListener("click", function () {
+        infoWindow.open(map, marker);
+    });
+
+    mapMarkers.push(marker);
+}
+
+// Expects a 2D array of strings containing flight path data, with strings being airport codes
+// Example: [["JFK", "HKG", "LHR"], ["LHR", "JFK"]]
+export function updateMapWithFlights(flightData) {
+    clearMap();
+
+    let airports = new Set();
+    const pathsAsCoordinates = [];
+    for (let i = 0; i < flightData.length; i++) {
+        const currentPath = [];
+        for (let j = 0; j < flightData[i].length; j++) {
+            airports.add(flightData[i][j]);
+            const currentAirport = flightData[i][j];
+            currentPath.push({lat: airportData[currentAirport]["lat"], lng: airportData[currentAirport]["lng"]})
+        }
+        pathsAsCoordinates.push(currentPath);
+    }
+
+    // Display all unique airports
+    for (const currentAirportCode of airports.values())
+        createAirportMarker(currentAirportCode);
+
+    // Display all the paths
+    for (let i = 0; i < pathsAsCoordinates.length; i++) {
+        // TODO: decide if we want to keep this random color solution or have a systematic coloring system
+        const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        const flightPath = new google.maps.Polyline({
+            path: pathsAsCoordinates[i],
+            geodesic: true,
+            strokeColor: "#" + randomColor,
+            strokeOpacity: 1.0,
+            strokeWeight: 2,
+        });
+        flightPath.setMap(map);
+        mapPaths.push(flightPath);
+    }
 }
 
 window.initMap = initMap;
