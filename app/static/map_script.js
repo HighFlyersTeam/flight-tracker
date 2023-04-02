@@ -1,4 +1,6 @@
 let map;
+let mapMarkers;
+let mapPaths;
 
 async function getAirportData() {
     const response = await fetch("/app/data/airports.json")
@@ -20,6 +22,8 @@ async function initMap() {
             }
         },
     });
+    mapMarkers = [];
+    mapPaths = [];
 
     const airportData = await getAirportData();
     const airportCodes = Object.keys(airportData);
@@ -37,6 +41,8 @@ async function initMap() {
         marker.addListener("click", function() {
             infoWindow.open(map, marker);
         });
+
+        mapMarkers.push(marker);
     }
 
     const shanghai = {lat: 31.224361, lng: 121.469170};
@@ -45,6 +51,7 @@ async function initMap() {
         map,
         title: "Shanghai",
     });
+    mapMarkers.push(shanghaiMarker);
 
     const nyc = {lat: 40.7128, lng: -74.006}
     const nycMarker = new google.maps.Marker({
@@ -52,13 +59,15 @@ async function initMap() {
         map,
         title: "New York City",
     });
+    mapMarkers.push(nycMarker);
 
     const berlin = {lat: 52.5200, lng: 13.4050}
     const berlinMarker = new google.maps.Marker({
         position: berlin,
         map,
         title: "Berlin"
-    })
+    });
+    mapMarkers.push(berlinMarker);
 
     var markers = [nycMarker, shanghaiMarker, berlinMarker];
     var bounds = new google.maps.LatLngBounds();
@@ -84,6 +93,7 @@ async function initMap() {
         strokeWeight: 2,
     });
     flightPath.setMap(map);
+    mapPaths.push(flightPath);
 
     const flightPath2Coordinates = [nyc, berlin, shanghai];
     const flightPath2 = new google.maps.Polyline({
@@ -94,6 +104,21 @@ async function initMap() {
         strokeWeight: 2,
     });
     flightPath2.setMap(map);
+    mapPaths.push(flightPath2);
+
+    // clearMap();
 }
+
+function clearMap() {
+    for (let i = 0; i < mapMarkers.length; i++) {
+        mapMarkers[i].setMap(null);
+    }
+    for (let i = 0; i < mapPaths.length; i++) {
+        mapPaths[i].setMap(null);
+    }
+    mapMarkers = [];
+    mapPaths = [];
+}
+
 
 window.initMap = initMap;
