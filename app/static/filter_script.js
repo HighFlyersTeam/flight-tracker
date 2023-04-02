@@ -2,14 +2,6 @@
 const DEFAULT_START = "2018-01-01T04:00:00";
 const DEFAULT_END = "2018-12-31T17:00:00";
 
-// Cookies!!
-function setCookie(c_name, value, expireminutes)
-{
-   let exdate = new Date();
-   exdate.setMinutes(exdate.getMinutes()+expireminutes);
-   document.cookie=c_name+ "=" +escape(value)+
-   ((expireminutes==null) ? "" : ";expires="+exdate.toUTCString());
-}
 
 // Toggles the filter window
 function toggleFilterWindow() {
