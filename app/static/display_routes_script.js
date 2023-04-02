@@ -7,13 +7,20 @@ export function displayFilteredFlights() {
     // TODO: replace this with a call that sends the data to the backend
     // console.log(JSON.stringify(data, null, ' '));
 
-    // setCookie("form",JSON.stringify(data),5);
+    setCookie("form",JSON.stringify(data),5);
 
     // Simulate an HTTP redirect:
     // Simulate a mouse click:
     // window.location.href = "http://127.0.0.1:5000/form";
 
     updateMapWithFlights([["JFK", "HKG", "LHR"], ["LHR", "JFK"]])
+}
+
+function setCookie(c_name, value, expireminutes) {
+    let exdate = new Date();
+    exdate.setMinutes(exdate.getMinutes()+expireminutes);
+    document.cookie=c_name+ "=" +escape(value)+
+        ((expireminutes==null) ? "" : ";expires="+exdate.toUTCString());
 }
 
 function getDataFromFilterMenu() {
