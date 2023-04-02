@@ -43,7 +43,7 @@ async function initMap() {
         map.setZoom(15);
     }
 
-    updateMapWithFlights([["JFK", "HKG", "LHR"], ["LHR", "JFK"]])
+    // updateMapWithFlights([["JFK", "HKG", "LHR"], ["LHR", "JFK"]])
 }
 
 function clearMap() {
@@ -75,7 +75,7 @@ function createAirportMarker(airportCode) {
 
 // Expects a 2D array of strings containing flight path data, with strings being airport codes
 // Example: [["JFK", "HKG", "LHR"], ["LHR", "JFK"]]
-function updateMapWithFlights(flightData) {
+export function updateMapWithFlights(flightData) {
     clearMap();
 
     let airports = new Set();
