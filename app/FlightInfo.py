@@ -122,8 +122,3 @@ class FlightInfo:
         flights2 = self.fullData[self.fullData["ARRIVAL_TIME"] < arrive2]
 
         self.details = flights1
-
-
-temp = FlightInfo("simple_data.csv")
-
-print(temp.details.head())

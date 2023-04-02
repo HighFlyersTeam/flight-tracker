@@ -1,9 +1,10 @@
 from flask import Flask, redirect, render_template, url_for, request
-from Flights import *
-FILENAME = "/data/data.csv"
+from FlightInfo import FlightInfo
+from Request import Request
+FILENAME = "data.csv"
 
 app = Flask(__name__)
-flights = FlightInfo(FILENAME, "./data/airports.txt")
+flights = FlightInfo(FILENAME)
 
 
 @app.route('/')
