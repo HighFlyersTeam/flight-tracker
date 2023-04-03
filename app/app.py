@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, url_for, request
+from flask import Flask, redirect, render_template, url_for, request, make_response
 from FlightInfo import FlightInfo
 from Request import Request
 FILENAME = "data.csv"
@@ -27,18 +27,19 @@ def form():
     flights.filterByLocation(req.originType, req.originValues,
                              req.destType, req.destValues)
 
-    # flights.filterByTime(req.originValues['time'],
-    #                      req.originValues['time'])
+    flights.filterByTime(req.startDate, req.startTime,
+                         req.endDate, req.endTime)
 
     flights.filterByDayOfWeek(req.dayOfWeek)
 
-    # flights.filterByAirline(req.airlines)
-    #
+    flights.filterByAirline(req.airlines)
+
     # if flights.advancedRequest.filterAdded:
     #     flights.filterByAdded(flights.advancedRequest)
-    #
+
     # if flights.advancedRequest.filterRemoved:
     #     flights.filterByRemoved(flights.advancedRequest)
+
     ret_val = []
     for index, row in flights.details.iterrows():
         ret_val.append([row['ORIGIN_AIRPORT'], row['DESTINATION_AIRPORT']])

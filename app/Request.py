@@ -8,7 +8,12 @@ class Request:
 
         self.originType = self.details['departure_location_type']
         self.originValues = self.details['departure_location_values']
-        print("Origin Values", self.originValues)
+
+        self.startDate = self.details['departure_date']
+        self.startTime = self.details['departure_time']
+
+        self.endDate = self.details['arrival_date']
+        self.endTime = self.details['arrival_time']
 
         self.destType = self.details['arrival_location_type']
         self.destValues = self.details['arrival_location_values']
@@ -21,47 +26,6 @@ class Request:
 
         # TODO -- temp values for now this probably won't work
         # self.advancedRequest = AdvancedRequest(self.details['departure_time'], self.details['arrival_time'], None)
-
-    # def populate(self, json_request):
-    #     self.details = json.loads(json_request)
-    #
-    #     self.originInfo = self.details['departure_info']
-    #     self.originAirports = None
-    #     self.originCountries = None
-    #     self.originContinents = None
-    #     if self.originInfo['location']['type'] == "airport":
-    #         self.originAirports = self.arrivalInfo['location']['values']
-    #     elif self.originInfo['location']['type'] == "country":
-    #         self.originCountries = self.arrivalInfo['location']['values']
-    #     elif self.originInfo['location']['type'] == "continent":
-    #         self.originContinents = self.arrivalInfo['location']['values']
-    #
-    #     self.destInfo = self.details['arrival_info']
-    #     self.destAirports = None
-    #     self.destCountries = None
-    #     self.destContinents = None
-    #     if self.destInfo['location']['type'] == "airport":
-    #         self.destAirports = self.destInfo['location']['values']
-    #     elif self.destInfo['location']['type'] == "country":
-    #         self.destCountries = self.destInfo['location']['values']
-    #     elif self.destInfo['location']['type'] == "continent":
-    #         self.destContinents = self.destInfo['location']['values']
-    #
-    #     self.dayOfWeek = self.details['day_of_week']
-    #     self.layovers = self.details['max_layovers']
-    #     self.airlines = self.details['airlines']
-    #     self.isCargo = self.details['airline_type']['cargo']
-    #     self.isPassenger = self.details['airline_type']['passenger']
-    #
-    #     self.findAdded = self.details['advanced_options']['find_added']
-    #     if self.findAdded:
-    #         self.advancedStart = self.details['advanced_options']['start_info']
-    #         self.advanctedEnd = self.details['advanced_options']['end_info']
-    #
-    #     self.findRemoved = self.details['advanced_options']['find_removed']
-    #     if self.findRemoved:
-    #         self.advancedStart = self.details['advanced_options']['start_info']
-    #         self.advanctedEnd = self.details['advanced_options']['end_info']
 
     # TODO -- this can all easily be changed to be in whatever format you want
     #      -- this is just a quick and dirty way to get it working

@@ -71,9 +71,15 @@ class FlightInfo:
             self.details = self.details[self.details["DESTINATION_CONTINENT"].isin(
                 destValues)]
 
-    def filterByTime(self, originInfo, destInfo):
-        depart_time = datetime.datetime.strptime(originInfo, '%Y-%m-%d')
-        arrive_time = datetime.datetime.strptime(destInfo, '%Y-%m-%d')
+    def filterByTime(self, startDate, startTime, endDate, endTime):
+        parsed_start = startDate + '-' + startTime[:2] + '-' + startTime[2:]
+        parsed_end = endDate + '-' + endTime[:2] + '-' + endTime[2:]
+
+        depart_time = datetime.datetime.strptime(parsed_start,
+                                                 '%Y-%m-%d-%H-%M')
+
+        arrive_time = datetime.datetime.strptime(parsed_end,
+                                                 '%Y-%m-%d-%H-%M')
 
         self.details = self.details[self.details["DEPARTURE_TIME"] > depart_time]
 
@@ -82,14 +88,14 @@ class FlightInfo:
     def filterByDayOfWeek(self, days):
         selectedDays = []
         for k in (days.keys()):
-            if (days[k]):
+            if (days[k] == "true"):
                 selectedDays.append(k)
 
-        print("Selected Days:", selectedDays)
+        # print("Selected Days:", selectedDays)
         self.details = self.details[self.details["DAY_OF_WEEK"].isin(
             selectedDays)]
 
-    def filterbyAirline(self, airlines):
+    def filterByAirline(self, airlines):
         self.details = self.details[self.details["AIRLINE"].isin(
             airlines)]
 

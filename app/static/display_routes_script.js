@@ -4,17 +4,13 @@ import {updateMapWithFlights} from "../static/map_script.js";
 export function displayFilteredFlights() {
     const data = getDataFromFilterMenu();
 
-    // TODO: replace this with a call that sends the data to the backend
-    console.log(data);
-
-
     setCookie("form",data,5);
 
-    // Simulate an HTTP redirect:
-    // Simulate a mouse click:
-    window.location.href = "http://127.0.0.1:5000/form";
-
-    updateMapWithFlights([["JFK", "HKG", "LHR"], ["LHR", "JFK"]])
+    $.ajax({
+        url: 'http://127.0.0.1:5000/form', success: function(data) {
+            updateMapWithFlights(eval(data));
+        }
+    });
 }
 
 function setCookie(c_name, value, expireminutes) {
