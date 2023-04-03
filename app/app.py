@@ -17,22 +17,23 @@ def form():
     name = request.cookies.get('form')
 
     req = Request(name)
+
     flights.details = flights.fullData.copy()
 
     flights.filterByLocation(req.originType, req.originValues,
                              req.destType, req.destValues)
 
-    flights.filterByTime(req.originInfo['time'],
-                         req.destInfo['time'])
+    # flights.filterByTime(req.originInfo['time'],
+    #                      req.destInfo['time'])
 
     flights.filterByDayOfWeek(req.dayOfWeek)
 
-    flights.filterByAirline(req.airlines)
+    # flights.filterByAirline(req.airlines)
+    #
+    # if flights.advancedRequest.filterAdded:
+    #     flights.filterByAdded(flights.advancedRequest)
+    #
+    # if flights.advancedRequest.filterRemoved:
+    #     flights.filterByRemoved(flights.advancedRequest)
 
-    if flights.advancedRequest.filterAdded:
-        flights.filterByAdded(flights.advancedRequest)
-
-    if flights.advancedRequest.filterRemoved:
-        flights.filterByRemoved(flights.advancedRequest)
-
-    return f'Hello {name}!'
+    return f'{flights}'
