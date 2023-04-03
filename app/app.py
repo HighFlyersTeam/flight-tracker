@@ -34,6 +34,8 @@ def form():
 
     flights.filterByAirline(req.airlines)
 
+    flights.filterByCargo(req.isCargo, req.isPassenger)
+
     # if flights.advancedRequest.filterAdded:
     #     flights.filterByAdded(flights.advancedRequest)
 

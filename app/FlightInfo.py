@@ -99,6 +99,19 @@ class FlightInfo:
         self.details = self.details[self.details["AIRLINE"].isin(
             airlines)]
 
+    def filterByCargo(self, isCargo, isPassenger):
+        print("Cargo", isCargo)
+        print("Pass", isPassenger)
+        if isCargo == 'true' and isPassenger == 'false':
+            print("Cargo filter")
+            self.details = self.details[self.details["CARGO"] == True]
+        elif isCargo == 'false' and isPassenger == 'true':
+            print("Pass filter")
+            self.details = self.details[self.details["CARGO"] == False]
+        elif isCargo == 'false' and isPassenger == 'false':
+            print("No filter")
+            self.details = self.details[self.details["CARGO"] == 2]
+
     def filterByAdded(self, req):
         depart1 = datetime.datetime.strptime(req.start1, '%Y-%m-%d')
         depart2 = datetime.datetime.strptime(req.start2, '%Y-%m-%d')
