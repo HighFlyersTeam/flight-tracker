@@ -20,6 +20,10 @@ def form():
 
     flights.details = flights.fullData.copy()
 
+    print(req.originType)
+    print(req.originValues)
+    print(req.destType)
+    print(req.destValues)
     flights.filterByLocation(req.originType, req.originValues,
                              req.destType, req.destValues)
 
@@ -35,5 +39,5 @@ def form():
     #
     # if flights.advancedRequest.filterRemoved:
     #     flights.filterByRemoved(flights.advancedRequest)
-
+    print(flights.details)
     return f'{flights}'

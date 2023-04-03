@@ -53,24 +53,18 @@ class FlightInfo:
                          destType, destValues):
 
         if originType == 'airport':
-            self.details = self.details[self.details["ORIGIN_AIRPORT"]].isin(
-                originValues)
+            self.details = self.details[self.details["ORIGIN_AIRPORT"].isin(originValues)]
         elif originType == 'country':
-            self.details = self.details[self.details["ORIGIN_COUNTRY"]].isin(
-                originValues)
+            self.details = self.details[self.details["ORIGIN_COUNTRY"].isin(originValues)]
         elif originType == 'continent':
-            self.details = self.details[self.details["ORIGIN_CONTINENT"]].isin(
-                originValues)
+            self.details = self.details[self.details["ORIGIN_CONTINENT"].isin(originValues)]
 
         if destType == 'airport':
-            self.details = self.details[self.details["DESTINATION_AIRPORT"]].isin(
-                destValues)
+            self.details = self.details[self.details["DESTINATION_AIRPORT"].isin(destValues)]
         elif destType == 'country':
-            self.details = self.details[self.details["DESTINATION_COUNTRY"]].isin(
-                destValues)
+            self.details = self.details[self.details["DESTINATION_COUNTRY"].isin(destValues)]
         elif destType == 'continent':
-            self.details = self.details[self.details["DESTINATION_CONTINENT"]].isin(
-                destValues)
+            self.details = self.details[self.details["DESTINATION_CONTINENT"].isin(destValues)]
 
     def filterByTime(self, originInfo, destInfo):
         depart_time = datetime.datetime.strptime(originInfo, '%Y-%m-%d')
