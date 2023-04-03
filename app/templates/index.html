@@ -9,7 +9,6 @@
         <link href="../static/style.css" rel="stylesheet"/>
         <link href="../static/help_style.css" rel="stylesheet"/>
         <script type="module" src="../static/map_script.js"></script>
-        <script type="text/javascript" src="../static/windows_script.js"></script>
         <script type="text/javascript" src="../static/filter_script.js"></script>
         <script type="text/javascript" src="../static/help_script.js"></script>
         
@@ -21,72 +20,77 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
     <body>
-        <main>
-            <!-- Header -->
-            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                    <svg class="bi me-2" width="20" height="30">
-                        <use xlink:href="#bootstrap"></use>
-                    </svg>
-                    <span class="fs-4">Flight Tracker</span>
-                </a>
-                
-                <!-- Hotbar Content -->
-                <div class="container">
-                    <div class="row g-3 align-items-center">
-                        <!-- Departure Date -->
-                        <div class="col-md-2">
-                            <label for="departure-date" class="form-label">Departure Date</label>
-                            <input type="date" id="departure-date" name="departure-date" class="form-control">
-                        </div>
-                        <!-- Arrival Date -->
-                        <div class="col-md-2">
-                            <label for="return-date" class="form-label">Arrival Date</label>
-                            <input type="date" id="return-date" name="return-date" class="form-control">
-                        </div>
-                        <!-- Departure Airport -->
-                        <div class="col-md-2">
-                            <label for="departure-airport" class="form-label">Departure Airport</label>
-                            <select class="form-select" id="departure-airport" required>
-                                <option value="">Choose...</option>
-                                <option>EWR</option>
-                                <option>LAX</option>
-                                <option>PVG</option>
-                            </select>
-                        </div>
-                        <!-- Arrival Airport -->
-                        <div class="col-md-2">
-                            <label for="arrival-airport" class="form-label">Arrival Airport</label>
-                            <select class="form-select" id="arrival-airport" required>
-                                <option value="">Choose...</option>
-                                <option>EWR</option>
-                                <option>LAX</option>
-                                <option>PVG</option>
-                            </select>
-                        </div>
-                        <!-- Buttons -->
-                        <div class="col-md-4">
-                            <div class="row g-3">
-                                <!-- Search Flights -->
-                                <div class="col-md-4">
-                                    <button id="search-flights" class="btn btn-primary">Search Flights</button>
-                                </div>
-                                <!-- More Filters -->
-                                <div class="col-md-4">
-                                    <button id="filter-window" class="btn btn-secondary" 
-                                    onclick="toggleFilterWindow()">More Filters</button>
-                                </div>
-                                <!-- Help -->
-                                <div class="col-md-4">
-                                    <button id="help-window" class="btn btn-toolbar" 
-                                    onclick="toggleHelpWindow()">Help</button>
-                                </div>
+        <!-- Header -->
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <svg class="bi me-2" width="20" height="30">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+                <span class="fs-4">Flight Tracker</span>
+            </a>
+            
+            <!-- Hotbar Content -->
+            <div class="container">
+                <div class="row g-3 align-items-center">
+                    <!-- Departure Date -->
+                    <div class="col-md-2">
+                        <label for="departure-date" class="form-label">Departure Date</label>
+                        <input type="date" id="departure-date" name="departure-date" class="form-control">
+                    </div>
+                    <!-- Arrival Date -->
+                    <div class="col-md-2">
+                        <label for="return-date" class="form-label">Arrival Date</label>
+                        <input type="date" id="return-date" name="return-date" class="form-control">
+                    </div>
+                    <!-- Departure Airport -->
+                    <div class="col-md-2">
+                        <label for="departure-airport" class="form-label">Departure Airport</label>
+                        <select class="form-select" id="departure-airport" required>
+                            <option value="">Choose...</option>
+                            <option>EWR</option>
+                            <option>LAX</option>
+                            <option>PVG</option>
+                        </select>
+                    </div>
+                    <!-- Arrival Airport -->
+                    <div class="col-md-2">
+                        <label for="arrival-airport" class="form-label">Arrival Airport</label>
+                        <select class="form-select" id="arrival-airport" required>
+                            <option value="">Choose...</option>
+                            <option>EWR</option>
+                            <option>LAX</option>
+                            <option>PVG</option>
+                        </select>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="col-md-4">
+                        <div class="row g-3">
+                            <!-- Search Flights -->
+                            <div class="col-md-4">
+                                <button id="search-flights" class="btn btn-primary">Search Flights</button>
+                            </div>
+                            <!-- More Filters -->
+                            <div class="col-md-4">
+                                <button id="filter-window" class="btn btn-secondary" 
+                                onclick="toggleFilterWindow()">More Filters</button>
+                            </div>
+                            <!-- Help -->
+                            <div class="col-md-4">
+                                <button id="help-window" class="btn btn-toolbar" 
+                                onclick="toggleHelpWindow()">Help</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </header>
-
+            </div>
+        </header>
+        <main>
+            <div id="map">
+                <script
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&callback=initMap&v=weekly"
+                        defer
+                ></script>
+            </div>
         </main>
         
         <!-- Bootstrap Bundle with Popper -->
@@ -98,13 +102,6 @@
     <div class="site">
         <!-- Map -->
         <div id="map_wrapper">
-            <div id="map">
-                <script
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&callback=initMap&v=weekly"
-                        defer
-                ></script>
-            </div>
-            
             <!-- Filter Window -->
             <div id="filter_content">
                 <div class="filter_title">FILTER</div>
