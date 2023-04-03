@@ -70,6 +70,7 @@ class Request:
         to_return['find_added'] = cookie[23]
         to_return['find_removed'] = cookie[24]
 
+        print("\n\nFrontend Request:\n", to_return)
         return to_return
 
 

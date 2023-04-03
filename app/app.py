@@ -20,10 +20,6 @@ def form():
 
     flights.details = flights.fullData.copy()
 
-    print("Origin Type:", req.originType)
-    print("Origin Values:", req.originValues)
-    print("Dest Type:", req.destType)
-    print("Dest Values:", req.destValues)
     flights.filterByLocation(req.originType, req.originValues,
                              req.destType, req.destValues)
 
@@ -46,5 +42,5 @@ def form():
     for index, row in flights.details.iterrows():
         ret_val.append([row['ORIGIN_AIRPORT'], row['DESTINATION_AIRPORT']])
 
-    print(ret_val)
+    print("\nReturn Dataframe:\n", ret_val)
     return f'{ret_val}'
