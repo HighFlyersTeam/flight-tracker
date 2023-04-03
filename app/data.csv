@@ -1,38 +1,38 @@
 ﻿YEAR,MONTH,DAY,DAY_OF_WEEK,AIRLINE,FLIGHT_NUMBER,ORIGIN_AIRPORT,DESTINATION_AIRPORT,DEPARTURE_TIME,ELAPSED_TIME,ARRIVAL_TIME,DIVERTED,CANCELLED,ORIGIN_COUNTRY,DESTINATION_COUNTRY,ORIGIN_CONTINENT,DESTINATION_CONTINENT,CARGO
-2015,1,2,5,DL,102,LHR,HKG,1455,760,235,0,0,United Kingdom,China,Europe,Asia,0
-2015,1,12,1,AA,103,JFK,HKG,2350,960,1550,0,0,United States of America,China,North America,Asia,0
-2015,1,13,2,DL,104,JFK,HKG,235,945,1820,0,0,United States of America,China,North America,Asia,0
-2015,1,14,3,DL,105,JFK,LHR,1245,430,1955,0,0,United States of America,United Kingdom,North America,Europe,0
-2015,1,14,3,AA,106,JFK,LHR,1315,420,2015,0,0,United States of America,United Kingdom,North America,Europe,0
-2015,1,14,3,AA,107,LHR,HKG,2205,750,1055,0,0,United Kingdom,China,Europe,Asia,0
-2015,1,14,3,DL,108,LHR,HKG,2235,770,1105,0,0,United Kingdom,China,Europe,Asia,0
-2015,1,20,2,DL,109,JFK,HKG,110,960,1710,0,0,United States of America,China,North America,Asia,0
-2015,2,28,6,DL,110,HKG,LHR,420,855,1835,0,0,China,United Kingdom,Asia,Europe,0
-2015,3,13,5,AA,111,JFK,LHR,1230,430,1940,0,0,United States of America,United Kingdom,North America,Europe,0
-2015,4,22,3,AA,112,LHR,JFK,1620,470,11,0,0,United Kingdom,United States of America,Europe,North America,0
-2015,5,8,5,DL,113,LHR,HKG,2230,755,1005,0,0,United Kingdom,China,Europe,Asia,0
-2015,5,9,6,AA,114,JFK,HKG,1030,930,200,0,0,United States of America,China,North America,Asia,0
-2015,5,9,6,DL,115,JFK,HKG,1220,960,420,0,0,United States of America,China,North America,Asia,0
-2015,5,10,7,DL,116,JFK,LHR,1830,430,140,0,0,United States of America,United Kingdom,North America,Europe,0
-2015,5,10,7,AA,117,JFK,LHR,1435,425,2140,0,0,United States of America,United Kingdom,North America,Europe,0
-2015,5,11,1,DL,118,LHR,HKG,25,765,1310,0,0,United Kingdom,China,Europe,Asia,0
-2015,5,11,1,AA,119,LHR,HKG,115,780,1415,0,0,United Kingdom,China,Europe,Asia,0
-2015,5,11,1,DL,120,JFK,HKG,1230,960,430,0,0,United States of America,China,North America,Asia,0
-2015,5,4,1,,121,JFK,LHR,1220,430,1930,0,0,United States of America,United Kingdom,North America,Europe,1
-2015,5,5,2,,122,JFK,LHR,1420,440,2140,0,0,United States of America,United Kingdom,North America,Europe,1
-2015,5,6,3,,123,JFK,HKG,420,950,2010,0,0,United States of America,China,North America,Asia,1
-2015,5,7,4,,124,JFK,HKG,940,940,1920,0,0,United States of America,China,North America,Asia,1
-2015,5,8,5,,125,JFK,HKG,2230,920,1350,0,0,United States of America,China,North America,Asia,1
-2015,5,9,6,,126,JFK,LHR,1220,420,1920,0,0,United States of America,United Kingdom,North America,Europe,1
-2015,5,11,1,,127,JFK,LHR,500,435,1215,0,0,United States of America,United Kingdom,North America,Europe,1
-2015,5,11,1,,128,JFK,LHR,1220,440,1640,0,0,United States of America,United Kingdom,North America,Europe,1
-2015,5,12,2,,129,JFK,LHR,1420,430,2130,0,0,United States of America,United Kingdom,North America,Europe,1
-2015,5,13,3,,130,JFK,HKG,420,945,2005,0,0,United States of America,China,North America,Asia,1
-2015,5,14,4,,131,JFK,HKG,940,930,110,0,0,United States of America,China,North America,Asia,1
-2015,5,15,5,,132,JFK,HKG,2230,940,1410,0,0,United States of America,China,North America,Asia,1
-2015,5,16,6,,133,JFK,LHR,1220,440,1940,0,0,United States of America,United Kingdom,North America,Europe,1
-2015,5,19,2,,122,JFK,LHR,1420,430,2130,0,0,United States of America,United Kingdom,North America,Europe,1
-2015,5,20,3,,123,JFK,HKG,420,920,1940,0,0,United States of America,China,North America,Asia,1
-2015,5,21,4,,124,JFK,HKG,940,960,140,0,0,United States of America,China,North America,Asia,1
-2015,5,22,5,,125,JFK,HKG,2230,930,1400,0,0,United States of America,China,North America,Asia,1
-2015,5,23,6,,126,JFK,LHR,1220,420,1920,0,0,United States of America,United Kingdom,North America,Europe,1
+2018,1,2,5,DL,102,LHR,HKG,1455,760,235,0,0,United Kingdom,China,Europe,Asia,0
+2018,1,12,1,AA,103,JFK,HKG,2350,960,1550,0,0,United States of America,China,North America,Asia,0
+2018,1,13,2,DL,104,JFK,HKG,235,945,1820,0,0,United States of America,China,North America,Asia,0
+2018,1,14,3,DL,105,JFK,LHR,1245,430,1955,0,0,United States of America,United Kingdom,North America,Europe,0
+2018,1,14,3,AA,106,JFK,LHR,1315,420,2015,0,0,United States of America,United Kingdom,North America,Europe,0
+2018,1,14,3,AA,107,LHR,HKG,2205,750,1055,0,0,United Kingdom,China,Europe,Asia,0
+2018,1,14,3,DL,108,LHR,HKG,2235,770,1105,0,0,United Kingdom,China,Europe,Asia,0
+2018,1,20,2,DL,109,JFK,HKG,110,960,1710,0,0,United States of America,China,North America,Asia,0
+2018,2,28,6,DL,110,HKG,LHR,420,855,1835,0,0,China,United Kingdom,Asia,Europe,0
+2018,3,13,5,AA,111,JFK,LHR,1230,430,1940,0,0,United States of America,United Kingdom,North America,Europe,0
+2018,4,22,3,AA,112,LHR,JFK,1620,470,11,0,0,United Kingdom,United States of America,Europe,North America,0
+2018,5,8,5,DL,113,LHR,HKG,2230,755,1005,0,0,United Kingdom,China,Europe,Asia,0
+2018,5,9,6,AA,114,JFK,HKG,1030,930,200,0,0,United States of America,China,North America,Asia,0
+2018,5,9,6,DL,115,JFK,HKG,1220,960,420,0,0,United States of America,China,North America,Asia,0
+2018,5,10,7,DL,116,JFK,LHR,1830,430,140,0,0,United States of America,United Kingdom,North America,Europe,0
+2018,5,10,7,AA,117,JFK,LHR,1435,425,2140,0,0,United States of America,United Kingdom,North America,Europe,0
+2018,5,11,1,DL,118,LHR,HKG,25,765,1310,0,0,United Kingdom,China,Europe,Asia,0
+2018,5,11,1,AA,119,LHR,HKG,115,780,1415,0,0,United Kingdom,China,Europe,Asia,0
+2018,5,11,1,DL,120,JFK,HKG,1230,960,430,0,0,United States of America,China,North America,Asia,0
+2018,5,4,1,UPS,121,JFK,LHR,1220,430,1930,0,0,United States of America,United Kingdom,North America,Europe,1
+2018,5,5,2,UPS,122,JFK,LHR,1420,440,2140,0,0,United States of America,United Kingdom,North America,Europe,1
+2018,5,6,3,UPS,123,JFK,HKG,420,950,2010,0,0,United States of America,China,North America,Asia,1
+2018,5,7,4,UPS,124,JFK,HKG,940,940,1920,0,0,United States of America,China,North America,Asia,1
+2018,5,8,5,UPS,125,JFK,HKG,2230,920,1350,0,0,United States of America,China,North America,Asia,1
+2018,5,9,6,UPS,126,JFK,LHR,1220,420,1920,0,0,United States of America,United Kingdom,North America,Europe,1
+2018,5,11,1,UPS,127,JFK,LHR,500,435,1215,0,0,United States of America,United Kingdom,North America,Europe,1
+2018,5,11,1,UPS,128,JFK,LHR,1220,440,1640,0,0,United States of America,United Kingdom,North America,Europe,1
+2018,5,12,2,UPS,129,JFK,LHR,1420,430,2130,0,0,United States of America,United Kingdom,North America,Europe,1
+2018,5,13,3,UPS,130,JFK,HKG,420,945,2005,0,0,United States of America,China,North America,Asia,1
+2018,5,14,4,UPS,131,JFK,HKG,940,930,110,0,0,United States of America,China,North America,Asia,1
+2018,5,15,5,UPS,132,JFK,HKG,2230,940,1410,0,0,United States of America,China,North America,Asia,1
+2018,5,16,6,UPS,133,JFK,LHR,1220,440,1940,0,0,United States of America,United Kingdom,North America,Europe,1
+2018,5,19,2,UPS,122,JFK,LHR,1420,430,2130,0,0,United States of America,United Kingdom,North America,Europe,1
+2018,5,20,3,UPS,123,JFK,HKG,420,920,1940,0,0,United States of America,China,North America,Asia,1
+2018,5,21,4,UPS,124,JFK,HKG,940,960,140,0,0,United States of America,China,North America,Asia,1
+2018,5,22,5,UPS,125,JFK,HKG,2230,930,1400,0,0,United States of America,China,North America,Asia,1
+2018,5,23,6,UP8,126,JFK,LHR,1220,420,1920,0,0,United States of America,United Kingdom,North America,Europe,1

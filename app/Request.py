@@ -8,6 +8,7 @@ class Request:
 
         self.originType = self.details['departure_location_type']
         self.originValues = self.details['departure_location_values']
+        print("Origin Values", self.originValues)
 
         self.destType = self.details['arrival_location_type']
         self.destValues = self.details['arrival_location_values']
@@ -74,13 +75,13 @@ class Request:
         to_return['arrival_time'] = cookie[3]
 
         to_return['day_of_week'] = {
-            'sunday': cookie[4],
-            'monday': cookie[5],
-            'tuesday': cookie[6],
-            'wednesday': cookie[7],
-            'thursday': cookie[8],
-            'friday': cookie[9],
-            'saturday': cookie[10]
+            '7': cookie[4],
+            '6': cookie[5],
+            '5': cookie[6],
+            '4': cookie[7],
+            '3': cookie[8],
+            '2': cookie[9],
+            '1': cookie[10]
         }
 
         to_return['departure_location_type'] = cookie[11]

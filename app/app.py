@@ -20,15 +20,15 @@ def form():
 
     flights.details = flights.fullData.copy()
 
-    print(req.originType)
-    print(req.originValues)
-    print(req.destType)
-    print(req.destValues)
+    print("Origin Type:", req.originType)
+    print("Origin Values:", req.originValues)
+    print("Dest Type:", req.destType)
+    print("Dest Values:", req.destValues)
     flights.filterByLocation(req.originType, req.originValues,
                              req.destType, req.destValues)
 
-    # flights.filterByTime(req.originInfo['time'],
-    #                      req.destInfo['time'])
+    # flights.filterByTime(req.originValues['time'],
+    #                      req.originValues['time'])
 
     flights.filterByDayOfWeek(req.dayOfWeek)
 
@@ -39,5 +39,9 @@ def form():
     #
     # if flights.advancedRequest.filterRemoved:
     #     flights.filterByRemoved(flights.advancedRequest)
-    print(flights.details)
-    return f'{flights}'
+    ret_val = []
+    for index, row in flights.details.iterrows():
+        ret_val.append([row['ORIGIN_AIRPORT'], row['DESTINATION_AIRPORT']])
+
+    print(ret_val)
+    return f'{ret_val}'
