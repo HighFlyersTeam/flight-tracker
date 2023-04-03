@@ -22,62 +22,71 @@
     </head>
     <body>
         <main>
-            <!--
-            <div class="container">
-                <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                      <svg class="bi me-2" width="40" height="32"><use xlink:href ="#bootstrap"></use></svg>
-                      <span class="fs-4">Flight Tracker</span>
-                    </a>
-              
-                    <ul class="nav nav-pills">
-                      <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-                      <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-                      <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-                      <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-                      <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                    </ul>
-                  </header>
-            </div>
-            -->
-            <div class="container">
-                <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-                    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                        <svg class="bi me-2" width="40" height="32">
-                            <use xlink:href="#bootstrap"></use>
-                        </svg>
-                        <span class="fs-4">Flight Tracker</span>
-                    </a>
+            <!-- Header -->
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <svg class="bi me-2" width="20" height="30">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                    <span class="fs-4">Flight Tracker</span>
+                </a>
+                
+                <!-- Hotbar Content -->
+                <div class="container">
                     <div class="row g-3 align-items-center">
+                        <!-- Departure Date -->
                         <div class="col-md-2">
-                            <label for="departure-date" class="form-label">Departure Date:</label>
+                            <label for="departure-date" class="form-label">Departure Date</label>
                             <input type="date" id="departure-date" name="departure-date" class="form-control">
                         </div>
+                        <!-- Arrival Date -->
                         <div class="col-md-2">
-                            <label for="return-date" class="form-label">Return Date:</label>
+                            <label for="return-date" class="form-label">Arrival Date</label>
                             <input type="date" id="return-date" name="return-date" class="form-control">
                         </div>
+                        <!-- Departure Airport -->
                         <div class="col-md-2">
-                            <label for="departure-airport" class="form-label">Departure Airport:</label>
-                            <input type="text" id="departure-airport" name="departure-airport" class="form-control">
+                            <label for="departure-airport" class="form-label">Departure Airport</label>
+                            <select class="form-select" id="departure-airport" required>
+                                <option value="">Choose...</option>
+                                <option>EWR</option>
+                                <option>LAX</option>
+                                <option>PVG</option>
+                            </select>
                         </div>
+                        <!-- Arrival Airport -->
                         <div class="col-md-2">
-                            <label for="arrival-airport" class="form-label">Arrival Airport:</label>
-                            <input type="text" id="arrival-airport" name="arrival-airport" class="form-control">
+                            <label for="arrival-airport" class="form-label">Arrival Airport</label>
+                            <select class="form-select" id="arrival-airport" required>
+                                <option value="">Choose...</option>
+                                <option>EWR</option>
+                                <option>LAX</option>
+                                <option>PVG</option>
+                            </select>
                         </div>
+                        <!-- Buttons -->
                         <div class="col-md-4">
                             <div class="row g-3">
+                                <!-- Search Flights -->
                                 <div class="col-md-4">
                                     <button id="search-flights" class="btn btn-primary">Search Flights</button>
                                 </div>
+                                <!-- More Filters -->
                                 <div class="col-md-4">
-                                    <button id="clear-filters" class="btn btn-secondary">Clear Filters</button>
+                                    <button id="filter-window" class="btn btn-secondary" 
+                                    onclick="toggleFilterWindow()">More Filters</button>
+                                </div>
+                                <!-- Help -->
+                                <div class="col-md-4">
+                                    <button id="help-window" class="btn btn-toolbar" 
+                                    onclick="toggleHelpWindow()">Help</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </header>
-            </div>
+                </div>
+            </header>
+
         </main>
         
         <!-- Bootstrap Bundle with Popper -->
@@ -87,40 +96,6 @@
         <title>High Flyers</title>
     </body>
     <div class="site">
-        <!-- Filter Hotbar -->
-        <div class="controls">
-            <!-- Time Controls -->
-            <div class="time_controls">
-                <label for="start_time_taskbar">Start Date&nbsp;</label>
-                <input type="date" id="start_time_taskbar" name="start-time" value="2018-07-22" min="2018-01-01"
-                       max="2018-12-31">
-                <div>&nbsp;&#8594;&nbsp;</div>
-                <label for="end_time_taskbar">End Date&nbsp;</label>
-                <input type="date" id="end_time_taskbar" name="end-time" value="2018-07-22" min="2018-01-01"
-                       max="2018-12-31">
-            </div>
-            <!-- Airport Controls -->
-            <div class="airport_controls">
-                <label for="airport1_taskbar">Departure&nbsp;</label>
-                <select name="airport1_taskbar" id="airport1_taskbar">
-                    <option value="">EWR</option>
-                    <option value="">LAX</option>
-                    <option value="">PVG</option>
-                </select>
-                <div>&nbsp;&#8594;&nbsp;</div>
-                <label for="airport2_taskbar">Destination&nbsp;</label>
-                <select name="airport2_taskbar" id="airport2_taskbar">
-                    <option value="">EWR</option>
-                    <option value="">LAX</option>
-                    <option value="" selected>PVG</option>
-                </select>
-            </div>
-            <!-- Buttons -->
-            <button type="button">Find Routes</button>
-            <button type="button" onclick="toggleHelpWindow()">Help</button>
-            <button type="button" onclick="toggleFilterWindow()">Filter</button>
-        </div>
-        
         <!-- Map -->
         <div id="map_wrapper">
             <div id="map">
