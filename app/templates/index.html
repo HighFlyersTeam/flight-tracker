@@ -69,13 +69,14 @@
                             </div>
                             <!-- More Filters -->
                             <div class="col-md-4">
-                                <button id="filter-window" class="btn btn-secondary" 
-                                onclick="toggleFilterWindow()">More Filters</button>
+                                <button id="filter-window" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#filter-options"
+                                    aria-controls="filter-options">
+                                    More Filters
+                                </button>
                             </div>
                             <!-- Help -->
                             <div class="col-md-4">
-                                <button id="help-window" class="btn btn-toolbar" 
-                                onclick="toggleHelpWindow()">Help</button>
+                                <button id="help-window" class="btn btn-toolbar" onclick="toggleHelpWindow()">Help</button>
                             </div>
                         </div>
                     </div>
@@ -90,183 +91,86 @@
                     defer
             ></script>
         </div>
-        
-        <!-- Filter Window -->
-        <div id="filter_content" class="offcanvas-start">
-            <div class="filter_title">FILTER</div>
-            
-            <div class="filter_item" id="earliest_start_time">
-                <label for="earliest_start_time_components">Earliest Start Time:</label>
-                <div class="filter_components" id="earliest_start_time_components">
-                    <input type="date" id="start_date" name="start_date" min="2018-01-01" max="2018-12-31" required>
-                    <input type="time" id="start_time" name="start_time" min="09:00" max="18:00" required>
-                </div>
-            </div>
-            
-            <div class="filter_item" id="latest_end_time">
-                <label for="latest_end_time_components">Latest End Time:</label>
-                <div class="filter_components" id="latest_end_time_components">
-                    <input type="date" id="end_date" name="end_date" min="2018-01-01" max="2018-12-31" required>
-                    <input type="time" id="end_time" name="end_time" min="09:00" max="18:00" required>
-                </div>
-            </div>
-            
-            <div class="filter_item" id="day_of_week">
-                <label for="day_of_week_components">Day of Week:</label>
-                <div class="filter_components" id="day_of_week_components">
-                    <button type="button" id="sunday_button" class="day_of_week_button active">Su</button>
-                    <div class="spacer"></div>
-                    <button type="button" id="monday_button" class="day_of_week_button active">Mo</button>
-                    <div class="spacer"></div>
-                    <button type="button" id="tuesday_button" class="day_of_week_button active">Tu</button>
-                    <div class="spacer"></div>
-                    <button type="button" id="wednesday_button" class="day_of_week_button active">We</button>
-                    <div class="spacer"></div>
-                    <button type="button" id="thursday_button" class="day_of_week_button active">Th</button>
-                    <div class="spacer"></div>
-                    <button type="button" id="friday_button" class="day_of_week_button active">Fr</button>
-                    <div class="spacer"></div>
-                    <button type="button" id="saturday_button" class="day_of_week_button active">Sa</button>
-                </div>
-            </div>
-            
-            <div class="filter_item" id="start_location">
-                <label for="start_filter">
-                    Start Location:
-                    <select name="start_filter" data-target="#start_components" class="filter_label" id="start_filter">
-                        <option value="airport" data-show="#airport_start_info">Airport</option>
-                        <option value="country" data-show="#country_start_info">Country</option>
-                        <option value="continent" data-show="#continent_start_info">Continent</option>
-                    </select>
-                </label>
                 
-                <div class="filter_components" id="start_components">
-                    <select multiple name="airport_start_info" class="info hide" id="airport_start_info">
-                        <option value="HKG">HKG: Hong Kong International Airport</option>
-                        <option value="JFK">JFK: John F. Kennedy International Airport</option>
-                        <option value="LHR">LHR: Heathrow Airport</option>
-                    </select>
-                    
-                    <select multiple name="country_start_info" class="info hide" id="country_start_info">
-                        <option value="US">United States of America</option>
-                        <option value="CN">China</option>
-                        <option value="UK">United Kingdom</option>
-                    </select>
-                    
-                    <select multiple name="continent_start_info" class="info hide" id="continent_start_info">
-                        <option value="NA">North America</option>
-                        <option value="SA">South America</option>
-                        <option value="EU">Europe</option>
-                        <option value="AF">Africa</option>
-                        <option value="AS">Asia</option>
-                        <option value="AU">Australia</option>
-                        <option value="AN">Antarctica</option>
-                    </select>
-                </div>
+        <!-- Filter Offcanvas -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="filter-options" aria-labelledby="filter-options-label">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="filter-options-label">Filter Flights</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            
-            <div class="filter_item" id="end_location">
-                <label for="end_filter">
-                    End Location:
-                    <select name="end_filter" data-target="#end_components" class="filter_label" id="end_filter">
-                        <option value="airport" data-show="#airport_end_info">Airport</option>
-                        <option value="country" data-show="#country_end_info">Country</option>
-                        <option value="continent" data-show="#continent_end_info">Continent</option>
-                    </select>
-                </label>
+            <div class="offcanvas-body">
+                <form>
+                    <!-- Departure Date and Time -->
+                    <div class="mb-3">
+                        <label for="departure-date" class="form-label">Start Date and Time</label>
+                        <input type="datetime-local" id="start-date" name="start-date" class="form-control">
+                    </div>
+                    <!-- Arrival Date and Time -->
+                    <div class="mb-3">    
+                        <label for="return-date" class="form-label">End Date and Time</label>
+                        <input type="datetime-local" id="end-date" name="end-date" class="form-control">
+                    </div>
+                    <!-- Start Location -->
+                    <div class="mb-3">
+                        <label for="start_filter">
+                            Start Location:
+                            <select name="start_filter" data-target="#start_components" class="filter_label" id="start_filter">
+                                <option value="airport" data-show="#airport_start_info">Airport</option>
+                                <option value="country" data-show="#country_start_info">Country</option>
+                                <option value="continent" data-show="#continent_start_info">Continent</option>
+                            </select>
+                        </label>
                 
-                <div class="filter_components" id="end_components">
-                    <select multiple name="airport_end_info" class="info hide" id="airport_end_info">
-                        <option value="HKG">HKG: Hong Kong International Airport</option>
-                        <option value="JFK">JFK: John F. Kennedy International Airport</option>
-                        <option value="LHR">LHR: Heathrow Airport</option>
-                    </select>
-                    
-                    <select multiple name="country_end_info" class="info hide" id="country_end_info">
-                        <option value="US">United States of America</option>
-                        <option value="CN">China</option>
-                        <option value="UK">United Kingdom</option>
-                    </select>
-                    
-                    <select multiple name="continent_end_info" class="info hide" id="continent_end_info">
-                        <option value="NA">North America</option>
-                        <option value="SA">South America</option>
-                        <option value="EU">Europe</option>
-                        <option value="AF">Africa</option>
-                        <option value="AS">Asia</option>
-                        <option value="AU">Australia</option>
-                        <option value="AN">Antarctica</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="filter_item" id="number_of_layovers">
-                <label for="max_layovers_components">Max Layovers:</label>
-                <div class="filter_components" id="max_layovers_components">
-                    <input type="number" id="max_layovers" name="max_layovers" value="0" min="0" max="3">
-                </div>
-            </div>
-            
-            <div class="filter_item" id="airline_company">
-                <label for="airline_company_components">Airlines:</label>
-                <div class="filter_components" id="airline_company_components">
-                    <select multiple name="airline_companies" class="info" id="airline_companies">
-                        <option value="DL">Delta Airlines</option>
-                        <option value="AA">American Airlines</option>
-                        <option value="UPS">UPS</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="filter_item" id="airline_type">
-                <label for="airline_type_components">Type of Airline:</label>
-                <div class="filter_components" id="airline_type_components">
-                    <button type="button" class="airline_type_button" id="cargo_button">Cargo</button>
-                    <button type="button" class="airline_type_button" id="passenger_button">Passenger</button>
-                </div>
-            </div>
-            
-            <div class="filter_title" id="advanced_controls">ADVANCED</div>
-            
-            <div class="filter_item" id="added_removed_buttons">
-                <div class="filter_components" id="added_removed_buttons_components">
-                    <button type="button" id="find_added_flights_button" class="advanced_controls_button">
-                        Find Added Flights
-                    </button>
-                    <button type="button" id="find_removed_flights_button" class="advanced_controls_button">
-                        Find Removed Flights
-                    </button>
-                </div>
-            </div>
-            
-            <div class="filter_item" id="secondary_start_time">
-                <label for="secondary_start_time_components">Start Time:</label>
-                <div class="filter_components" id="secondary_start_time_components">
-                    <input type="date" id="start_date2" name="start_date2" min="2018-01-01"
-                            max="2018-12-31" required>
-                    <input type="time" id="start_time2" name="start_time2" min="09:00" max="18:00"
-                            required>
-                </div>
-            </div>
-            
-            <div class="filter_item" id="secondary_end_time">
-                <label for="secondary_end_time_components">End Time:</label>
-                <div class="filter_components" id="secondary_end_time_components">
-                    <input type="date" id="end_date2" name="end_date2" min="2018-01-01"
-                            max="2018-12-31" required>
-                    <input type="time" id="end_time2" name="end_time2" min="09:00" max="18:00"
-                            required>
-                </div>
-            </div>
-            
-            <div class="filter_controls">
-                <button type="button" id="clear_filter" class="filter_control_button">Clear Filters</button>
-                <button type="button" id="find_routes_filter" class="filter_control_button"
-                        onclick="location.href = 'http://127.0.0.1:5000/form';">Find Routes</button>
-                <button type="button" id="cancel_filter" class="filter_control_button">Cancel</button>
+                        <div class="filter_components" id="start_components">
+                            <select multiple name="airport_start_info" class="info hide" id="airport_start_info">
+                                <option value="HKG">HKG: Hong Kong International Airport</option>
+                                <option value="JFK">JFK: John F. Kennedy International Airport</option>
+                                <option value="LHR">LHR: Heathrow Airport</option>
+                            </select>
+                
+                            <select multiple name="country_start_info" class="info hide" id="country_start_info">
+                                <option value="US">United States of America</option>
+                                <option value="CN">China</option>
+                                <option value="UK">United Kingdom</option>
+                            </select>
+                
+                            <select multiple name="continent_start_info" class="info hide" id="continent_start_info">
+                                <option value="NA">North America</option>
+                                <option value="SA">South America</option>
+                                <option value="EU">Europe</option>
+                                <option value="AF">Africa</option>
+                                <option value="AS">Asia</option>
+                                <option value="AU">Australia</option>
+                                <option value="AN">Antarctica</option>
+                            </select>
+                        </div>
+                      </div>
+                    <!-- Arrival Airport -->
+                    <div class="mb-3">
+                        <label for="arrival-airport" class="form-label">Arrival Airport</label>
+                        <select class="form-select" id="arrival-airport" required>
+                            <option value="">Choose...</option>
+                            <option>EWR</option>
+                            <option>LAX</option>
+                            <option>PVG</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="departure-date" class="form-label">Departure Date:</label>
+                      <input type="date" id="departure-date" name="departure-date" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                      <label for="return-date" class="form-label">Return Date:</label>
+                      <input type="date" id="return-date" name="return-date" class="form-control">
+                    </div>
+                    <div class="d-grid">
+                      <button class="btn btn-primary" type="submit">Apply Filters</button>
+                    </div>
+                  </form>
             </div>
         </div>
         
+
         <!-- Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
