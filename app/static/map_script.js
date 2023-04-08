@@ -20,7 +20,8 @@ async function initMap() {
                 south: -85,
                 west: -180,
                 east: 180
-            }
+            },
+            strictBounds: true
         },
     });
     mapMarkers = [];
@@ -33,15 +34,8 @@ async function initMap() {
     for (let i = 0; i < airportCodes.length; i++)
         createAirportMarker(airportCodes[i]);
 
-    var bounds = new google.maps.LatLngBounds();
-    for (let i = 0; i < mapMarkers.length; i++)
-        bounds.extend(mapMarkers[i].getPosition());
-    map.setCenter(bounds.getCenter());
-    map.fitBounds(bounds)
-    map.setZoom(map.getZoom() - 1);
-    if (map.getZoom() > 15) {
-        map.setZoom(15);
-    }
+    map.setCenter({lat: 0, lng: 0});
+    map.setZoom(0);
 
     // updateMapWithFlights([["JFK", "HKG", "LHR"], ["LHR", "JFK"]])
 }
