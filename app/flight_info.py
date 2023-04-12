@@ -1,7 +1,11 @@
+"""Module for filtering all flight info and returning the necessary data"""
 import pandas as pd
 import datetime
 
 
+"""FlightInfo class
+    Attributes:
+        details: dataframe containing all flight info"""
 class FlightInfo:
     def __init__(self, filename):
         columns = ["YEAR", "MONTH", "DAY", "DAY_OF_WEEK", "AIRLINE", "FLIGHT_NUMBER",
@@ -47,33 +51,49 @@ class FlightInfo:
             self.details["ELAPSED_TIME"]
 
         # copy of full data for resetting filters
-        self.fullData = self.details.copy()
+        self.full_data = self.details.copy()
 
-    def filterByLocation(self, originType, originValues,
-                         destType, destValues):
-        if originType == 'airport':
+    """
+    Filter by origin and destination
+    Parameters:
+        origin_type: type of origin filter (airport, country, continent)
+        origin_values: list of origin values to filter by
+        dest_type: type of destination filter (airport, country, continent)
+        dest_values: list of destination values to filter by
+    """
+    def filter_by_location(self, origin_type, origin_values,
+                         dest_type, dest_values):
+        if origin_type == 'airport':
             self.details = self.details[self.details["ORIGIN_AIRPORT"].isin(
-                originValues)]
-        elif originType == 'country':
+                origin_values)]
+        elif origin_type == 'country':
             self.details = self.details[self.details["ORIGIN_COUNTRY"].isin(
-                originValues)]
-        elif originType == 'continent':
+                origin_values)]
+        elif origin_type == 'continent':
             self.details = self.details[self.details["ORIGIN_CONTINENT"].isin(
-                originValues)]
+                origin_values)]
 
-        if destType == 'airport':
+        if dest_type == 'airport':
             self.details = self.details[self.details["DESTINATION_AIRPORT"].isin(
-                destValues)]
-        elif destType == 'country':
+                dest_values)]
+        elif dest_type == 'country':
             self.details = self.details[self.details["DESTINATION_COUNTRY"].isin(
-                destValues)]
-        elif destType == 'continent':
+                dest_values)]
+        elif dest_type == 'continent':
             self.details = self.details[self.details["DESTINATION_CONTINENT"].isin(
-                destValues)]
+                dest_values)]
 
-    def filterByTime(self, startDate, startTime, endDate, endTime):
-        parsed_start = startDate + '-' + startTime[:2] + '-' + startTime[2:]
-        parsed_end = endDate + '-' + endTime[:2] + '-' + endTime[2:]
+    """
+    Filter by time
+    Parameters:
+        start_date: start date of filter
+        start_time: start time of filter
+        end_date: end date of filter
+        end_time: end time of filter
+    """
+    def filter_by_time(self, start_date, start_time, end_date, end_time):
+        parsed_start = start_date + '-' + start_time[:2] + '-' + start_time[2:]
+        parsed_end = end_date + '-' + end_time[:2] + '-' + end_time[2:]
 
         depart_time = datetime.datetime.strptime(parsed_start,
                                                  '%Y-%m-%d-%H-%M')
@@ -85,54 +105,82 @@ class FlightInfo:
 
         self.details = self.details[self.details["ARRIVAL_TIME"] < arrive_time]
 
-    def filterByDayOfWeek(self, days):
-        selectedDays = []
+    """
+    Filter by day of week
+    Parameters:
+        days: dictionary of days of week to filter by
+    """
+    def filter_by_day_of_week(self, days):
+        selected_days = []
         for k in (days.keys()):
-            if (days[k] == "true"):
-                selectedDays.append(k)
+            if days[k] == "true":
+                selected_days.append(k)
 
-        # print("Selected Days:", selectedDays)
+        # print("Selected Days:", selected_days)
         self.details = self.details[self.details["DAY_OF_WEEK"].isin(
-            selectedDays)]
+            selected_days)]
 
-    def filterByAirline(self, airlines):
+    """
+    Filter by airline
+    Parameters:
+        airlines: list of airlines to filter by
+    """
+    def filter_by_airline(self, airlines):
         self.details = self.details[self.details["AIRLINE"].isin(
             airlines)]
 
-    def filterByCargo(self, isCargo, isPassenger):
-        if isCargo == 'true' and isPassenger == 'false':
+    """
+    Filter by cargo or passenger
+    Parameters:
+        is_cargo: boolean for if cargo flights should be included
+        is_passenger: boolean for if passenger flights should be included
+    """
+    def filter_by_cargo(self, is_cargo, is_passenger):
+        if is_cargo == 'true' and is_passenger == 'false':
             self.details = self.details[self.details["CARGO"] == True]
-        elif isCargo == 'false' and isPassenger == 'true':
+        elif is_cargo == 'false' and is_passenger == 'true':
             self.details = self.details[self.details["CARGO"] == False]
-        elif isCargo == 'false' and isPassenger == 'false':
+        elif is_cargo == 'false' and is_passenger == 'false':
             self.details = self.details[self.details["CARGO"] == 2]
 
-    def filterByAdded(self, req):
+    """
+    Filter by added
+    Parameters:
+        req: request object containing start and end dates
+    """
+    def filter_by_added(self, req):
         depart1 = datetime.datetime.strptime(req.start1, '%Y-%m-%d')
         depart2 = datetime.datetime.strptime(req.start2, '%Y-%m-%d')
 
         arrive1 = datetime.datetime.strptime(req.end1, '%Y-%m-%d')
         arrive2 = datetime.datetime.strptime(req.end2, '%Y-%m-%d')
 
-        flights1 = self.fullData[self.fullData["DEPARTURE_TIME"] > depart1]
-        flights1 = self.fullData[self.fullData["ARRIVAL_TIME"] < arrive1]
+        flights1 = self.full_data[self.full_data["DEPARTURE_TIME"] > depart1]
+        flights1 = self.full_data[self.full_data["ARRIVAL_TIME"] < arrive1]
 
-        flights2 = self.fullData[self.fullData["DEPARTURE_TIME"] > depart2]
-        flights2 = self.fullData[self.fullData["ARRIVAL_TIME"] < arrive2]
+        flights2 = self.full_data[self.full_data["DEPARTURE_TIME"] > depart2]
+        flights2 = self.full_data[self.full_data["ARRIVAL_TIME"] < arrive2]
 
         self.details = flights2
 
-    def filterByRemoved(self, req):
+    """
+    Filter by removed
+    Parameters:
+        req: request object containing start and end dates
+    """
+    def filter_by_removed(self, req):
         depart1 = datetime.datetime.strptime(req.start1, '%Y-%m-%d')
-        depart2 = datetime.datetime.strptime(req.start2, '%Y-%m-%d')
+        # depart2 = datetime.datetime.strptime(req.start2, '%Y-%m-%d')
 
         arrive1 = datetime.datetime.strptime(req.end1, '%Y-%m-%d')
-        arrive2 = datetime.datetime.strptime(req.end2, '%Y-%m-%d')
+        # arrive2 = datetime.datetime.strptime(req.end2, '%Y-%m-%d')
 
-        flights1 = self.fullData[self.fullData["DEPARTURE_TIME"] > depart1]
-        flights1 = self.fullData[self.fullData["ARRIVAL_TIME"] < arrive1]
+        flights1 = self.full_data[(self.full_data["DEPARTURE_TIME"] > depart1)
+                                  & (self.full_data["ARRIVAL_TIME"] < arrive1)]
+        # flights1 = self.full_data[self.full_data["ARRIVAL_TIME"] < arrive1]
 
-        flights2 = self.fullData[self.fullData["DEPARTURE_TIME"] > depart2]
-        flights2 = self.fullData[self.fullData["ARRIVAL_TIME"] < arrive2]
+        # flights2 = self.full_data[(self.full_data["DEPARTURE_TIME"] > depart2)
+        #                           & (self.full_data["ARRIVAL_TIME"] < arrive2)]
+        # flights2 = self.full_data[self.full_data["ARRIVAL_TIME"] < arrive2]
 
         self.details = flights1

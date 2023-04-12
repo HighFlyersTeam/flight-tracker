@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, url_for, request, make_response
-from FlightInfo import FlightInfo
+from flight_info import FlightInfo
 from Request import Request
 FILENAME = "data.csv"
 
