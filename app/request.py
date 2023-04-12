@@ -7,7 +7,7 @@ class Request:
     """
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-locals
-    # pylint: too-few-public-methods
+    # pylint: disable=too-few-public-methods
     def __init__(self, json_request):
         self.details = self.parse_cookie(json_request)
 
@@ -88,7 +88,7 @@ class AdvancedRequest:
     """
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-locals
-    # pylint: too-few-public-methods
+    # pylint: disable=too-few-public-methods
     def __init__(self, start1, end1, request_details):
         self.start1 = start1
         self.start = None
