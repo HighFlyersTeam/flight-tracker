@@ -1,15 +1,43 @@
+"""This module reads the data from the csv file and stores it into a pandas dataframe."""
 import pandas as pd
-import numpy as np
-from datetime import datetime, timedelta
 
-#write a function that reads the data from the csv file
+"""
+FlightData class
+    Attributes: None
+"""
 class FlightData:
-    def __init__(self, year, month, day, day_of_week, 
-    airline, flight_number, tail_number, origin_airport, destination_airport, 
-    scheduled_dep, dep_time, dep_delay, taxi_out, wheels_off, scheduled_time, 
-    elapsed_time, air_time, distance, wheels_on, taxi_in, scheduled_arr, arr_time,
-    arr_delay, diverted, cancelled, cancellation_code, air_system_delay, security_delay,
-    airline_delay, late_aircraft_delay, weather_delay):
+    def __init__(self,
+                 year,
+                 month,
+                 day,
+                 day_of_week,
+                 airline,
+                 flight_number,
+                 tail_number,
+                 origin_airport,
+                 destination_airport,
+                 scheduled_dep,
+                 dep_time,
+                 dep_delay,
+                 taxi_out,
+                 wheels_off,
+                 scheduled_time,
+                 elapsed_time,
+                 air_time,
+                 distance,
+                 wheels_on,
+                 taxi_in,
+                 scheduled_arr,
+                 arr_time,
+                 arr_delay,
+                 diverted,
+                 cancelled,
+                 cancellation_code,
+                 air_system_delay,
+                 security_delay,
+                 airline_delay,
+                 late_aircraft_delay,
+                 weather_delay):
 
         self.year = year
         self.month = month
@@ -44,13 +72,17 @@ class FlightData:
         self.weather_delay = weather_delay
     
     
-
-def createFlightObjects(flight_data):
-    #read from csv file and store into pandas dataframe 
+"""
+Function: createFlightObjects
+Parameters: flight_data - csv file containing flight data
+Returns: None
+"""
+def create_flight_objects(flight_data):
+    # read from csv file and store into pandas dataframe
     data = pd.read_csv(flight_data)
     data.get()
 
 
 if __name__ == "__main__":
-    createFlightObjects("2015 flights.csv")
+    create_flight_objects("2015 flights.csv")
     # print(flight_data[0])
