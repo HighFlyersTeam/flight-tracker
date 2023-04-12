@@ -1,7 +1,5 @@
 """Module for getting airport information from a csv file."""
 import csv
-
-"""Module for getting airport information from a JSON file."""
 import json
 
 country_data = json.load(open("./data/countries.json", encoding="utf8"))
