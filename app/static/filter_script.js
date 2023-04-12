@@ -2,7 +2,6 @@
 const DEFAULT_START = "2018-01-01T04:00:00";
 const DEFAULT_END = "2018-12-31T17:00:00";
 
-
 // Toggles the filter window
 function toggleFilterWindow() {
     const filterWindow = document.getElementById("filter_content");
@@ -97,8 +96,59 @@ $(document).on("change", "#start_filter, #end_filter", function() {
     $(show).removeClass('hide');
 });
 
+// Sets the filter menu data
+async function setFilterMenuData() {
+    const airportData = await fetch("../static/airports.json")
+        .then(response => {
+            return response.json();
+        });
+
+    const airportCodes = Object.keys(airportData);
+
+    // Set airports
+    const airportStartMenu = document.getElementById("airport_start_info");
+    const airportEndMenu = document.getElementById("airport_end_info");
+    for (let i = 0; i < airportCodes.length; i++) {
+        const currentAirport = airportData[airportCodes[i]];
+        const opt = document.createElement("option");
+        opt.value = airportCodes[i];
+        opt.textContent = airportCodes[i] + ": " + currentAirport["name"];
+        airportStartMenu.appendChild(opt);
+        airportEndMenu.appendChild(opt.cloneNode(true));
+    }
+
+    // Set countries
+    const countries = {}
+    for (let i = 0; i < airportCodes.length; i++) {
+        const currentAirport = airportData[airportCodes[i]];
+        if (currentAirport["country_code"] != null)
+            countries[currentAirport["country_code"]] = currentAirport["country"];
+    }
+
+    const sorted_country_codes = [];
+    for (const key in countries)
+        sorted_country_codes[sorted_country_codes.length] = key;
+
+    sorted_country_codes.sort(function(a, b) {
+        return countries[a].localeCompare(countries[b]);
+    });
+
+    const countryStartMenu = document.getElementById("country_start_info");
+    const countryEndMenu = document.getElementById("country_end_info");
+    for (let i = 0; i < sorted_country_codes.length; i++) {
+        const code = sorted_country_codes[i];
+        const opt = document.createElement("option");
+        opt.value = code;
+        opt.textContent = countries[code];
+        countryStartMenu.appendChild(opt);
+        countryEndMenu.appendChild(opt.cloneNode(true));
+    }
+}
+
 // Triggers on start of the webpage creation
 $(function(){
+    void setFilterMenuData();
+
     // Reset the filter menu
     $('#clear_filter').trigger('click');
 
