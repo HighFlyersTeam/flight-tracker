@@ -6,9 +6,10 @@ Get the country code from the country name.
 import csv
 import json
 
-country_data = json.load(open("./data/countries.json", encoding="utf8"))
+with open("./data/countries.json", encoding="utf8") as csv_file:
+    country_data = json.load(csv_file)
 
-
+"""Get Country Code"""
 def get_country_code(country):
     # Due to differences in the data sets
     if country == "North Korea":
