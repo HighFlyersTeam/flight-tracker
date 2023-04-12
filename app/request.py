@@ -8,6 +8,7 @@ class Request:
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-locals
     # pylint: disable=too-few-public-methods
+
     def __init__(self, json_request):
         self.details = self.parse_cookie(json_request)
 
@@ -29,8 +30,12 @@ class Request:
         self.is_cargo = self.details['cargo']
         self.is_passenger = self.details['passenger']
 
-        # self.advancedRequest = AdvancedRequest(self.details['departure_time'],
-        # self.details['arrival_time'], None)
+        self.adv_req = AdvancedRequest(self.details['advanced_start_date'],
+                                       self.details['advanced_start_time'],
+                                       self.details['advanced_end_date'],
+                                       self.details['advanced_end_time'],
+                                       self.details['find_added'],
+                                       self.details['find_removed'])
 
     def parse_cookie(self, cookie):
         """
@@ -89,20 +94,22 @@ class AdvancedRequest:
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-locals
     # pylint: disable=too-few-public-methods
-    def __init__(self, start1, end1, request_details):
-        self.start1 = start1
-        self.start = None
-        self.end = None
-        self.end1 = end1
-        self.filter_added = request_details['find_added']
-        if self.filter_added:
-            self.start2 = self.filter_added['start_info']
-            self.end2 = self.filter_added['end_info']
 
-        self.filter_removed = request_details['find_removed']
-        if self.filter_removed:
-            self.start2 = self.filter_added['start_info']
-            self.end2 = self.filter_added['end_info']
+    def __init__(self, start_date, start_time, end_date, end_time, added, removed):
+
+        self.filter_added = added
+        self.filter_removed = removed
+
+        if self.filter_added == 'true':
+            self.start_date = start_date
+            self.start_time = start_time
+            self.end_date = end_date
+            self.end_time = end_time
+        elif self.filter_removed == 'true':
+            self.start_date = start_date
+            self.start_time = start_time
+            self.end_date = end_date
+            self.end_time = end_time
 
     def populate(self, request_details):
         """

@@ -54,7 +54,8 @@ with open("./data/airports.dat.txt", encoding="utf8") as csv_file:
         else:
             current_airport["country"] = row[3]
 
-        current_airport["country_code"] = get_country_code(current_airport["country"])
+        current_airport["country_code"] = get_country_code(
+            current_airport["country"])
         current_airport["lat"] = float(row[6])
         current_airport["lng"] = float(row[7])
 
