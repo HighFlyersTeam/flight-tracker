@@ -34,7 +34,7 @@ $(document).on("click", "#clear_filter", function() {
     // Reset day of week buttons
     const dayOfWeekButtons = document.getElementsByClassName("day_of_week_button");
     for (let i = 0; i < dayOfWeekButtons.length; i++)
-        dayOfWeekButtons[i].classList.add("active");
+        dayOfWeekButtons[i].classList.remove("active");
 
     // Reset multi-select menus (start location, end location, and airlines)
     $(".info option:selected").prop("selected", false);

@@ -49,24 +49,38 @@ function getDataFromFilterMenu() {
     const friday = document.getElementById("friday_button").classList.contains("active");
     const saturday = document.getElementById("saturday_button").classList.contains("active");
 
-    data.push(sunday);
-    data.push(monday);
-    data.push(tuesday);
-    data.push(wednesday);
-    data.push(thursday);
-    data.push(friday);
-    data.push(saturday);
-
+    if (sunday == monday && monday == tuesday && tuesday == wednesday && wednesday == thursday && thursday == friday && friday == saturday)
+        for (let i = 0; i < 7; i++)
+            data.push(true);
+    else {
+        data.push(sunday);
+        data.push(monday);
+        data.push(tuesday);
+        data.push(wednesday);
+        data.push(thursday);
+        data.push(friday);
+        data.push(saturday);
+    }
 
     // Start Location
     const departure_location_type = document.getElementById("start_filter").value;
     let departure_location_values;
+    let startID;
     if (departure_location_type === "airport") {
-        departure_location_values = $('#airport_start_info').val();
+        startID = "#airport_start_info";
     } else if (departure_location_type === "country") {
-        departure_location_values = $('#country_start_info').val();
+        startID = "#country_start_info";
     } else if (departure_location_type === "continent") {
-        departure_location_values = $('#continent_start_info').val();
+        startID = "#continent_start_info";
+    }
+
+    departure_location_values = $(startID).val();
+
+    if (departure_location_values.length == 0) {
+        departure_location_values = [];
+        $(startID + " option").each(function() {
+            departure_location_values.push($(this).val());
+        });
     }
 
     data.push(departure_location_type);
@@ -75,12 +89,22 @@ function getDataFromFilterMenu() {
     // End Location
     const arrival_location_type = document.getElementById("end_filter").value;
     let arrival_location_values;
+    let endID;
     if (arrival_location_type === "airport") {
-        arrival_location_values = $('#airport_end_info').val();
+        endID = "#airport_end_info";
     } else if (arrival_location_type === "country") {
-        arrival_location_values = $('#country_end_info').val();
+        endID = "#country_end_info";
     } else if (arrival_location_type === "continent") {
-        arrival_location_values = $('#continent_end_info').val();
+        endID = "#continent_end_info";
+    }
+
+    arrival_location_values = $(endID).val();
+
+    if (arrival_location_values.length == 0) {
+        arrival_location_values = [];
+        $(endID + " option").each(function() {
+            arrival_location_values.push($(this).val());
+        });
     }
 
     data.push(arrival_location_type);
@@ -90,13 +114,26 @@ function getDataFromFilterMenu() {
     data.push(String(parseInt(document.getElementById("max_layovers").value)));
 
     // Airlines
-    data.push($('#airline_companies').val());
+    let airlines = $('#airline_companies').val();
+    if (airlines.length == 0) {
+        airlines = [];
+        $('#airline_companies' + " option").each(function() {
+            airlines.push($(this).val());
+        })
+    }
+    data.push(airlines);
 
     // Type of Airline
     const cargo = document.getElementById("cargo_button").classList.contains("active");
     const passenger = document.getElementById("passenger_button").classList.contains("active");
-    data.push(cargo);
-    data.push(passenger);
+    if (cargo == passenger) {
+        data.push(true);
+        data.push(true);
+    }
+    else {
+        data.push(cargo);
+        data.push(passenger);
+    }
 
     // Advanced Options
     const added = document.getElementById("find_added_flights_button").classList.contains("active");
