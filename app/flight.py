@@ -1,16 +1,19 @@
 """
-Flight class
-    Attributes:
-        flight_time: flight time in minutes
-        departure_time: departure time as a datetime object
-        arrival_time: arrival time as a datetime object
-        origin: origin airport ICAO code
-        destination: destination airport ICAO code
+module for flights
 """
 import datetime
 
 
 class Flight:
+    """
+    Flight class
+        Attributes:
+            flight_time: flight time in minutes
+            departure_time: departure time as a datetime object
+            arrival_time: arrival time as a datetime object
+            origin: origin airport ICAO code
+            destination: destination airport ICAO code
+    """
     def __init__(self, flight_info):
         self.flight_time = int(flight_info["ELAPSED_TIME"])
 

@@ -1,11 +1,12 @@
 """This module reads the data from the csv file and stores it into a pandas dataframe."""
 import pandas as pd
 
-"""
-FlightData class
-    Attributes: None
-"""
+
 class FlightData:
+    """
+    FlightData class
+        Attributes: None
+    """
     def __init__(self,
                  year,
                  month,
@@ -70,6 +71,9 @@ class FlightData:
         self.airline_delay = airline_delay
         self.late_aircraft_delay = late_aircraft_delay
         self.weather_delay = weather_delay
+
+    def __str__(self):
+        return 'Hi'
 
 
 def create_flight_objects(flight_data):

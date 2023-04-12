@@ -1,10 +1,10 @@
 """This file contains the Request class, which is used to parse the request from the frontend"""
 
-"""
-This class is used to parse the request from the frontend
-"""
+
 class Request:
-    # TODO -- validate that I did everything right here
+    """
+    This class is used to parse the request from the frontend
+    """
     def __init__(self, json_request):
         self.details = self.parse_cookie(json_request)
 
@@ -27,14 +27,15 @@ class Request:
         self.is_passenger = self.details['passenger']
 
         # TODO -- temp values for now this probably won't work
-        # self.advancedRequest = AdvancedRequest(self.details['departure_time'], self.details['arrival_time'], None)
+        # self.advancedRequest = AdvancedRequest(self.details['departure_time'],
+        # self.details['arrival_time'], None)
 
-    """
-    Parse the cookie from the frontend
-    Parameters:
-        cookie: the cookie from the frontend
-    """
     def parse_cookie(self, cookie):
+        """
+        Parse the cookie from the frontend
+        Parameters:
+            cookie: the cookie from the frontend
+        """
         to_return = {}
         cookie = cookie.split('--')
         to_return['departure_date'] = cookie[0]
@@ -79,10 +80,11 @@ class Request:
         return to_return
 
 
-"""
-This class is used to parse the advanced request from the frontend
-"""
+
 class AdvancedRequest:
+    """
+    This class is used to parse the advanced request from the frontend
+    """
     def __init__(self, start1, end1, request_details):
         self.start1 = start1
         self.start = None
@@ -98,12 +100,12 @@ class AdvancedRequest:
             self.start2 = self.filter_added['start_info']
             self.end2 = self.filter_added['end_info']
 
-    """
-    Populate the advanced request
-    Parameters:
-        request_details: the details of the request
-    """
     def populate(self, request_details):
+        """
+        Populate the advanced request
+        Parameters:
+            request_details: the details of the request
+        """
         self.filter_added = request_details['find_added']
         if self.filter_added:
             self.start = self.filter_added['start_info']

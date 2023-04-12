@@ -1,12 +1,14 @@
-"""FlightInfo class
-    Attributes:
-        details: dataframe containing all flight info
-"""
-import pandas as pd
+"""flight info module for flight info class"""
 import datetime
+import pandas as pd
 
 
 class FlightInfo:
+    """
+    FlightInfo class
+    Attributes:
+        details: pandas dataframe with flight details
+    """
     def __init__(self, filename):
         columns = ["YEAR", "MONTH", "DAY", "DAY_OF_WEEK", "AIRLINE", "FLIGHT_NUMBER",
                    "ORIGIN_AIRPORT", "DESTINATION_AIRPORT", "DEPARTURE_TIME",
@@ -144,9 +146,9 @@ class FlightInfo:
             is_passenger: boolean for if passenger flights should be included
         """
         if is_cargo == 'true' and is_passenger == 'false':
-            self.details = self.details[self.details["CARGO"] == True]
+            self.details = self.details[self.details["CARGO"]]
         elif is_cargo == 'false' and is_passenger == 'true':
-            self.details = self.details[self.details["CARGO"] == False]
+            self.details = self.details[self.details["CARGO"]]
         elif is_cargo == 'false' and is_passenger == 'false':
             self.details = self.details[self.details["CARGO"] == 2]
 
@@ -156,16 +158,16 @@ class FlightInfo:
         Parameters:
             req: request object containing start and end dates
         """
-        depart1 = datetime.datetime.strptime(req.start1, '%Y-%m-%d')
-        depart2 = datetime.datetime.strptime(req.start2, '%Y-%m-%d')
-
-        arrive1 = datetime.datetime.strptime(req.end1, '%Y-%m-%d')
+        # depart1 = datetime.datetime.strptime(req.start1, '%Y-%m-%d')
+        # depart2 = datetime.datetime.strptime(req.start2, '%Y-%m-%d')
+        #
+        # arrive1 = datetime.datetime.strptime(req.end1, '%Y-%m-%d')
         arrive2 = datetime.datetime.strptime(req.end2, '%Y-%m-%d')
 
-        flights1 = self.full_data[self.full_data["DEPARTURE_TIME"] > depart1]
-        flights1 = self.full_data[self.full_data["ARRIVAL_TIME"] < arrive1]
-
-        flights2 = self.full_data[self.full_data["DEPARTURE_TIME"] > depart2]
+        # flights1 = self.full_data[self.full_data["DEPARTURE_TIME"] > depart1]
+        # flights1 = self.full_data[self.full_data["ARRIVAL_TIME"] < arrive1]
+        #
+        # flights2 = self.full_data[self.full_data["DEPARTURE_TIME"] > depart2]
         flights2 = self.full_data[self.full_data["ARRIVAL_TIME"] < arrive2]
 
         self.details = flights2
