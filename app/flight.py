@@ -2,7 +2,8 @@
 import datetime
 
 
-"""Flight class
+"""
+Flight class
     Attributes:
         flight_time: flight time in minutes
         departure_time: departure time as a datetime object

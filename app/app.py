@@ -7,12 +7,13 @@ FILENAME = "data.csv"
 app = Flask(__name__)
 flights = FlightInfo(FILENAME)
 
-
+"""The home page"""
 @app.route('/')
 def home():
     return render_template('index.html')
 
 
+"""The form page"""
 @app.route('/form')
 def form():
     name = request.cookies.get('form')
@@ -44,7 +45,7 @@ def form():
     #     flights.filterByRemoved(flights.advancedRequest)
 
     ret_val = []
-    for index, row in flights.details.iterrows():
+    for _, row in flights.details.iterrows():
         ret_val.append([row['ORIGIN_AIRPORT'], row['DESTINATION_AIRPORT']])
 
     print("\nReturn Dataframe:\n", ret_val)

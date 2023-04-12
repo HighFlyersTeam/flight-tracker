@@ -70,8 +70,8 @@ class FlightData:
         self.airline_delay = airline_delay
         self.late_aircraft_delay = late_aircraft_delay
         self.weather_delay = weather_delay
-    
-    
+
+
 """
 Function: createFlightObjects
 Parameters: flight_data - csv file containing flight data
@@ -85,4 +85,3 @@ def create_flight_objects(flight_data):
 
 if __name__ == "__main__":
     create_flight_objects("2015 flights.csv")
-    # print(flight_data[0])
