@@ -1,11 +1,10 @@
-"""Module for filtering all flight info and returning the necessary data"""
+"""FlightInfo class
+    Attributes:
+        details: dataframe containing all flight info"""
 import pandas as pd
 import datetime
 
 
-"""FlightInfo class
-    Attributes:
-        details: dataframe containing all flight info"""
 class FlightInfo:
     def __init__(self, filename):
         columns = ["YEAR", "MONTH", "DAY", "DAY_OF_WEEK", "AIRLINE", "FLIGHT_NUMBER",

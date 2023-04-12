@@ -1,14 +1,14 @@
-"""Module for getting airport information from a csv file."""
-import csv
-import json
-
-country_data = json.load(open("./data/countries.json", encoding="utf8"))
-
 """
 Get the country code from the country name.
 :param country: The country name.
 :return: The country code.
 """
+import csv
+import json
+
+country_data = json.load(open("./data/countries.json", encoding="utf8"))
+
+
 def get_country_code(country):
     # Due to differences in the data sets
     if country == "North Korea":

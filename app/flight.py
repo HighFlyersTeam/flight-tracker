@@ -1,7 +1,3 @@
-"""module for Flight class"""
-import datetime
-
-
 """
 Flight class
     Attributes:
@@ -11,6 +7,9 @@ Flight class
         origin: origin airport ICAO code
         destination: destination airport ICAO code
 """
+import datetime
+
+
 class Flight:
     def __init__(self, flight_info):
         self.flight_time = int(flight_info["ELAPSED_TIME"])
