@@ -7,6 +7,10 @@ class FlightData:
     FlightData class
         Attributes: None
     """
+    # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-locals
+    # pylint: too - few - public - methods
+
     def __init__(self,
                  year,
                  month,
@@ -71,9 +75,6 @@ class FlightData:
         self.airline_delay = airline_delay
         self.late_aircraft_delay = late_aircraft_delay
         self.weather_delay = weather_delay
-
-    def __str__(self):
-        return 'Hi'
 
 
 def create_flight_objects(flight_data):

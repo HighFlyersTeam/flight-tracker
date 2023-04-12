@@ -5,6 +5,9 @@ class Request:
     """
     This class is used to parse the request from the frontend
     """
+    # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-locals
+    # pylint: too - few - public - methods
     def __init__(self, json_request):
         self.details = self.parse_cookie(json_request)
 
@@ -26,7 +29,6 @@ class Request:
         self.is_cargo = self.details['cargo']
         self.is_passenger = self.details['passenger']
 
-        # TODO -- temp values for now this probably won't work
         # self.advancedRequest = AdvancedRequest(self.details['departure_time'],
         # self.details['arrival_time'], None)
 
@@ -80,11 +82,13 @@ class Request:
         return to_return
 
 
-
 class AdvancedRequest:
     """
     This class is used to parse the advanced request from the frontend
     """
+    # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-locals
+    # pylint: too - few - public - methods
     def __init__(self, start1, end1, request_details):
         self.start1 = start1
         self.start = None

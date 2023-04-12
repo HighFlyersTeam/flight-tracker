@@ -28,4 +28,3 @@ def filter_flights_by_time(flight_data, start_time, end_time):
 
     # Return the filtered data list
     return filtered_data
-
