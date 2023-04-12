@@ -9,9 +9,9 @@ import json
 with open("./data/countries.json", encoding="utf8") as csv_file:
     country_data = json.load(csv_file)
 
-"""Get Country Code"""
+
 def get_country_code(country):
-    # Due to differences in the data sets
+    """Get Country Code"""
     if country == "North Korea":
         country = "Korea (Democratic People's Republic of"
     elif country == "South Korea":

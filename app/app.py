@@ -7,15 +7,15 @@ FILENAME = "data.csv"
 app = Flask(__name__)
 flights = FlightInfo(FILENAME)
 
-"""The home page"""
 @app.route('/')
 def home():
+    """The home page"""
     return render_template('index.html')
 
 
-"""The form page"""
 @app.route('/form')
 def form():
+    """The form page"""
     name = request.cookies.get('form')
 
     req = Request(name)

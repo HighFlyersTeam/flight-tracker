@@ -72,12 +72,12 @@ class FlightData:
         self.weather_delay = weather_delay
 
 
-"""
-Function: createFlightObjects
-Parameters: flight_data - csv file containing flight data
-Returns: None
-"""
 def create_flight_objects(flight_data):
+    """
+    Function: createFlightObjects
+    Parameters: flight_data - csv file containing flight data
+    Returns: None
+    """
     # read from csv file and store into pandas dataframe
     data = pd.read_csv(flight_data)
     data.get()
