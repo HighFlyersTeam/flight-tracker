@@ -1,3 +1,4 @@
+"""This module allows us to run the code on the internet"""
 from app.app import app
 
 if __name__ == '__main__':
