@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Flight Tracking for SDD",
+  "main": "map_script.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/google.maps": "^3.52.3",
+    "@types/googlemaps": "^3.43.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomeBits/flight_tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RomeBits/flight_tracker/issues"
+  },
+  "homepage": "https://github.com/RomeBits/flight_tracker#readme"
+}
