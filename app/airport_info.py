@@ -1,9 +1,16 @@
+"""Module for getting airport information from a csv file."""
 import csv
+
+"""Module for getting airport information from a JSON file."""
 import json
 
 country_data = json.load(open("./data/countries.json", encoding="utf8"))
 
-
+"""
+Get the country code from the country name.
+:param country: The country name.
+:return: The country code.
+"""
 def get_country_code(country):
     # Due to differences in the data sets
     if country == "North Korea":
@@ -33,14 +40,12 @@ def get_country_code(country):
     return None
 
 
-data = dict()
-indent = 4
+data = {}
+INDENT = 4
 with open("./data/airports.dat.txt", encoding="utf8") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     for row in csv_reader:
-        current_airport = dict()
-        current_airport["name"] = row[1]
-        current_airport["city"] = row[2]
+        current_airport = {"name": row[1], "city": row[2]}
 
         # Airport dataset is a bit old
         if row[3] == "Burma":
@@ -57,7 +62,7 @@ with open("./data/airports.dat.txt", encoding="utf8") as csv_file:
         icao_code = row[5]
         data[icao_code] = current_airport
 
-json_object = json.dumps(data, indent=indent)
+json_object = json.dumps(data, indent=INDENT)
 
-with open("./static/airports.json", "w") as file:
+with open("./static/airports.json", "w", encoding="utf8") as file:
     file.write(json_object)
