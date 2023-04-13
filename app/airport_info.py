@@ -1,8 +1,4 @@
-"""
-Get the country code from the country name.
-:param country: The country name.
-:return: The country code.
-"""
+
 import csv
 import json
 
@@ -10,6 +6,11 @@ with open("./data/countries.json", encoding="utf8") as csv_file:
     country_data = json.load(csv_file)
 
 
+"""
+Get the country code from the country name.
+:param country: The country name.
+:return: The country code.
+"""
 def get_country_code(country):
     """Get Country Code"""
     if country == "North Korea":
