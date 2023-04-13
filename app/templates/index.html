@@ -64,19 +64,19 @@
                     <div class="col-md-4">
                         <div class="row g-3">
                             <!-- Search Flights -->
-                            <div class="col-md-4">
+                            <div class="col">
                                 <button id="search-flights" class="btn btn-primary">Search Flights</button>
                             </div>
                             <!-- More Filters -->
-                            <div class="col-md-4">
+                            <div class="col">
                                 <button id="filter-window" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#filter-options"
                                     aria-controls="filter-options">
                                     More Filters
                                 </button>
                             </div>
                             <!-- Help -->
-                            <div class="col-md-4">
-                                <button id="help-window" class="btn btn-toolbar" onclick="toggleHelpWindow()">Help</button>
+                            <div class="col">
+                                <button id="help-window" class="btn btn-toolbar" data-bs-toggle="modal" data-bs-target="#help-modal">Help</button>
                             </div>
                         </div>
                     </div>
@@ -280,6 +280,69 @@
             </div>
         </div>
         
+        <!-- Help Modal -->
+        <div class="modal fade" id="help-modal" tabindex="-1" aria-labelledby="help-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="help-modal-label">Help</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Welcome to <strong>Flight Tracker</strong>, a visualizer for all available and past flights!</p>
+                        <p>
+                            To find flights, fill in the respective information at the top:
+                        <ul>
+                            <li><strong>Start Date:</strong> The earliest starting date of the desired route(s).</li>
+                            <li><strong>End Date:</strong> The latest ending date of the desired route(s)</li>
+                            <br>
+                            <li><strong>Departure:</strong> The departure airport of the desired route(s).</li>
+                            <li><strong>Destination:</strong> The arrival airport of the desired route(s).</li>
+                        </ul>
+                        After filling in the information, select <strong>Find Route</strong> to filter and visualize
+                        flight paths that match the given criteria.
+                        </p>
+                        <p>
+                            For more filtering options, select <strong>Filter</strong> at the top right to open up the
+                            filter window. The additional options are as follows:
+                        <ul>
+                            <li><strong>Day of Week:</strong> The day(s) of the week for the flights to occur on.</li>
+                            <li>
+                                <strong>Start Location:</strong> The starting location of the route (can be filtered
+                                via <strong>airport</strong>, <strong>country</strong>, or <strong>continent</strong>).
+                            </li>
+                            <li>
+                                <strong>End Location:</strong> The ending location of the route (can be filtered
+                                via <strong>airport</strong>, <strong>country</strong>, or <strong>continent</strong>).
+                            </li>
+                            <li><strong>Max Layovers:</strong> The maximum number of layovers for a single route.</li>
+                            <li><strong>Airlines:</strong> The airline(s) that the flights withina route can be operated by.</li>
+                            <li><strong>Type of Airline:</strong> The possibles type(s) of airline that the flights are operated by.
+                            </li>
+                            <br>
+                            <li>
+                                <strong>Find Added Flights:</strong> Find flights that were added between the original timeframe and the
+                                new
+                                timeframe. The new timeframe cannot overlap the original timeframe.
+                            </li>
+                            <li>
+                                <strong>Find Removed Flights:</strong> Find flights that were removed between the original timeframe and
+                                the new
+                                timeframe. The new timeframe cannot overlap the original timeframe.
+                            </li>
+                        </ul>
+                        Once you are finished, select <strong>Confirm</strong> to apply the filters and
+                        <strong>Cancel</strong> to close the filter window without applying the filters.
+                        <strong>Clear Filters</strong> will clear all filter information in the filter window.
+                        </p>                
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
