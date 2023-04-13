@@ -236,6 +236,33 @@
                             <input type="number" id="layovers" name="layovers" class="form-control" min="0" max="13" step="1" value="0">
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <!-- Airline Companies -->
+                        <div class="col">
+                            <label for="airline-select" class="form-label">Airlines</label>
+                            <select class="form-select" id="airlines" multiple>
+                                <option value="DL">Delta Airlines</option>
+                                <option value="AA">American Airlines</option>
+                                <option value="UPS">UPS</option>
+                            </select>
+                        </div>
+                        <!-- Airline Type -->
+                        <div class="col">
+                            <label for="airline-type-select" class="form-label">Airline Type</label>
+                            <div class="form-check">
+                                <input type="radio" id="airline-type-all" name="airline-type" value="all" class="form-check-input" checked>
+                                <label for="airline-type-all" class="form-check-label">All</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" id="airline-type-passenger" name="airline-type" value="passenger" class="form-check-input">
+                                <label for="airline-type-passenger" class="form-check-label">Passenger</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" id="airline-type-cargo" name="airline-type" value="cargo" class="form-check-input">
+                                <label for="airline-type-cargo" class="form-check-label">Cargo</label>
+                            </div>                            
+                        </div>
+                    </div>
                     <hr class="hr"/>
                     <!-- Advanced Filters Options-->
                     <div class="row mb-3 g-0">
@@ -306,7 +333,6 @@
                             For more filtering options, select <strong>Filter</strong> at the top right to open up the
                             filter window. The additional options are as follows:
                         <ul>
-                            <li><strong>Day of Week:</strong> The day(s) of the week for the flights to occur on.</li>
                             <li>
                                 <strong>Start Location:</strong> The starting location of the route (can be filtered
                                 via <strong>airport</strong>, <strong>country</strong>, or <strong>continent</strong>).
@@ -315,7 +341,8 @@
                                 <strong>End Location:</strong> The ending location of the route (can be filtered
                                 via <strong>airport</strong>, <strong>country</strong>, or <strong>continent</strong>).
                             </li>
-                            <li><strong>Max Layovers:</strong> The maximum number of layovers for a single route.</li>
+                            <li><strong>Day of Week:</strong> The day(s) of the week for the flights to occur on.</li>
+                            <li><strong>Maximum Layovers:</strong> The maximum number of layovers for a single route.</li>
                             <li><strong>Airlines:</strong> The airline(s) that the flights withina route can be operated by.</li>
                             <li><strong>Type of Airline:</strong> The possibles type(s) of airline that the flights are operated by.
                             </li>
