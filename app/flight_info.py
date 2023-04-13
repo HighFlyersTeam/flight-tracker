@@ -243,4 +243,9 @@ class FlightInfo:
             parameters:
                 stops: number of stops
         """
-        return self.details[self.details["DIVERTED"] == 0][self.details["CANCELLED"] == 0][self.details["CARGO"] == False][self.details["ELAPSED_TIME"] > 0][self.details.groupby(["YEAR", "MONTH", "DAY", "AIRLINE", "FLIGHT_NUMBER"])["DIVERTED"].transform("sum") == stops]
+        return (
+            self.details[self.details["DIVERTED"] == 0]
+            [self.details["CANCELLED"] == 0][self.details["CARGO"] == 0]
+            [self.details["ELAPSED_TIME"] > 0]
+            [self.details.groupby(["YEAR", "MONTH", "DAY", "AIRLINE", "FLIGHT_NUMBER"])
+            ["DIVERTED"].transform("sum") == stops])
