@@ -25,62 +25,108 @@ function toggleFilterWindow() {
     }
 }
 
+// Changing the start location type
+let startLocationTypeSelect;
+let startAirportSelect;
+let startCountrySelect;
+let startContinentSelect;
+
+function changeStartLocationType() {
+    const locationType = startLocationTypeSelect.value;
+
+    startAirportSelect.style.display = "none";
+    startCountrySelect.style.display = "none";
+    startContinentSelect.style.display = "none";
+
+    if (locationType === "airport") {
+        startAirportSelect.style.display = "block";
+    } else if (locationType === "country") {
+        startCountrySelect.style.display = "block";
+    } else if (locationType === "continent") {
+        startContinentSelect.style.display = "block";
+    }
+}
+
+function resetStartLocation() {
+    startLocationTypeSelect.value = "airport";
+    changeStartLocationType();
+}
+
+// Changing the end location type
+let endLocationTypeSelect;
+let endAirportSelect;
+let endCountrySelect;
+let endContinentSelect;
+
+function changeEndLocationType() {
+    const locationType = endLocationTypeSelect.value;
+
+    endAirportSelect.style.display = "none";
+    endCountrySelect.style.display = "none";
+    endContinentSelect.style.display = "none";
+
+    if (locationType === "airport") {
+        endAirportSelect.style.display = "block";
+    } else if (locationType === "country") {
+        endCountrySelect.style.display = "block";
+    } else if (locationType === "continent") {
+        endContinentSelect.style.display = "block";
+    }
+}
+
+function resetEndLocation() {
+    endLocationTypeSelect.value = "airport";
+    changeEndLocationType();
+}
+
+// Changing the advanced filter options
+let advancedFiltersSelect;
+
+function changeAdvancedFilters() {
+    const advancedFilters = advancedFiltersSelect.value;
+
+    if (advancedFilters === "find-added" || advancedFilters === "find-removed") {
+        document.getElementById("advanced-filters").style.display = "block";
+    } else {
+        document.getElementById("advanced-filters").style.display = "none";
+    }
+}
+
+function resetAdvancedFilters() {
+    advancedFiltersSelect.value = "none";
+    changeAdvancedFilters();
+}
+
+// Configures the dynamic filter window layout
 document.addEventListener('DOMContentLoaded', () => {
+    const filterForm = document.getElementById('filter-form');
+
     // Start Location
+    startLocationTypeSelect = document.getElementById('start-location-type');
+    startAirportSelect = document.getElementById("start-airport-select");
+    startCountrySelect = document.getElementById("start-country-select");
+    startContinentSelect = document.getElementById("start-continent-select");
 
-    // Get the location type dropdown and location option selects
-    const startLocationTypeSelect = document.getElementById('start-location-type');
-    const startAirportSelect = document.getElementById('start-airport-select');
-    const startCountrySelect = document.getElementById('start-country-select');
-    const startContinentSelect = document.getElementById('start-continent-select');
-
-    // Add event listener to location type dropdown
-    startLocationTypeSelect.addEventListener('change', () => {
-        // Get the selected value of the location type dropdown
-        const selectedValue = startLocationTypeSelect.value;
-
-        // Hide all location option selects
-        startAirportSelect.style.display = 'none';
-        startCountrySelect.style.display = 'none';
-        startContinentSelect.style.display = 'none';
-
-        // Show the appropriate location option select based on the selected value
-        if (selectedValue === 'airport') {
-            startAirportSelect.style.display = 'block';
-        } else if (selectedValue === 'country') {
-            startCountrySelect.style.display = 'block';
-        } else if (selectedValue === 'continent') {
-            startContinentSelect.style.display = 'block';
-        }
-    });
+    // Event Listeners
+    startLocationTypeSelect.addEventListener('change', changeStartLocationType);
+    filterForm.addEventListener('reset', resetStartLocation);
 
     // End Location
+    endLocationTypeSelect = document.getElementById('end-location-type');
+    endAirportSelect = document.getElementById("end-airport-select");
+    endCountrySelect = document.getElementById("end-country-select");
+    endContinentSelect = document.getElementById("end-continent-select");
 
-    // Get the location type dropdown and location option selects
-    const endLocationTypeSelect = document.getElementById('end-location-type');
-    const endAirportSelect = document.getElementById('end-airport-select');
-    const endCountrySelect = document.getElementById('end-country-select');
-    const endContinentSelect = document.getElementById('end-continent-select');
+    // Event Listenters
+    endLocationTypeSelect.addEventListener('change', changeEndLocationType);
+    filterForm.addEventListener('reset', resetEndLocation);
 
-    // Add event listener to location type dropdown
-    endLocationTypeSelect.addEventListener('change', () => {
-        // Get the selected value of the location type dropdown
-        const selectedValue = endLocationTypeSelect.value;
+    // Advanced Filter Options
+    advancedFiltersSelect = document.getElementById('advanced-filters-select');
 
-        // Hide all location option selects
-        endAirportSelect.style.display = 'none';
-        endCountrySelect.style.display = 'none';
-        endContinentSelect.style.display = 'none';
-
-        // Show the appropriate location option select based on the selected value
-        if (selectedValue === 'airport') {
-            endAirportSelect.style.display = 'block';
-        } else if (selectedValue === 'country') {
-            endCountrySelect.style.display = 'block';
-        } else if (selectedValue === 'continent') {
-            endContinentSelect.style.display = 'block';
-        }
-    });
+    // Event Listeners
+    advancedFiltersSelect.addEventListener('change', changeAdvancedFilters);
+    filterForm.addEventListener('reset', resetAdvancedFilters);
 });
 
 // Clear filter button functionality

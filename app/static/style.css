@@ -62,7 +62,8 @@ button.active, select[multiple]:focus option:checked {
 #start-country-select,
 #start-continent-select,
 #end-country-select,
-#end-continent-select {
+#end-continent-select,
+#advanced-filters {
   display: none;
 }
 
