@@ -88,116 +88,42 @@ function resetAdvancedFilters() {
 }
 
 // Configures the dynamic filter window layout
-document.addEventListener('DOMContentLoaded', () => {
-    const filterForm = document.getElementById('filter-form');
+document.addEventListener("DOMContentLoaded", () => {
+    const filterForm = document.getElementById("filter-form");
 
     // Start Location
-    startLocationTypeSelect = document.getElementById('start-location-type');
+    startLocationTypeSelect = document.getElementById("start-location-type");
     startAirportSelect = document.getElementById("start-airport-select");
     startCountrySelect = document.getElementById("start-country-select");
     startContinentSelect = document.getElementById("start-continent-select");
 
     // Event Listeners
-    startLocationTypeSelect.addEventListener('change', changeStartLocationType);
-    filterForm.addEventListener('reset', resetStartLocation);
+    startLocationTypeSelect.addEventListener("change", changeStartLocationType);
+    filterForm.addEventListener("reset", resetStartLocation);
 
     // End Location
-    endLocationTypeSelect = document.getElementById('end-location-type');
+    endLocationTypeSelect = document.getElementById("end-location-type");
     endAirportSelect = document.getElementById("end-airport-select");
     endCountrySelect = document.getElementById("end-country-select");
     endContinentSelect = document.getElementById("end-continent-select");
 
     // Event Listenters
-    endLocationTypeSelect.addEventListener('change', changeEndLocationType);
-    filterForm.addEventListener('reset', resetEndLocation);
+    endLocationTypeSelect.addEventListener("change", changeEndLocationType);
+    filterForm.addEventListener("reset", resetEndLocation);
 
     // Advanced Filter Options
-    advancedFiltersSelect = document.getElementById('advanced-filters-select');
+    advancedFiltersSelect = document.getElementById("advanced-filters-select");
 
     // Event Listeners
-    advancedFiltersSelect.addEventListener('change', changeAdvancedFilters);
-    filterForm.addEventListener('reset', resetAdvancedFilters);
-});
+    advancedFiltersSelect.addEventListener("change", changeAdvancedFilters);
+    filterForm.addEventListener("reset", resetAdvancedFilters);
 
-// Clear filter button functionality
-$(document).on("click", "#clear_filter", function() {
-    // Reset dates
-    const start = new Date(DEFAULT_START).toISOString();
-    const end = new Date(DEFAULT_END).toISOString();
-    document.getElementById("start_date").value = start.substring(0, 10);
-    document.getElementById("start_time").value = start.substring(11, 16);
-    document.getElementById("end_date").value = end.substring(0, 10);
-    document.getElementById("end_time").value = end.substring(11, 16);
-
-    document.getElementById("start_date2").value = start.substring(0, 10);
-    document.getElementById("start_time2").value = start.substring(11, 16);
-    document.getElementById("end_date2").value = end.substring(0, 10);
-    document.getElementById("end_time2").value = end.substring(11, 16);
-
-    // Reset day of week buttons
-    const dayOfWeekButtons = document.getElementsByClassName("day_of_week_button");
-    for (let i = 0; i < dayOfWeekButtons.length; i++)
-        dayOfWeekButtons[i].classList.remove("active");
-
-    // Reset multi-select menus (start location, end location, and airlines)
-    $(".info option:selected").prop("selected", false);
-
-    // Reset max layovers
-    document.getElementById("max_layovers").value = 0;
-
-    // Reset airline type buttons
-    const airlineTypeButtons = document.getElementsByClassName("airline_type_button");
-    for (let i = 0; i < airlineTypeButtons.length; i++)
-        airlineTypeButtons[i].classList.remove("active");
-});
-
-// Filter cancel button functionality
-$(document).on("click", "#cancel_filter", function() {
-    const filterWindow = document.getElementById("filter_content");
-    filterWindow.style.display = "none";
-});
-
-// Removes need for Shift+click in multiselect menus
-$(document).on("mousedown", "option",function(e) {
-    e.preventDefault();
-    $(this).prop('selected', !$(this).prop('selected'));
-    return false;
-});
-
-// Toggling button functionality for non-advanced options
-$(document).on("click",".day_of_week_button, .airline_type_button", function() {
-    if ($(this).hasClass("active")) {
-        $(this).removeClass("active");
-    }
-    else {
-        $(this).addClass("active");
-    }
-});
-
-// Toggling button functionality for advanced options
-$(document).on("click",".advanced_controls_button", function() {
-    const startTime = document.getElementById("secondary_start_time");
-    const endTime = document.getElementById("secondary_end_time");
-
-    if ($(this).hasClass("active")) {
-        $(this).removeClass("active");
-        startTime.style.display = "none";
-        endTime.style.display = "none";
-    }
-    else {
-        $(".advanced_controls_button").removeClass("active");
-        $(this).addClass("active");
-        startTime.style.removeProperty("display");
-        endTime.style.removeProperty("display");
-    }
-});
-
-// Changes selection for each location in the dropdown menu
-$(document).on("change", "#start_filter, #end_filter", function() {
-    const target = $(this).data('target');
-    const show = $("option:selected", this).data('show');
-    $(target).children().addClass('hide');
-    $(show).removeClass('hide');
+    // Remove need for Shift/Ctrl + Click in multiselect menus
+    $(document).on("mousedown", "option", function (e) {
+        e.preventDefault();
+        $(this).prop("selected", !$(this).prop("selected"));
+        return false;
+    });
 });
 
 // Sets the filter menu data
@@ -248,21 +174,3 @@ async function setFilterMenuData() {
         countryEndMenu.appendChild(opt.cloneNode(true));
     }
 }
-
-// Triggers on start of the webpage creation
-$(function(){
-    void setFilterMenuData();
-
-    // Reset the filter menu
-    $('#clear_filter').trigger('click');
-
-    // Displays the selection for the first item in the dropdown menu
-    $('#start_filter').trigger('change');
-    $('#end_filter').trigger('change');
-
-    // Hide the time selection for the advanced controls
-    const startTime = document.getElementById("secondary_start_time");
-    const endTime = document.getElementById("secondary_end_time");
-    startTime.style.display = "none";
-    endTime.style.display = "none";
-});
