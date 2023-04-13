@@ -41,6 +41,9 @@ def get_country_code(country):
 
 data = {}
 INDENT = 4
+
+limit = ["VHHH", "ZSPD", "EGLL", "KJFK", "KLAX", "KATL", "EDDF", "MMMX"]
+
 with open("./data/airports.dat.txt", encoding="utf8") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     for row in csv_reader:
@@ -59,7 +62,9 @@ with open("./data/airports.dat.txt", encoding="utf8") as csv_file:
         current_airport["lng"] = float(row[7])
 
         icao_code = row[5]
-        data[icao_code] = current_airport
+
+        if icao_code in limit:
+            data[icao_code] = current_airport
 
 json_object = json.dumps(data, indent=INDENT)
 
