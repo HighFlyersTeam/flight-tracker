@@ -111,62 +111,128 @@
                         <input type="datetime-local" id="end-date" name="end-date" class="form-control">
                     </div>
                     <!-- Start Location -->
-                    <div class="mb-3">
-                        <label for="start_filter">
-                            Start Location:
-                            <select name="start_filter" data-target="#start_components" class="filter_label" id="start_filter">
-                                <option value="airport" data-show="#airport_start_info">Airport</option>
-                                <option value="country" data-show="#country_start_info">Country</option>
-                                <option value="continent" data-show="#continent_start_info">Continent</option>
-                            </select>
-                        </label>
-                
-                        <div class="filter_components" id="start_components">
-                            <select multiple name="airport_start_info" class="info hide" id="airport_start_info">
-                                <option value="HKG">HKG: Hong Kong International Airport</option>
-                                <option value="JFK">JFK: John F. Kennedy International Airport</option>
-                                <option value="LHR">LHR: Heathrow Airport</option>
-                            </select>
-                
-                            <select multiple name="country_start_info" class="info hide" id="country_start_info">
-                                <option value="US">United States of America</option>
-                                <option value="CN">China</option>
-                                <option value="UK">United Kingdom</option>
-                            </select>
-                
-                            <select multiple name="continent_start_info" class="info hide" id="continent_start_info">
-                                <option value="NA">North America</option>
-                                <option value="SA">South America</option>
-                                <option value="EU">Europe</option>
-                                <option value="AF">Africa</option>
-                                <option value="AS">Asia</option>
-                                <option value="AU">Australia</option>
-                                <option value="AN">Antarctica</option>
+                    <div class="row mb-3">
+                        <div class="col-3">
+                            <label for="start-location-type" class="form-label">Location Type</label>
+                            <select class="form-select" id='start-location-type'>
+                                <option value="airport">Airport</option>
+                                <option value="country">Country</option>
+                                <option value="continent">Continent</option>
                             </select>
                         </div>
-                      </div>
-                    <!-- Arrival Airport -->
-                    <div class="mb-3">
-                        <label for="arrival-airport" class="form-label">Arrival Airport</label>
-                        <select class="form-select" id="arrival-airport" required>
-                            <option value="">Choose...</option>
-                            <option>EWR</option>
-                            <option>LAX</option>
-                            <option>PVG</option>
-                        </select>
+                        <div class="col">
+                            <label for="start-airport-select" class="form-label">Location Options</label>
+                            <div id="start-airport-select" class="mb-3">
+                                <select class="form-select" multiple>
+                                    <option value="JFK">John F. Kennedy International Airport</option>
+                                    <option value="LAX">Los Angeles International Airport</option>
+                                    <option value="LHR">Heathrow Airport</option>
+                                </select>
+                            </div>
+                            <div id="start-country-select" class="mb-3">
+                                <select class="form-select" multiple>
+                                    <option value="US">United States</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="FR">France</option>
+                                </select>
+                            </div>
+                            <div id="start-continent-select" class="mb-3">
+                                <select class="form-select" multiple>
+                                    <option value="NA">North America</option>
+                                    <option value="EU">Europe</option>
+                                    <option value="AS">Asia</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                      <label for="departure-date" class="form-label">Departure Date:</label>
-                      <input type="date" id="departure-date" name="departure-date" class="form-control">
+                    <!-- End Location -->
+                    <div class="row mb-3">
+                        <div class="col-3">
+                            <label for="end-location-type" class="form-label">Location Type</label>
+                            <select class="form-select" id='end-location-type'>
+                                <option value="airport">Airport</option>
+                                <option value="country">Country</option>
+                                <option value="continent">Continent</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="end-airport-select" class="form-label">Location Options</label>
+                            <div id="end-airport-select" class="mb-3">
+                                <select class="form-select" multiple>
+                                    <option value="JFK">John F. Kennedy International Airport</option>
+                                    <option value="LAX">Los Angeles International Airport</option>
+                                    <option value="LHR">Heathrow Airport</option>
+                                </select>
+                            </div>
+                            <div id="end-country-select" class="mb-3">
+                                <select class="form-select" multiple>
+                                    <option value="US">United States</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="FR">France</option>
+                                </select>
+                            </div>
+                            <div id="end-continent-select" class="mb-3">
+                                <select class="form-select" multiple>
+                                    <option value="NA">North America</option>
+                                    <option value="EU">Europe</option>
+                                    <option value="AS">Asia</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                      <label for="return-date" class="form-label">Return Date:</label>
-                      <input type="date" id="return-date" name="return-date" class="form-control">
+                    <div class="row mb-3">
+                        <!-- Days of the Week -->
+                        <div class="col">
+                            <label for="days-of-week">Days of the Week</label>
+                            <!--
+                            <select class="form-select" id='days-of-week' multiple size="7">
+                                <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                            </select>
+                            -->
+                            <div class="row row-cols-2">
+                                <div class="form-check">
+                                    <input type="checkbox" id="monday" name="days-of-week" value="Monday" class="form-check-input">
+                                    <label for="monday" class="form-check-label">Monday</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="tuesday" name="days-of-week" value="Tuesday" class="form-check-input">
+                                    <label for="tuesday" class="form-check-label">Tuesday</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="wednesday" name="days-of-week" value="Wednesday" class="form-check-input">
+                                    <label for="wednesday" class="form-check-label">Wednesday</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="thursday" name="days-of-week" value="Thursday" class="form-check-input">
+                                    <label for="thursday" class="form-check-label">Thursday</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="friday" name="days-of-week" value="Friday" class="form-check-input">
+                                    <label for="friday" class="form-check-label">Friday</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="saturday" name="days-of-week" value="Saturday" class="form-check-input">
+                                    <label for="saturday" class="form-check-label">Saturday</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="sunday" name="days-of-week" value="Sunday" class="form-check-input">
+                                    <label for="sunday" class="form-check-label">Sunday</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Number of Layovers -->
+                        <div class="col-4">
+                            <label for="layover-count" class="form-label">Number of Layovers</label>
+                            <input type="number" id="layovers" name="layovers" class="form-control" min="0" max="13" step="1" value="0">
+                        </div>
                     </div>
-                    <div class="d-grid">
-                      <button class="btn btn-primary" type="submit">Apply Filters</button>
-                    </div>
-                  </form>
+                </form>
             </div>
         </div>
         

@@ -59,6 +59,13 @@ button.active, select[multiple]:focus option:checked {
     position: relative;
 }
 
+#start-country-select,
+#start-continent-select,
+#end-country-select,
+#end-continent-select {
+  display: none;
+}
+
 #filter_content{
     width: 33%;
     display: none;

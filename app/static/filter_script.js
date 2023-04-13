@@ -25,6 +25,64 @@ function toggleFilterWindow() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Start Location
+
+    // Get the location type dropdown and location option selects
+    const startLocationTypeSelect = document.getElementById('start-location-type');
+    const startAirportSelect = document.getElementById('start-airport-select');
+    const startCountrySelect = document.getElementById('start-country-select');
+    const startContinentSelect = document.getElementById('start-continent-select');
+
+    // Add event listener to location type dropdown
+    startLocationTypeSelect.addEventListener('change', () => {
+        // Get the selected value of the location type dropdown
+        const selectedValue = startLocationTypeSelect.value;
+
+        // Hide all location option selects
+        startAirportSelect.style.display = 'none';
+        startCountrySelect.style.display = 'none';
+        startContinentSelect.style.display = 'none';
+
+        // Show the appropriate location option select based on the selected value
+        if (selectedValue === 'airport') {
+            startAirportSelect.style.display = 'block';
+        } else if (selectedValue === 'country') {
+            startCountrySelect.style.display = 'block';
+        } else if (selectedValue === 'continent') {
+            startContinentSelect.style.display = 'block';
+        }
+    });
+
+    // End Location
+
+    // Get the location type dropdown and location option selects
+    const endLocationTypeSelect = document.getElementById('end-location-type');
+    const endAirportSelect = document.getElementById('end-airport-select');
+    const endCountrySelect = document.getElementById('end-country-select');
+    const endContinentSelect = document.getElementById('end-continent-select');
+
+    // Add event listener to location type dropdown
+    endLocationTypeSelect.addEventListener('change', () => {
+        // Get the selected value of the location type dropdown
+        const selectedValue = endLocationTypeSelect.value;
+
+        // Hide all location option selects
+        endAirportSelect.style.display = 'none';
+        endCountrySelect.style.display = 'none';
+        endContinentSelect.style.display = 'none';
+
+        // Show the appropriate location option select based on the selected value
+        if (selectedValue === 'airport') {
+            endAirportSelect.style.display = 'block';
+        } else if (selectedValue === 'country') {
+            endCountrySelect.style.display = 'block';
+        } else if (selectedValue === 'continent') {
+            endContinentSelect.style.display = 'block';
+        }
+    });
+});
+
 // Clear filter button functionality
 $(document).on("click", "#clear_filter", function() {
     // Reset dates
