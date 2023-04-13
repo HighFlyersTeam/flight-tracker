@@ -17,10 +17,10 @@ body, html {
     position: relative;
 }
 
-#start-country-select,
-#start-continent-select,
-#end-country-select,
-#end-continent-select,
+#start-country-div,
+#start-continent-div,
+#end-country-div,
+#end-continent-div,
 #advanced-filters {
   display: none;
 }

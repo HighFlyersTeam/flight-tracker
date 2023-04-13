@@ -8,11 +8,9 @@
         
         <!-- Local Files -->
         <link href="../static/style.css" rel="stylesheet"/>
-        <link href="../static/help_style.css" rel="stylesheet"/>
         <script type="module" src="../static/display_routes_script.js"></script>
         <script type="module" src="../static/map_script.js"></script>
         <script src="../static/filter_script.js"></script>
-        <script src="../static/help_script.js"></script>
         
         <!-- Google Maps -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -46,9 +44,11 @@
                         <label for="departure-airport" class="form-label">Starting Airport</label>
                         <select class="form-select" id="start-airport-hotbar" required>
                             <option value="">Choose...</option>
+                            <!--
                             <option>EWR</option>
                             <option>LAX</option>
                             <option>PVG</option>
+                            -->
                         </select>
                     </div>
                     <!-- Arrival Airport -->
@@ -56,9 +56,11 @@
                         <label for="arrival-airport" class="form-label">Ending Airport</label>
                         <select class="form-select" id="end-airport-hotbar" required>
                             <option value="">Choose...</option>
+                            <!--
                             <option>EWR</option>
                             <option>LAX</option>
                             <option>PVG</option>
+                            -->
                         </select>
                     </div>
                     <!-- Buttons -->
@@ -127,25 +129,36 @@
                         </div>
                         <div class="col">
                             <label for="start-airport-select" class="form-label">Location Options</label>
-                            <div id="start-airport-select" class="mb-3">
-                                <select class="form-select" multiple>
+                            <!-- Airport -->
+                            <div id="start-airport-div" class="mb-3">
+                                <select class="form-select" id="start-airport-select" multiple>
+                                    <!--
                                     <option value="JFK">John F. Kennedy International Airport</option>
                                     <option value="LAX">Los Angeles International Airport</option>
                                     <option value="LHR">Heathrow Airport</option>
+                                    -->
                                 </select>
                             </div>
-                            <div id="start-country-select" class="mb-3">
-                                <select class="form-select" multiple>
+                            <!-- Country -->
+                            <div id="start-country-div" class="mb-3">
+                                <select class="form-select" id="start-country-select" multiple>
+                                    <!--
                                     <option value="US">United States</option>
                                     <option value="GB">United Kingdom</option>
                                     <option value="FR">France</option>
+                                    -->
                                 </select>
                             </div>
-                            <div id="start-continent-select" class="mb-3">
-                                <select class="form-select" multiple>
+                            <!-- Continent -->
+                            <div id="start-continent-div" class="mb-3">
+                                <select class="form-select" id="start-continent-select" multiple>
                                     <option value="NA">North America</option>
+                                    <option value="SA">South America</option>
                                     <option value="EU">Europe</option>
+                                    <option value="AF">Africa</option>
                                     <option value="AS">Asia</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="AN">Antarctica</option>
                                 </select>
                             </div>
                         </div>
@@ -163,25 +176,36 @@
                         </div>
                         <div class="col">
                             <label for="end-airport-select" class="form-label">Location Options</label>
-                            <div id="end-airport-select" class="mb-3">
-                                <select class="form-select" multiple>
+                            <!-- Airport -->
+                            <div id="end-airport-div" class="mb-3">
+                                <select class="form-select" id="end-airport-select" multiple>
+                                    <!--
                                     <option value="JFK">John F. Kennedy International Airport</option>
                                     <option value="LAX">Los Angeles International Airport</option>
                                     <option value="LHR">Heathrow Airport</option>
+                                    -->
                                 </select>
                             </div>
-                            <div id="end-country-select" class="mb-3">
-                                <select class="form-select" multiple>
+                            <!-- Country -->
+                            <div id="end-country-div" class="mb-3">
+                                <select class="form-select" id="end-country-select" multiple>
+                                    <!--
                                     <option value="US">United States</option>
                                     <option value="GB">United Kingdom</option>
                                     <option value="FR">France</option>
+                                    -->
                                 </select>
                             </div>
-                            <div id="end-continent-select" class="mb-3">
-                                <select class="form-select" multiple>
+                            <!-- Continent -->
+                            <div id="end-continent-div" class="mb-3">
+                                <select class="form-select" id="end-continent-select" multiple>
                                     <option value="NA">North America</option>
+                                    <option value="SA">South America</option>
                                     <option value="EU">Europe</option>
+                                    <option value="AF">Africa</option>
                                     <option value="AS">Asia</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="AN">Antarctica</option>
                                 </select>
                             </div>
                         </div>
@@ -281,12 +305,12 @@
                             <!-- Departure Date and Time -->
                             <div class="col">
                                 <label for="secondary-departure-date" class="form-label">Secondary Start</label>
-                                <input type="datetime-local" id="secondary-start-date" name="secondary-start-date" class="form-control">
+                                <input type="datetime-local" id="secondary-start-datetime" name="secondary-start-date" class="form-control">
                             </div>
                             <!-- Arrival Date and Time -->
                             <div class="col">
                                 <label for="secondary-arrival-date" class="form-label">Secondary End</label>
-                                <input type="datetime-local" id="secondary-end-date" name="secondary-end-date" class="form-control">
+                                <input type="datetime-local" id="secondary-end-datetime" name="secondary-end-date" class="form-control">
                             </div>
                         </div>
                     </div>

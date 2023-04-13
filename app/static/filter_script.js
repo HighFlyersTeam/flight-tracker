@@ -2,38 +2,25 @@
 const DEFAULT_START = "2018-01-01T04:00:00";
 const DEFAULT_END = "2018-12-31T17:00:00";
 
-// Toggles the filter window
-function toggleFilterWindow() {
-    const filterWindow = document.getElementById("filter_content");
-    const helpWindow = document.getElementById("help_content");
-    if (window.getComputedStyle(filterWindow).display === "none") {
-        filterWindow.style.display = "flex";
-        helpWindow.style.display = "none";
-    }
-    else {
-        filterWindow.style.display = "none";
-    }
-}
-
 // Changing the start location type
 let startLocationTypeSelect;
-let startAirportSelect;
-let startCountrySelect;
-let startContinentSelect;
+let startAirportDiv;
+let startCountryDiv;
+let startContinentDiv;
 
 function changeStartLocationType() {
     const locationType = startLocationTypeSelect.value;
 
-    startAirportSelect.style.display = "none";
-    startCountrySelect.style.display = "none";
-    startContinentSelect.style.display = "none";
+    startAirportDiv.style.display = "none";
+    startCountryDiv.style.display = "none";
+    startContinentDiv.style.display = "none";
 
     if (locationType === "airport") {
-        startAirportSelect.style.display = "block";
+        startAirportDiv.style.display = "block";
     } else if (locationType === "country") {
-        startCountrySelect.style.display = "block";
+        startCountryDiv.style.display = "block";
     } else if (locationType === "continent") {
-        startContinentSelect.style.display = "block";
+        startContinentDiv.style.display = "block";
     }
 }
 
@@ -44,23 +31,23 @@ function resetStartLocation() {
 
 // Changing the end location type
 let endLocationTypeSelect;
-let endAirportSelect;
-let endCountrySelect;
-let endContinentSelect;
+let endAirportDiv;
+let endCountryDiv;
+let endContinentDiv;
 
 function changeEndLocationType() {
     const locationType = endLocationTypeSelect.value;
 
-    endAirportSelect.style.display = "none";
-    endCountrySelect.style.display = "none";
-    endContinentSelect.style.display = "none";
+    endAirportDiv.style.display = "none";
+    endCountryDiv.style.display = "none";
+    endContinentDiv.style.display = "none";
 
     if (locationType === "airport") {
-        endAirportSelect.style.display = "block";
+        endAirportDiv.style.display = "block";
     } else if (locationType === "country") {
-        endCountrySelect.style.display = "block";
+        endCountryDiv.style.display = "block";
     } else if (locationType === "continent") {
-        endContinentSelect.style.display = "block";
+        endContinentDiv.style.display = "block";
     }
 }
 
@@ -93,9 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Start Location
     startLocationTypeSelect = document.getElementById("start-location-type");
-    startAirportSelect = document.getElementById("start-airport-select");
-    startCountrySelect = document.getElementById("start-country-select");
-    startContinentSelect = document.getElementById("start-continent-select");
+    startCountryDiv = document.getElementById("start-country-div");
+    startAirportDiv = document.getElementById("start-airport-div");
+    startContinentDiv = document.getElementById("start-continent-div");
 
     // Event Listeners
     startLocationTypeSelect.addEventListener("change", changeStartLocationType);
@@ -103,9 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // End Location
     endLocationTypeSelect = document.getElementById("end-location-type");
-    endAirportSelect = document.getElementById("end-airport-select");
-    endCountrySelect = document.getElementById("end-country-select");
-    endContinentSelect = document.getElementById("end-continent-select");
+    endAirportDiv = document.getElementById("end-airport-div");
+    endCountryDiv = document.getElementById("end-country-div");
+    endContinentDiv = document.getElementById("end-continent-div");
 
     // Event Listenters
     endLocationTypeSelect.addEventListener("change", changeEndLocationType);
@@ -124,9 +111,18 @@ document.addEventListener("DOMContentLoaded", () => {
         $(this).prop("selected", !$(this).prop("selected"));
         return false;
     });
+
+    setFilterMenuData();
 });
 
 // Sets the filter menu data
+function removeOptions(selectElement) {
+    var i, L = selectElement.options.length - 1;
+    for (i = L; i >= 0; i--) {
+        selectElement.remove(i);
+    }
+}
+
 async function setFilterMenuData() {
     const airportData = await fetch("../static/airports.json")
         .then(response => {
@@ -136,15 +132,28 @@ async function setFilterMenuData() {
     const airportCodes = Object.keys(airportData);
 
     // Set airports
-    const airportStartMenu = document.getElementById("airport_start_info");
-    const airportEndMenu = document.getElementById("airport_end_info");
+    const airportStartMenu = document.getElementById("start-airport-select");
+    const airportStartHotbar = document.getElementById("start-airport-hotbar");
+    const airportEndMenu = document.getElementById("end-airport-select");
+    const airportEndHotbar = document.getElementById("end-airport-hotbar");
+    
+    // Clear current options
+    // removeOptions(airportStartMenu);
+    // removeOptions(airportStartHotbar);
+    // removeOptions(airportEndMenu);
+    // removeOptions(airportEndHotbar);
+    
+    // Add new options
     for (let i = 0; i < airportCodes.length; i++) {
         const currentAirport = airportData[airportCodes[i]];
         const opt = document.createElement("option");
         opt.value = airportCodes[i];
         opt.textContent = airportCodes[i] + ": " + currentAirport["name"];
+
         airportStartMenu.appendChild(opt);
+        airportStartHotbar.appendChild(opt.cloneNode(true));
         airportEndMenu.appendChild(opt.cloneNode(true));
+        airportEndHotbar.appendChild(opt.cloneNode(true));
     }
 
     // Set countries
@@ -163,13 +172,20 @@ async function setFilterMenuData() {
         return countries[a].localeCompare(countries[b]);
     });
 
-    const countryStartMenu = document.getElementById("country_start_info");
-    const countryEndMenu = document.getElementById("country_end_info");
+    const countryStartMenu = document.getElementById("start-country-select");
+    const countryEndMenu = document.getElementById("end-country-select");
+
+    // Clear current options
+    // removeOptions(countryStartMenu);
+    // removeOptions(countryEndMenu);
+
+    // Add new options
     for (let i = 0; i < sorted_country_codes.length; i++) {
         const code = sorted_country_codes[i];
         const opt = document.createElement("option");
         opt.value = code;
         opt.textContent = countries[code];
+
         countryStartMenu.appendChild(opt);
         countryEndMenu.appendChild(opt.cloneNode(true));
     }
