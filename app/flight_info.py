@@ -236,3 +236,11 @@ class FlightInfo:
                 removed_flights.drop(index, inplace=True)
 
         self.details = removed_flights
+
+    def filter_by_stops(self, stops):
+        """
+        Filter by stops
+            parameters:
+                stops: number of stops
+        """
+        return self.details[self.details["DIVERTED"] == 0][self.details["CANCELLED"] == 0][self.details["CARGO"] == False][self.details["ELAPSED_TIME"] > 0][self.details.groupby(["YEAR", "MONTH", "DAY", "AIRLINE", "FLIGHT_NUMBER"])["DIVERTED"].transform("sum") == stops]
