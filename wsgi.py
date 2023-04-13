@@ -1,3 +1,5 @@
+"""This module allows us to run the code on the internet"""
+# pylint: disable=import-error
 from app.app import app
 
 if __name__ == '__main__':

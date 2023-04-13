@@ -1,0 +1,73 @@
+YEAR,MONTH,DAY,DAY_OF_WEEK,AIRLINE,FLIGHT_NUMBER,ORIGIN_AIRPORT,DESTINATION_AIRPORT,DEPARTURE_TIME,ELAPSED_TIME,ARRIVAL_TIME,DIVERTED,CANCELLED,ORIGIN_COUNTRY,DESTINATION_COUNTRY,ORIGIN_CONTINENT,DESTINATION_CONTINENT,CARGO
+2015,1,1,5,DL,102,EGLL,EDDF,1455,760,235,0,0,England,Germany,Europe,Europe,0
+2015,1,2,6,AA,103,KJFK,KLAX,2350,960,1550,0,0,United States of America,United States of America,North America,North America,0
+2015,1,3,7,DL,104,KJFK,KATL,235,945,1820,0,0,United States of America,United States of America,North America,North America,0
+2015,1,4,1,DL,105,KJFK,MMMX,1245,430,1955,0,0,United States of America,Mexico,North America,North America,0
+2015,1,5,2,AA,106,VHHH,KLAX,1315,420,2015,0,0,China,United States of America,China,North America,0
+2015,1,6,3,AA,107,EGLL,EDDF,2205,750,1055,0,0,England,Germany,North America,Europe,0
+2015,1,7,4,DL,108,MMMX,EDDF,2235,770,1105,0,0,Mexico,Germany,North America,Europe,0
+2015,2,1,1,DL,109,EGLL,EDDF,1455,760,235,0,0,England,Germany,Europe,Europe,0
+2015,2,2,2,AA,110,KJFK,KLAX,2350,960,1550,0,0,United States of America,Germany,North America,North America,0
+2015,2,3,3,DL,111,KJFK,KATL,235,945,1820,0,0,United States of America,United States of America,North America,North America,0
+2015,2,4,4,DL,112,KJFK,MMMX,1245,430,1955,0,0,United States of America,United States of America,North America,North America,0
+2015,2,5,5,AA,113,VHHH,KLAX,1315,420,2015,0,0,China,United States of America,Asia,North America,0
+2015,2,6,6,AA,114,EGLL,EDDF,2205,750,1055,0,0,England,Germany,Europe,Europe,0
+2015,2,7,7,DL,115,MMMX,EDDF,2235,770,1105,0,0,Mexico,Germany,North America,Europe,0
+2015,2,6,6,5X,116,KJFK,EDDF,1200,660,1600,0,0,United States of America,Germany,North America,Europe,1
+2015,2,6,6,5X,117,KJFK,MMMX,1000,120,1200,0,0,United States of America,Mexico,North America,North America,1
+2015,2,5,5,5X,118,KJFK,VHHH,900,700,1300,0,0,United States of America,China,North America,Asia,1
+2015,3,1,2,DL,119,EGLL,EDDF,1455,760,235,0,0,England,Germany,Europe,Europe,0
+2015,3,2,3,AA,120,KJFK,KLAX,2350,960,1550,0,0,United States of America,United States of America,North America,North America,0
+2015,3,3,4,DL,121,KJFK,KATL,235,945,1820,0,0,United States of America,United States of America,North America,North America,0
+2015,3,4,5,DL,122,KJFK,MMMX,1245,430,1955,0,0,United States of America,Mexico,North America,North America,0
+2015,3,5,6,AA,123,VHHH,KLAX,1315,420,2015,0,0,China,United States of America,China,North America,0
+2015,3,6,7,AA,124,EGLL,EDDF,2205,750,1055,0,0,England,Germany,North America,Europe,0
+2015,3,7,1,DL,125,MMMX,EDDF,2235,770,1105,0,0,Mexico,Germany,North America,Europe,0
+2015,3,6,7,5X,126,KLAX,EDDF,1200,660,1600,0,0,United States of America,Germany,North America,Europe,1
+2015,3,6,7,5X,127,KJFK,MMMX,1000,120,1200,0,0,United States of America,Mexico,North America,North America,1
+2015,3,5,6,5X,128,EDDF,VHHH,900,700,1300,0,0,Germany,China,Europe,Asia,1
+2015,3,6,7,5X,129,KJFK,VHHH,420,920,1940,0,0,United States of America,China,North America,Asia,1
+2015,3,7,1,5X,130,EGLL,VHHH,940,960,140,0,0,England,China,Europe,Asia,1
+2015,3,6,5,FX,131,KJFK,VHHH,2230,930,1400,0,0,United States of America,China,North America,Asia,1
+2015,3,3,2,FX,132,VHHH,EGLL,1220,420,1920,0,0,United States of America,England,North America,Europe,1
+2015,3,4,3,FX,133,KLAX,ZSPD,1320,800,2200,0,0,United States of America,China,North America,Asia,1
+2015,4,1,5,DL,134,EGLL,EDDF,1455,760,235,0,0,England,Germany,Europe,Europe,0
+2015,4,2,6,AA,135,KJFK,KLAX,2350,960,1550,0,0,United States of America,United States of America,North America,North America,0
+2015,4,3,7,DL,136,KJFK,KATL,235,945,1820,0,0,United States of America,United States of America,North America,North America,0
+2015,4,4,1,DL,137,KJFK,MMMX,1245,430,1955,0,0,United States of America,Mexico,North America,North America,0
+2015,4,5,2,AA,138,VHHH,KLAX,1315,420,2015,0,0,China,United States of America,China,North America,0
+2015,4,6,3,AA,139,EGLL,EDDF,2205,750,1055,0,0,England,Germany,North America,Europe,0
+2015,4,7,5,DL,140,MMMX,EDDF,2235,770,1105,0,0,Mexico,Germany,North America,Europe,0
+2015,4,6,3,5X,141,KLAX,EDDF,1200,660,1600,0,0,United States of America,Germany,North America,Europe,1
+2015,4,6,3,5X,142,KJFK,MMMX,1000,120,1200,0,0,United States of America,Mexico,North America,North America,1
+2015,4,5,2,5X,143,EDDF,VHHH,900,700,1300,0,0,Germany,China,Europe,Asia,1
+2015,4,6,3,5X,144,KJFK,VHHH,420,920,1940,0,0,United States of America,China,North America,Asia,1
+2015,4,7,4,5X,145,EGLL,VHHH,940,960,140,0,0,England,China,Europe,Asia,1
+2015,4,6,3,FX,146,KJFK,VHHH,2230,930,1400,0,0,United States of America,China,North America,Asia,1
+2015,4,3,7,FX,147,VHHH,EGLL,1220,420,1920,0,0,United States of America,England,North America,Europe,1
+2015,4,4,1,FX,148,KLAX,ZSPD,1320,800,2200,0,0,United States of America,China,North America,Asia,1
+2015,4,13,3,AA,154,EGLL,EDDF,2205,750,1055,0,0,England,Germany,North America,Europe,0
+2015,4,14,5,DL,155,MMMX,EDDF,2235,770,1105,0,0,Mexico,Germany,North America,Europe,0
+2015,4,13,3,5X,156,KLAX,EDDF,1200,660,1600,0,0,United States of America,Germany,North America,Europe,1
+2015,4,13,3,5X,157,KJFK,MMMX,1000,120,1200,0,0,United States of America,Mexico,North America,North America,1
+2015,4,12,2,5X,158,EDDF,VHHH,900,700,1300,0,0,Germany,China,Europe,Asia,1
+2015,4,13,3,5X,159,KJFK,VHHH,420,920,1940,0,0,United States of America,China,North America,Asia,1
+2015,4,14,4,5X,160,EGLL,VHHH,940,960,140,0,0,England,China,Europe,Asia,1
+2015,4,13,3,FX,161,KJFK,VHHH,2230,930,1400,0,0,United States of America,China,North America,Asia,1
+2015,4,10,7,FX,162,VHHH,EGLL,1220,420,1920,0,0,United States of America,England,North America,Europe,1
+2015,4,11,1,FX,163,KLAX,ZSPD,1320,800,2200,0,0,United States of America,China,North America,Asia,1
+2015,4,13,3,FX,163,KLAX,MMMX,1315,420,2015,0,0,United States of America,Mexico,North America,North America,1
+2015,4,13,3,FX,163,KLAX,EDDF,1320,800,2200,0,0,United States of America,Germany,North America,Europe,1
+2015,4,10,7,FX,163,VHHH,ZSPD,2205,750,1055,0,0,China,China,Asia,Asia,1
+2015,5,1,7,FX,161,KJFK,VHHH,2230,930,1400,0,0,United States of America,China,North America,Asia,1
+2015,5,2,1,5X,157,KJFK,MMMX,1000,120,1200,0,0,United States of America,Mexico,North America,North America,1
+2015,5,2,1,FX,146,KJFK,VHHH,2230,930,1400,0,0,United States of America,China,North America,Asia,1
+2015,5,2,1,AA,135,KJFK,KLAX,2350,960,1550,0,0,United States of America,United States of America,North America,North America,0
+2015,5,3,2,DL,136,KJFK,KATL,235,945,1820,0,0,United States of America,United States of America,North America,North America,0
+2015,5,4,3,FX,163,KJFK,ZSPD,2205,750,1055,0,0,United States of America,China,North America,Asia,1
+2015,5,5,4,AA,135,MMMX,ZSPD,940,960,140,0,0,Mexico,China,North America,Asia,0
+2015,5,5,4,DL,136,VHHH,ZSPD,2230,930,1400,0,0,China,China,North America,Asia,0
+2015,5,5,4,FX,163,VHHH,ZSPD,1220,420,1920,0,0,China,China,Asia,Asia,1
+2015,5,6,5,AA,107,EGLL,EDDF,2205,750,1055,0,0,England,Germany,North America,Europe,0
+2015,5,7,6,DL,108,MMMX,EDDF,2235,770,1105,0,0,Mexico,Germany,North America,Europe,0
+2015,5,1,7,DL,109,EGLL,EDDF,1455,760,235,0,0,England,Germany,Europe,Europe,0
