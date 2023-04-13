@@ -30,20 +30,20 @@
             <!-- Hotbar Content -->
             <div class="container">
                 <div class="row g-3 align-items-center">
-                    <!-- Departure Date -->
+                    <!-- Departure Date and Time -->
                     <div class="col-md-2">
-                        <label for="departure-date" class="form-label">Departure Date</label>
-                        <input type="date" id="departure-date" name="departure-date" class="form-control">
+                        <label for="departure-date" class="form-label">Start Date and Time</label>
+                        <input type="datetime-local" id="start-datetime-hotbar" name="start-datetime" class="form-control">
                     </div>
-                    <!-- Arrival Date -->
+                    <!-- Arrival Date and Time -->
                     <div class="col-md-2">
-                        <label for="return-date" class="form-label">Arrival Date</label>
-                        <input type="date" id="return-date" name="return-date" class="form-control">
+                        <label for="return-date" class="form-label">End Date and Time</label>
+                        <input type="datetime-local" id="end-datetime-hotbar" name="end-datetime" class="form-control">
                     </div>
                     <!-- Departure Airport -->
                     <div class="col-md-2">
-                        <label for="departure-airport" class="form-label">Departure Airport</label>
-                        <select class="form-select" id="departure-airport" required>
+                        <label for="departure-airport" class="form-label">Starting Airport</label>
+                        <select class="form-select" id="start-airport-hotbar" required>
                             <option value="">Choose...</option>
                             <option>EWR</option>
                             <option>LAX</option>
@@ -52,8 +52,8 @@
                     </div>
                     <!-- Arrival Airport -->
                     <div class="col-md-2">
-                        <label for="arrival-airport" class="form-label">Arrival Airport</label>
-                        <select class="form-select" id="arrival-airport" required>
+                        <label for="arrival-airport" class="form-label">Ending Airport</label>
+                        <select class="form-select" id="end-airport-hotbar" required>
                             <option value="">Choose...</option>
                             <option>EWR</option>
                             <option>LAX</option>
@@ -64,18 +64,18 @@
                     <div class="col-md-4">
                         <div class="row g-3">
                             <!-- Search Flights -->
-                            <div class="col">
+                            <div class="col-md-4">
                                 <button id="search-flights" class="btn btn-primary">Search Flights</button>
                             </div>
                             <!-- More Filters -->
-                            <div class="col">
+                            <div class="col-md-4">
                                 <button id="filter-window" class="btn btn-secondary" data-bs-toggle="offcanvas" data-bs-target="#filter-options"
                                     aria-controls="filter-options">
                                     More Filters
                                 </button>
                             </div>
                             <!-- Help -->
-                            <div class="col">
+                            <div class="col-md-4">
                                 <button id="help-window" class="btn btn-toolbar" data-bs-toggle="modal" data-bs-target="#help-modal">Help</button>
                             </div>
                         </div>
@@ -309,7 +309,7 @@
         
         <!-- Help Modal -->
         <div class="modal fade" id="help-modal" tabindex="-1" aria-labelledby="help-modal-label" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="help-modal-label">Help</h5>
@@ -320,18 +320,19 @@
                         <p>
                             To find flights, fill in the respective information at the top:
                         <ul>
-                            <li><strong>Start Date:</strong> The earliest starting date of the desired route(s).</li>
-                            <li><strong>End Date:</strong> The latest ending date of the desired route(s)</li>
+                            <li><strong>Start Date and Time:</strong> The earliest starting date and time of the desired route(s).</li>
+                            <li><strong>End Date and Time:</strong> The latest ending date and time of the desired route(s)</li>
                             <br>
-                            <li><strong>Departure:</strong> The departure airport of the desired route(s).</li>
-                            <li><strong>Destination:</strong> The arrival airport of the desired route(s).</li>
+                            <li><strong>Starting Airport:</strong> The departure airport of the desired route(s).</li>
+                            <li><strong>Ending Airport:</strong> The arrival airport of the desired route(s).</li>
                         </ul>
-                        After filling in the information, select <strong>Find Route</strong> to filter and visualize
+                        After filling in the information, select <strong>Search Flights</strong> to filter and visualize
                         flight paths that match the given criteria.
                         </p>
                         <p>
-                            For more filtering options, select <strong>Filter</strong> at the top right to open up the
-                            filter window. The additional options are as follows:
+                            For more filtering options, select <strong>More Filters</strong> at the top right to open up the
+                            filter menu. The additional options are as follows:
+                        <h1 class="h5">Basic Filters</h1>
                         <ul>
                             <li>
                                 <strong>Start Location:</strong> The starting location of the route (can be filtered
@@ -341,12 +342,15 @@
                                 <strong>End Location:</strong> The ending location of the route (can be filtered
                                 via <strong>airport</strong>, <strong>country</strong>, or <strong>continent</strong>).
                             </li>
-                            <li><strong>Day of Week:</strong> The day(s) of the week for the flights to occur on.</li>
+                            <li><strong>Days of the Week:</strong> The day(s) of the week for the flights to occur on.</li>
                             <li><strong>Maximum Layovers:</strong> The maximum number of layovers for a single route.</li>
                             <li><strong>Airlines:</strong> The airline(s) that the flights withina route can be operated by.</li>
-                            <li><strong>Type of Airline:</strong> The possibles type(s) of airline that the flights are operated by.
+                            <li><strong>Airline Type:</strong> The possibles type(s) of airline that the flights are operated by.
                             </li>
-                            <br>
+                        </ul>
+                        <br>
+                        <h1 class="h5">Advanced Filters</h1>
+                        <ul>
                             <li>
                                 <strong>Find Added Flights:</strong> Find flights that were added between the original timeframe and the
                                 new
