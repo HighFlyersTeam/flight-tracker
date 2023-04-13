@@ -125,7 +125,6 @@ class FlightInfo:
             if days[k] == "true":
                 selected_days.append(k)
 
-        # print("Selected Days:", selected_days)
         self.details = self.details[self.details["DAY_OF_WEEK"].isin(
             selected_days)]
 
@@ -149,8 +148,6 @@ class FlightInfo:
             self.details = self.details[self.details["CARGO"]]
         elif is_cargo == 'false' and is_passenger == 'true':
             self.details = self.details[self.details["CARGO"]]
-        elif is_cargo == 'false' and is_passenger == 'false':
-            self.details = self.details[self.details["CARGO"] == 2]
 
     def filter_by_added(self, req):
         """
@@ -158,19 +155,43 @@ class FlightInfo:
         Parameters:
             req: request object containing start and end dates
         """
-        # depart1 = datetime.datetime.strptime(req.start1, '%Y-%m-%d')
-        # depart2 = datetime.datetime.strptime(req.start2, '%Y-%m-%d')
-        #
-        # arrive1 = datetime.datetime.strptime(req.end1, '%Y-%m-%d')
-        arrive2 = datetime.datetime.strptime(req.end2, '%Y-%m-%d')
+        parsed_start1 = req.start_date + '-' + \
+            req.start_time[:2] + '-' + req.start_time[2:]
+        parsed_end1 = req.end_date + '-' + \
+            req.end_time[:2] + '-' + req.end_time[2:]
 
-        # flights1 = self.full_data[self.full_data["DEPARTURE_TIME"] > depart1]
-        # flights1 = self.full_data[self.full_data["ARRIVAL_TIME"] < arrive1]
-        #
-        # flights2 = self.full_data[self.full_data["DEPARTURE_TIME"] > depart2]
-        flights2 = self.full_data[self.full_data["ARRIVAL_TIME"] < arrive2]
+        parsed_start2 = req.adv_req.start_date + '-' + \
+            req.adv_req.start_time[:2] + '-' + req.adv_req.start_time[2:]
+        parsed_end2 = req.adv_req.end_date + '-' + \
+            req.adv_req.end_time[:2] + '-' + req.adv_req.end_time[2:]
 
-        self.details = flights2
+        depart1 = datetime.datetime.strptime(parsed_start1, '%Y-%m-%d-%H-%M')
+        arrive1 = datetime.datetime.strptime(parsed_end1, '%Y-%m-%d-%H-%M')
+
+        depart2 = datetime.datetime.strptime(parsed_start2, '%Y-%m-%d-%H-%M')
+        arrive2 = datetime.datetime.strptime(parsed_end2, '%Y-%m-%d-%H-%M')
+
+        flights1 = self.details[(self.details["DEPARTURE_TIME"] > depart1)
+                                & (self.details["ARRIVAL_TIME"] < arrive1)]
+
+        flights2 = self.full_data[(self.full_data["DEPARTURE_TIME"] > depart2)
+                                  & (self.full_data["ARRIVAL_TIME"] < arrive2)]
+        flights2 = flights2[flights2["AIRLINE"].isin(req.airlines)]
+
+        # time_delta = pd.to_timedelta(depart2-depart1)
+        added_flights = flights2.copy()
+        for index, f in flights2.iterrows():
+            # check_time = (f["DEPARTURE_TIME"] - time_delta)
+            temp = flights1[(flights1["DAY_OF_WEEK"] == f["DAY_OF_WEEK"])
+                            & (flights1["HOUR"] == f["HOUR"])
+                            & (flights1["MINUTE"] == f["MINUTE"])
+                            & (flights1["AIRLINE"] == f["AIRLINE"])
+                            & (flights1["ORIGIN_AIRPORT"] == f["ORIGIN_AIRPORT"])
+                            & (flights1["DESTINATION_AIRPORT"] == f["DESTINATION_AIRPORT"])]
+            if temp.shape[0] > 0:
+                added_flights.drop(index, inplace=True)
+
+        self.details = added_flights
 
     def filter_by_removed(self, req):
         """
@@ -178,18 +199,40 @@ class FlightInfo:
         Parameters:
             req: request object containing start and end dates
         """
-        depart1 = datetime.datetime.strptime(req.start1, '%Y-%m-%d')
-        # depart2 = datetime.datetime.strptime(req.start2, '%Y-%m-%d')
+        parsed_start1 = req.start_date + '-' + \
+            req.start_time[:2] + '-' + req.start_time[2:]
+        parsed_end1 = req.end_date + '-' + \
+            req.end_time[:2] + '-' + req.end_time[2:]
 
-        arrive1 = datetime.datetime.strptime(req.end1, '%Y-%m-%d')
-        # arrive2 = datetime.datetime.strptime(req.end2, '%Y-%m-%d')
+        parsed_start2 = req.adv_req.start_date + '-' + \
+            req.adv_req.start_time[:2] + '-' + req.adv_req.start_time[2:]
+        parsed_end2 = req.adv_req.end_date + '-' + \
+            req.adv_req.end_time[:2] + '-' + req.adv_req.end_time[2:]
 
-        flights1 = self.full_data[(self.full_data["DEPARTURE_TIME"] > depart1)
-                                  & (self.full_data["ARRIVAL_TIME"] < arrive1)]
-        # flights1 = self.full_data[self.full_data["ARRIVAL_TIME"] < arrive1]
+        depart1 = datetime.datetime.strptime(parsed_start1, '%Y-%m-%d-%H-%M')
+        arrive1 = datetime.datetime.strptime(parsed_end1, '%Y-%m-%d-%H-%M')
 
-        # flights2 = self.full_data[(self.full_data["DEPARTURE_TIME"] > depart2)
-        #                           & (self.full_data["ARRIVAL_TIME"] < arrive2)]
-        # flights2 = self.full_data[self.full_data["ARRIVAL_TIME"] < arrive2]
+        depart2 = datetime.datetime.strptime(parsed_start2, '%Y-%m-%d-%H-%M')
+        arrive2 = datetime.datetime.strptime(parsed_end2, '%Y-%m-%d-%H-%M')
 
-        self.details = flights1
+        flights1 = self.details[(self.details["DEPARTURE_TIME"] > depart1)
+                                & (self.details["ARRIVAL_TIME"] < arrive1)]
+
+        flights2 = self.full_data[(self.full_data["DEPARTURE_TIME"] > depart2)
+                                  & (self.full_data["ARRIVAL_TIME"] < arrive2)]
+        flights2 = flights2[flights2["AIRLINE"].isin(req.airlines)]
+
+        # time_delta = pd.to_timedelta(depart2-depart1)
+        removed_flights = flights1.copy()
+        for index, f in flights1.iterrows():
+            # check_time = (f["DEPARTURE_TIME"] + time_delta)
+            temp = flights2[(flights2["DAY_OF_WEEK"] == f["DAY_OF_WEEK"])
+                            & (flights2["HOUR"] == f["HOUR"])
+                            & (flights2["MINUTE"] == f["MINUTE"])
+                            & (flights2["AIRLINE"] == f["AIRLINE"])
+                            & (flights2["ORIGIN_AIRPORT"] == f["ORIGIN_AIRPORT"])
+                            & (flights2["DESTINATION_AIRPORT"] == f["DESTINATION_AIRPORT"])]
+            if temp.shape[0] > 0:
+                removed_flights.drop(index, inplace=True)
+
+        self.details = removed_flights

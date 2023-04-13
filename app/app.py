@@ -38,11 +38,11 @@ def form():
 
     flights.filter_by_cargo(req.is_cargo, req.is_passenger)
 
-    # if flights.advancedRequest.filterAdded:
-    #     flights.filterByAdded(flights.advancedRequest)
+    if req.adv_req.filter_added == 'true':
+        flights.filter_by_added(req)
 
-    # if flights.advancedRequest.filterRemoved:
-    #     flights.filterByRemoved(flights.advancedRequest)
+    if req.adv_req.filter_removed == 'true':
+        flights.filter_by_removed(req)
 
     ret_val = []
     for _, row in flights.details.iterrows():
