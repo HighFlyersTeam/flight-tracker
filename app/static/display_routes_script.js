@@ -9,6 +9,7 @@ export function displayFilteredFlights() {
     $.ajax({
         url: 'http://127.0.0.1:5000/form', success: function(data) {
             const flightData = eval(data);
+            console.log(flightData);
             updateMapWithFlights(flightData);
             // Alert the user if no flights were found
             if (flightData.length === 0)
