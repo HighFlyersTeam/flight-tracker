@@ -2,14 +2,20 @@
 
 Flight Tracker is the best way for you to visualize flights. It was created by Ivan Ho, Alexander Houck, Anthony Johnson, Charlie Liu, Benjamin Rome, and Charles Tian as part of Rensselaer Polytechnic Institute's Software Design and Documentation course. Their goal is to create a basic and intuitive interface to visualize publicly available flight information.
 
-# Table of Contents
+Please visit our website, [http://highflyers.pythonanywhere.com/](http://highflyers.pythonanywhere.com/) to see a live deployment of Flight Tracker.
 
-# Background
+## Table of Contents
+- [Background](#background)
+- [Use Cases](#use-cases)
+- [Local Deployment Setup Guide](#local-deployment-setup-guide)
+- [License](#license)
 
-# Use Cases
+## Background
 
-# Setup Guide to Run Flight Tracker Locally
+## Use Cases
 
-# License
+## Local Deployment Setup Guide
+Under construction... please come back later.
 
-Website: [http://highflyers.pythonanywhere.com/](http://highflyers.pythonanywhere.com/)
+## License
+Flight Tracker is licensed under the MIT license, which can be viewed [here](LICENSE).
