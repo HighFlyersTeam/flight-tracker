@@ -66,7 +66,6 @@ function clearMap() {
 }
 
 function createAirportMarker(airportCode) {
-    console.log(airportCode);
     const currentAirport = airportData[airportCode];
     const location = {lat: currentAirport["lat"], lng: currentAirport["lng"]};
     const infoWindow = new google.maps.InfoWindow({
@@ -87,16 +86,12 @@ function createAirportMarker(airportCode) {
 // Expects a 2D array of strings containing origin airport, destination airport, airline, and true/false depending on
 // whether or not it is a cargo plane
 export function updateMapWithFlights(flightData) {
-    console.log("FLIGHT DATA: " + flightData);
-
     clearMap();
 
     let airports = new Set();
     for (let i = 0; i < flightData.length; i++) {
         const originAirport = flightData[i][0];
         const destinationAirport = flightData[i][1];
-        console.log("ORIGIN: " + originAirport);
-        console.log("DESTINATION: " + destinationAirport);
         airports.add(originAirport);
         airports.add(destinationAirport);
     }
@@ -114,7 +109,6 @@ export function updateMapWithFlights(flightData) {
         currentPath.push({lat: airportData[destinationAirport]["lat"], lng: airportData[destinationAirport]["lng"]})
 
         const airline = flightData[i][2];
-        console.log("AIRLINE: " + airline);
         const flightPath = new google.maps.Polyline({
             path: currentPath,
             geodesic: true,
