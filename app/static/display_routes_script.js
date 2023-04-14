@@ -25,7 +25,6 @@ function getDataFromFilterMenu() {
 
     // Earliest Start Time
     const departure_datetime = document.getElementById("start-datetime").value;
-
     let start_data = departure_datetime.split("T");
     let start_time = start_data[1].replace(":", "");
     data.push(start_data[0]);
@@ -38,6 +37,30 @@ function getDataFromFilterMenu() {
     let end_time = end_data[1].replace(":", "");
     data.push(end_data[0]);
     data.push(String(end_time));
+
+    // Days of the Week
+    const sunday = document.getElementById("sunday").checked;
+    const monday = document.getElementById("monday").checked;
+    const tuesday = document.getElementById("tuesday").checked;
+    const wednesday = document.getElementById("wednesday").checked;
+    const thursday = document.getElementById("thursday").checked;
+    const friday = document.getElementById("friday").checked;
+    const saturday = document.getElementById("saturday").checked;
+
+    if (sunday === monday && monday === tuesday && tuesday === wednesday && wednesday === thursday
+        && thursday === friday && friday === saturday) {
+        for (let i = 0; i < 7; i++) {
+            data.push(true);
+        }
+    } else {
+        data.push(sunday);
+        data.push(monday);
+        data.push(tuesday);
+        data.push(wednesday);
+        data.push(thursday);
+        data.push(friday);
+        data.push(saturday);
+    }
 
     // Start Location
     const departure_location_type = document.getElementById("start-location-type").value;
@@ -53,7 +76,7 @@ function getDataFromFilterMenu() {
 
     departure_location_values = $(startID).val();
 
-    if (departure_location_values.length == 0) {
+    if (departure_location_values.length === 0) {
         departure_location_values = [];
         $(startID + " option").each(function() {
             departure_location_values.push($(this).val());
@@ -77,7 +100,7 @@ function getDataFromFilterMenu() {
 
     arrival_location_values = $(endID).val();
 
-    if (arrival_location_values.length == 0) {
+    if (arrival_location_values.length === 0) {
         arrival_location_values = [];
         $(endID + " option").each(function() {
             arrival_location_values.push($(this).val());
@@ -86,30 +109,6 @@ function getDataFromFilterMenu() {
 
     data.push(arrival_location_type);
     data.push(arrival_location_values);
-
-    // Days of the Week
-    const sunday = document.getElementById("sunday").checked;
-    const monday = document.getElementById("monday").checked;
-    const tuesday = document.getElementById("tuesday").checked;
-    const wednesday = document.getElementById("wednesday").checked;
-    const thursday = document.getElementById("thursday").checked;
-    const friday = document.getElementById("friday").checked;
-    const saturday = document.getElementById("saturday").checked;
-
-    if (sunday == monday && monday == tuesday && tuesday == wednesday && wednesday == thursday 
-        && thursday == friday && friday == saturday) {
-        for (let i = 0; i < 7; i++) {
-            data.push(true);
-        }
-    } else {
-        data.push(sunday);
-        data.push(monday);
-        data.push(tuesday);
-        data.push(wednesday);
-        data.push(thursday);
-        data.push(friday);
-        data.push(saturday);
-    }
     
     // Max Layovers
     data.push(String(parseInt(document.getElementById("layovers").value)));
@@ -147,19 +146,17 @@ function getDataFromFilterMenu() {
     const added = option === "find-added";
     const removed = option === "find-removed";
 
-    if (added || removed) {
-        const adv_start_datetime = document.getElementById("secondary-start-datetime").value;
-        let adv_start_data = adv_start_datetime.split("T");
-        let adv_start_time = adv_start_data[1].replace(":", "");
-        data.push(adv_start_data[0]);
-        data.push(adv_start_time);
+    const adv_start_datetime = document.getElementById("secondary-start-datetime").value;
+    let adv_start_data = adv_start_datetime.split("T");
+    let adv_start_time = adv_start_data[1].replace(":", "");
+    data.push(adv_start_data[0]);
+    data.push(adv_start_time);
 
-        const adv_end_datetime = document.getElementById("secondary-end-datetime").value;
-        let adv_end_data = adv_end_datetime.split("T");
-        let adv_end_time = adv_end_data[1].replace(":", "");
-        data.push(adv_end_data[0]);
-        data.push(adv_end_time);
-    }
+    const adv_end_datetime = document.getElementById("secondary-end-datetime").value;
+    let adv_end_data = adv_end_datetime.split("T");
+    let adv_end_time = adv_end_data[1].replace(":", "");
+    data.push(adv_end_data[0]);
+    data.push(adv_end_time);
 
     data.push(added);
     data.push(removed);
