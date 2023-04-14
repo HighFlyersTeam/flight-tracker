@@ -9,7 +9,6 @@ export function displayFilteredFlights() {
     $.ajax({
         url: 'http://127.0.0.1:5000/form', success: function(data) {
             const flightData = eval(data);
-            console.log(flightData);
             updateMapWithFlights(flightData);
             // Alert the user if no flights were found
             if (flightData.length === 0)
@@ -120,7 +119,7 @@ function getDataFromFilterMenu() {
 
     // Airlines
     let airlines = $("#airlines").val();
-    if (airlines.length == 0) {
+    if (airlines.length === 0) {
         airlines = [];
         $("#airlines" + " option").each(function() {
             airlines.push($(this).val());

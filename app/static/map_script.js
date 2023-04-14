@@ -2,13 +2,28 @@ let map;
 let mapMarkers;
 let mapPaths;
 let airportData;
+let airlineData;
+let airlineColors;
 
 async function getAirportData() {
-    const response = await fetch("../static/airports.json")
+    return await fetch("../static/airports.json")
         .then(response => {
             return response.json();
         });
-    return response;
+}
+
+async function getAirlineColorData() {
+    return await fetch("../static/airline_colors.json")
+        .then(response => {
+            return response.json();
+        });
+}
+
+async function getAirlineData() {
+    return await fetch("../static/airlines.json")
+        .then(response => {
+            return response.json();
+        });
 }
 
 async function initMap() {
@@ -28,6 +43,7 @@ async function initMap() {
     mapPaths = [];
 
     airportData = await getAirportData();
+    airlineData = await getAirlineData();
 
     // Shows all airports by default
     const airportCodes = Object.keys(airportData);
@@ -37,7 +53,7 @@ async function initMap() {
     map.setCenter({lat: 0, lng: 0});
     map.setZoom(0);
 
-    // updateMapWithFlights([["JFK", "HKG", "LHR"], ["LHR", "JFK"]])
+    airlineColors = await getAirlineColorData();
 }
 
 function clearMap() {
@@ -50,6 +66,7 @@ function clearMap() {
 }
 
 function createAirportMarker(airportCode) {
+    console.log(airportCode);
     const currentAirport = airportData[airportCode];
     const location = {lat: currentAirport["lat"], lng: currentAirport["lng"]};
     const infoWindow = new google.maps.InfoWindow({
@@ -67,21 +84,21 @@ function createAirportMarker(airportCode) {
     mapMarkers.push(marker);
 }
 
-// Expects a 2D array of strings containing flight path data, with strings being airport codes
-// Example: [["JFK", "HKG", "LHR"], ["LHR", "JFK"]]
+// Expects a 2D array of strings containing origin airport, destination airport, airline, and true/false depending on
+// whether or not it is a cargo plane
 export function updateMapWithFlights(flightData) {
+    console.log("FLIGHT DATA: " + flightData);
+
     clearMap();
 
     let airports = new Set();
-    const pathsAsCoordinates = [];
     for (let i = 0; i < flightData.length; i++) {
-        const currentPath = [];
-        for (let j = 0; j < flightData[i].length; j++) {
-            airports.add(flightData[i][j]);
-            const currentAirport = flightData[i][j];
-            currentPath.push({lat: airportData[currentAirport]["lat"], lng: airportData[currentAirport]["lng"]})
-        }
-        pathsAsCoordinates.push(currentPath);
+        const originAirport = flightData[i][0];
+        const destinationAirport = flightData[i][1];
+        console.log("ORIGIN: " + originAirport);
+        console.log("DESTINATION: " + destinationAirport);
+        airports.add(originAirport);
+        airports.add(destinationAirport);
     }
 
     // Display all unique airports
@@ -89,17 +106,41 @@ export function updateMapWithFlights(flightData) {
         createAirportMarker(currentAirportCode);
 
     // Display all the paths
-    for (let i = 0; i < pathsAsCoordinates.length; i++) {
-        // TODO: decide if we want to keep this random color solution or have a systematic coloring system
-        const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    for (let i = 0; i < flightData.length; i++) {
+        const currentPath = [];
+        const originAirport = flightData[i][0];
+        const destinationAirport = flightData[i][1];
+        currentPath.push({lat: airportData[originAirport]["lat"], lng: airportData[originAirport]["lng"]});
+        currentPath.push({lat: airportData[destinationAirport]["lat"], lng: airportData[destinationAirport]["lng"]})
+
+        const airline = flightData[i][2];
+        console.log("AIRLINE: " + airline);
         const flightPath = new google.maps.Polyline({
-            path: pathsAsCoordinates[i],
+            path: currentPath,
             geodesic: true,
-            strokeColor: "#" + randomColor,
+            strokeColor: airlineColors[airline],
             strokeOpacity: 1.0,
             strokeWeight: 2,
         });
         flightPath.setMap(map);
+
+        // Set info window for each flight path
+        let information = "Airline: " + airlineData[airline] + "<br />";
+        if (flightData[i][3] === "true")
+            information += "Cargo airplane";
+        else if (flightData[i][3] === "false")
+            information += "Passenger airplane";
+
+        const infoWindow = new google.maps.InfoWindow({
+            content: information
+        });
+        google.maps.event.addListener(flightPath, 'click', (function (poly, i) {
+            return function (event) {
+                infoWindow.setPosition(event.latLng);
+                infoWindow.open(map);
+            };
+        })(flightPath, i));
+
         mapPaths.push(flightPath);
     }
 }

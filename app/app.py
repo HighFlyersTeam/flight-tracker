@@ -55,6 +55,8 @@ def form():
 
         ret_val.add((origin_airport, destination_airport, airline, is_cargo))
 
-    ret_val_list = list(ret_val)
+    ret_val_list = []
+    for item in ret_val:
+        ret_val_list.append([item[0], item[1], item[2], item[3]])
     print("\nReturn Dataframe:\n", ret_val_list)
-    return f'{ret_val}'
+    return f'{ret_val_list}'
