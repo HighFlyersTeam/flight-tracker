@@ -38,13 +38,13 @@ def form():
 
     flights.filter_by_cargo(req.is_cargo, req.is_passenger)
 
-    flights.filter_by_stops(req)
+    flights.filter_by_stops(req.num_layovers)
 
     if req.adv_req.filter_added == 'true':
-        flights.filter_by_added(req)
+        flights.filter_by_added(req.adv_req)
 
     if req.adv_req.filter_removed == 'true':
-        flights.filter_by_removed(req)
+        flights.filter_by_removed(req.adv_req)
 
     ret_val = []
     for _, row in flights.details.iterrows():

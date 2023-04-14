@@ -1,147 +1,30 @@
 body, html {
+    width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-button.active, select[multiple]:focus option:checked {
-    background-color: dimgray;
-    color: #ededed
-}
-
-.site {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-}
-
-.controls {
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-    font-size: large;
-    padding: 5px;
-}
-
-.time_controls, .airport_controls {
-    display: flex;
-    align-items: stretch;
-    font-size: large;
-}
-
-.controls button {
-    display: block;
-    font-size: large;
-}
-
-.airport_controls select {
-    font-size: large;
-}
-
-#map_wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
+#filter-options.offcanvas {
+    width: 600px;
 }
 
 #map {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
-
-#filter_content{
-    width: 33%;
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    align-items: stretch;
-    background-color: lightgrey;
-    padding: 2%;
-    position: absolute;
-    top: 0;
-    right: 5px;
-    border: 1px solid black;
-    flex-basis: auto;
-}
-
-.filter_title {
-    text-align: center;
-    font-weight: bold;
-}
-
-#advanced_controls {
-    margin-top: 2%;
-}
-
-.filter_item, .filter_controls {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    box-sizing: border-box;
-}
-
-.filter_controls {
-    padding-top: 3%;
-    justify-content: center;
-}
-
-.filter_item > label {
-    width: 30%;
-    display: inline-block;
-    text-align: right;
-}
-
-.filter_label {
-    width: 100%;
-    text-align: right;
-}
-
-.filter_item > filter_components {
-    flex: 1;
-}
-
-.filter_components {
     display: flex;
     width: 100%;
-    justify-content: center;
-    flex-direction: row;
-    margin: auto;
-    gap: 5px;
-    box-sizing: border-box;
+    height: 90%;
+    position: relative;
 }
 
-.filter_components > label{
-    width: 20%;
-    text-align: right;
-    white-space: nowrap;
+#start-country-div,
+#start-continent-div,
+#end-country-div,
+#end-continent-div,
+#advanced-filters {
+  display: none;
 }
 
-.filter_components > select, .filter_components > input {
-    width: 100%;
-}
-
-.hide {
-    display: none;
-}
-
-.airline_type_button, .advanced_controls_button, .spacer, #airline_companies {
-    width: 100%;
-}
-
-.filter_control_button {
-    width: 30%;
-}
-
-.day_of_week_button {
-    aspect-ratio: 1;
-    border-radius: 50%;
-    width: 2.5em;
-    height: 2.5em;
-    display: grid;
-    place-items: center;
-    text-align: center;
-
+#help-logo-img {
+    float: right;
 }
