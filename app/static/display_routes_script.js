@@ -8,7 +8,11 @@ export function displayFilteredFlights() {
 
     $.ajax({
         url: 'http://127.0.0.1:5000/form', success: function(data) {
-            updateMapWithFlights(eval(data));
+            const flightData = eval(data);
+            updateMapWithFlights(flightData);
+            // Alert the user if no flights were found
+            if (flightData.length === 0)
+                alert("No flights were found with the given filters.");
         }
     });
 }
