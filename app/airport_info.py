@@ -1,8 +1,4 @@
-"""
-Get the country code from the country name.
-:param country: The country name.
-:return: The country code.
-"""
+
 import csv
 import json
 
@@ -10,6 +6,11 @@ with open("./data/countries.json", encoding="utf8") as csv_file:
     country_data = json.load(csv_file)
 
 
+"""
+Get the country code from the country name.
+:param country: The country name.
+:return: The country code.
+"""
 def get_country_code(country):
     """Get Country Code"""
     if country == "North Korea":
@@ -41,6 +42,9 @@ def get_country_code(country):
 
 data = {}
 INDENT = 4
+
+limit = ["VHHH", "ZSPD", "EGLL", "KJFK", "KLAX", "KATL", "EDDF", "MMMX"]
+
 with open("./data/airports.dat.txt", encoding="utf8") as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     for row in csv_reader:
@@ -59,7 +63,9 @@ with open("./data/airports.dat.txt", encoding="utf8") as csv_file:
         current_airport["lng"] = float(row[7])
 
         icao_code = row[5]
-        data[icao_code] = current_airport
+
+        if icao_code in limit:
+            data[icao_code] = current_airport
 
 json_object = json.dumps(data, indent=INDENT)
 
