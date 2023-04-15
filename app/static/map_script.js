@@ -1,8 +1,12 @@
 let map;
 let mapMarkers;
 let mapPaths;
+
 let airportData;
+let airportInfoWindows;
 let airlineData;
+let airlineInfoWindows;
+
 let airlineColors;
 
 async function getAirportData() {
@@ -42,6 +46,9 @@ async function initMap() {
     mapMarkers = [];
     mapPaths = [];
 
+    airportInfoWindows = [];
+    airlineInfoWindows = [];
+
     airportData = await getAirportData();
     airlineData = await getAirlineData();
 
@@ -80,6 +87,7 @@ function createAirportMarker(airportCode) {
         infoWindow.open(map, marker);
     });
 
+    airportInfoWindows.push(infoWindow);
     mapMarkers.push(marker);
 }
 
@@ -87,6 +95,12 @@ function createAirportMarker(airportCode) {
 // whether or not it is a cargo plane
 export function updateMapWithFlights(flightData) {
     clearMap();
+
+    // Close any info windows that are currently open
+    for (let i = 0; i < airportInfoWindows.length; i++)
+        airportInfoWindows[i].close();
+    for (let i = 0; i < airlineInfoWindows.length; i++)
+        airlineInfoWindows[i].close();
 
     let airports = new Set();
     for (let i = 0; i < flightData.length; i++) {
@@ -101,6 +115,7 @@ export function updateMapWithFlights(flightData) {
         createAirportMarker(currentAirportCode);
 
     // Display all the paths
+    airlineInfoWindows = [];
     for (let i = 0; i < flightData.length; i++) {
         const currentPath = [];
         const originAirport = flightData[i][0];
@@ -119,7 +134,8 @@ export function updateMapWithFlights(flightData) {
         flightPath.setMap(map);
 
         // Set info window for each flight path
-        let information = "Airline: " + airlineData[airline] + "<br />";
+        let information = originAirport + "&rarr;" + destinationAirport + "<br />"
+            + "Airline: " + airlineData[airline] + "<br />";
         if (flightData[i][3] === "true")
             information += "Cargo airplane";
         else if (flightData[i][3] === "false")
@@ -135,6 +151,7 @@ export function updateMapWithFlights(flightData) {
             };
         })(flightPath, i));
 
+        airlineInfoWindows.push(infoWindow);
         mapPaths.push(flightPath);
     }
 }
