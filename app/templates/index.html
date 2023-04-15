@@ -69,6 +69,10 @@
                             <!-- Search Flights -->
                             <div class="col-md-4">
                                 <button id="search-flights" class="btn btn-primary">Search Flights</button>
+                                <script type="module">
+                                    import { displayQuickFilteredFlights } from "../static/display_routes_script.js";
+                                    document.querySelector('#search-flights').addEventListener('click', displayQuickFilteredFlights);
+                                </script>    
                             </div>
                             <!-- More Filters -->
                             <div class="col-md-4">

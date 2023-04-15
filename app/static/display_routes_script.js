@@ -1,8 +1,26 @@
 // Filter find routes button functionality
 import {updateMapWithFlights} from "../static/map_script.js";
 
+// Get the data from the filter menu
 export function displayFilteredFlights() {
     const data = getDataFromFilterMenu();
+
+    setCookie("form", data, 5);
+
+    $.ajax({
+        url: 'http://127.0.0.1:5000/form', success: function(data) {
+            const flightData = eval(data);
+            updateMapWithFlights(flightData);
+            // Alert the user if no flights were found
+            if (flightData.length === 0)
+                alert("No flights were found with the given filters.");
+        }
+    });
+}
+
+// Get the data from the filter hotbar
+export function displayQuickFilteredFlights() {
+    const data = getQuickDataFromFilterMenu();
 
     setCookie("form", data, 5);
 
@@ -164,6 +182,67 @@ function getDataFromFilterMenu() {
 
     data.push(added);
     data.push(removed);
+
+    return data.join("--");
+}
+
+function getQuickDataFromFilterMenu() {
+    let data = [];
+
+    // Earliest Start Time
+    const departure_datetime = document.getElementById("start-datetime-hotbar").value;
+    let start_data = departure_datetime.split("T");
+    let start_time = start_data[1].replace(":", "");
+    data.push(start_data[0]);
+    data.push(String(start_time));
+
+    // Latest End Time
+    const arrival_datetime = document.getElementById("end-datetime-hotbar").value;
+
+    let end_data = arrival_datetime.split("T");
+    let end_time = end_data[1].replace(":", "");
+    data.push(end_data[0]);
+    data.push(String(end_time));
+
+    // Days of the Week
+    for (let i = 0; i < 7; i++) {
+        data.push(true);
+    }
+
+
+    // Start Location
+    const departure_location = document.getElementById("start-airport-hotbar").value;
+
+    data.push("airport");
+    data.push([departure_location]);
+
+    // End Location
+    const arrival_location = document.getElementById("end-airport-hotbar").value;
+
+    data.push("airport");
+    data.push([arrival_location]);
+    
+    // Max Layovers
+    data.push("0");
+
+    // Airlines
+    let airlines = [];
+    $("#airlines" + " option").each(function() {
+        airlines.push($(this).val());
+    })
+    data.push(airlines);
+
+    // Type of Airline
+    data.push(true);
+    data.push(true);
+
+    // Advanced Options
+    data.push("");
+    data.push("");
+    data.push("");
+    data.push("");
+    data.push(false);
+    data.push(false);
 
     return data.join("--");
 }
