@@ -129,7 +129,7 @@ export function updateMapWithFlights(flightData) {
             geodesic: true,
             strokeColor: airlineColors[airline],
             strokeOpacity: 1.0,
-            strokeWeight: 2,
+            strokeWeight: 5,
         });
         flightPath.setMap(map);
 
