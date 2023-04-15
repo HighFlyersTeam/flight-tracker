@@ -1,6 +1,8 @@
 // Times are in UTC time
-const DEFAULT_START = "2018-01-01T04:00:00";
-const DEFAULT_END = "2018-12-31T17:00:00";
+const DEFAULT_START = "2000-01-01T04:00:00";
+const DEFAULT_END = "2023-12-31T17:00:00";
+const DEFAULT_SECONDARY_START = "2010-01-01T04:00:00";
+const DEFAULT_SECONDARY_END = "2012-12-31T17:00:00";
 
 // Matching start datetime between hotbar and menu
 let startDatetimeHotbar;
@@ -82,6 +84,8 @@ function resetEndLocation() {
 
 // Changing the advanced filter options
 let advancedFiltersSelect;
+let advancedFilterStartDatetime;
+let advancedFilterEndDatetime;
 
 function changeAdvancedFilters() {
     const advancedFilters = advancedFiltersSelect.value;
@@ -148,6 +152,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Advanced Filter Options
     advancedFiltersSelect = document.getElementById("advanced-filters-select");
+    advancedFilterStartDatetime = document.getElementById("secondary-start-datetime");
+    advancedFilterEndDatetime = document.getElementById("secondary-end-datetime");
+
+    // Default Values
+    advancedFilterStartDatetime.value = DEFAULT_SECONDARY_START;
+    advancedFilterEndDatetime.value = DEFAULT_SECONDARY_END;
 
     // Event Listeners
     advancedFiltersSelect.addEventListener("change", changeAdvancedFilters);
