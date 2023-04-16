@@ -145,9 +145,9 @@ class FlightInfo:
             is_passenger: boolean for if passenger flights should be included
         """
         if is_cargo == 'true' and is_passenger == 'false':
-            self.details = self.details[self.details["CARGO"]]
+            self.details = self.details[self.details["CARGO"] == True]
         elif is_cargo == 'false' and is_passenger == 'true':
-            self.details = self.details[self.details["CARGO"]]
+            self.details = self.details[self.details["CARGO"] == False]
 
     def filter_by_added(self, req):
         """
