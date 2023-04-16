@@ -1,102 +1,186 @@
 // Times are in UTC time
-const DEFAULT_START = "2018-01-01T04:00:00";
-const DEFAULT_END = "2018-12-31T17:00:00";
+const DEFAULT_START = "2000-01-01T04:00:00";
+const DEFAULT_END = "2023-12-31T17:00:00";
+const DEFAULT_SECONDARY_START = "2010-01-01T04:00:00";
+const DEFAULT_SECONDARY_END = "2012-12-31T17:00:00";
 
-// Toggles the filter window
-function toggleFilterWindow() {
-    const filterWindow = document.getElementById("filter_content");
-    const helpWindow = document.getElementById("help_content");
-    if (window.getComputedStyle(filterWindow).display === "none") {
-        filterWindow.style.display = "flex";
-        helpWindow.style.display = "none";
-    }
-    else {
-        filterWindow.style.display = "none";
+// Matching start datetime between hotbar and menu
+let startDatetimeHotbar;
+let startDatetimeMenu;
+
+function matchStartHotbartoMenu() {
+    startDatetimeMenu.value = startDatetimeHotbar.value;
+}
+
+function matchStartMenutoHotbar() {
+    startDatetimeHotbar.value = startDatetimeMenu.value;
+}
+
+// Matching end datetime between hotbar and menu
+let endDatetimeHotbar;
+let endDatetimeMenu;
+
+function matchEndHotbartoMenu() {
+    endDatetimeMenu.value = endDatetimeHotbar.value;
+}
+
+function matchEndMenutoHotbar() {
+    endDatetimeHotbar.value = endDatetimeMenu.value;
+}
+
+// Changing the start location type
+let startLocationTypeSelect;
+let startAirportDiv;
+let startCountryDiv;
+let startContinentDiv;
+
+function changeStartLocationType() {
+    const locationType = startLocationTypeSelect.value;
+
+    startAirportDiv.style.display = "none";
+    startCountryDiv.style.display = "none";
+    startContinentDiv.style.display = "none";
+
+    if (locationType === "airport") {
+        startAirportDiv.style.display = "block";
+    } else if (locationType === "country") {
+        startCountryDiv.style.display = "block";
+    } else if (locationType === "continent") {
+        startContinentDiv.style.display = "block";
     }
 }
 
-// Clear filter button functionality
-$(document).on("click", "#clear_filter", function() {
-    // Reset dates
-    const start = new Date(DEFAULT_START).toISOString();
-    const end = new Date(DEFAULT_END).toISOString();
-    document.getElementById("start_date").value = start.substring(0, 10);
-    document.getElementById("start_time").value = start.substring(11, 16);
-    document.getElementById("end_date").value = end.substring(0, 10);
-    document.getElementById("end_time").value = end.substring(11, 16);
+function resetStartLocation() {
+    startLocationTypeSelect.value = "airport";
+    changeStartLocationType();
+}
 
-    document.getElementById("start_date2").value = start.substring(0, 10);
-    document.getElementById("start_time2").value = start.substring(11, 16);
-    document.getElementById("end_date2").value = end.substring(0, 10);
-    document.getElementById("end_time2").value = end.substring(11, 16);
+// Changing the end location type
+let endLocationTypeSelect;
+let endAirportDiv;
+let endCountryDiv;
+let endContinentDiv;
 
-    // Reset day of week buttons
-    const dayOfWeekButtons = document.getElementsByClassName("day_of_week_button");
-    for (let i = 0; i < dayOfWeekButtons.length; i++)
-        dayOfWeekButtons[i].classList.remove("active");
+function changeEndLocationType() {
+    const locationType = endLocationTypeSelect.value;
 
-    // Reset multi-select menus (start location, end location, and airlines)
-    $(".info option:selected").prop("selected", false);
+    endAirportDiv.style.display = "none";
+    endCountryDiv.style.display = "none";
+    endContinentDiv.style.display = "none";
 
-    // Reset max layovers
-    document.getElementById("max_layovers").value = 0;
-
-    // Reset airline type buttons
-    const airlineTypeButtons = document.getElementsByClassName("airline_type_button");
-    for (let i = 0; i < airlineTypeButtons.length; i++)
-        airlineTypeButtons[i].classList.remove("active");
-});
-
-// Filter cancel button functionality
-$(document).on("click", "#cancel_filter", function() {
-    const filterWindow = document.getElementById("filter_content");
-    filterWindow.style.display = "none";
-});
-
-// Removes need for Shift+click in multiselect menus
-$(document).on("mousedown", "option",function(e) {
-    e.preventDefault();
-    $(this).prop('selected', !$(this).prop('selected'));
-    return false;
-});
-
-// Toggling button functionality for non-advanced options
-$(document).on("click",".day_of_week_button, .airline_type_button", function() {
-    if ($(this).hasClass("active")) {
-        $(this).removeClass("active");
+    if (locationType === "airport") {
+        endAirportDiv.style.display = "block";
+    } else if (locationType === "country") {
+        endCountryDiv.style.display = "block";
+    } else if (locationType === "continent") {
+        endContinentDiv.style.display = "block";
     }
-    else {
-        $(this).addClass("active");
-    }
-});
+}
 
-// Toggling button functionality for advanced options
-$(document).on("click",".advanced_controls_button", function() {
-    const startTime = document.getElementById("secondary_start_time");
-    const endTime = document.getElementById("secondary_end_time");
+function resetEndLocation() {
+    endLocationTypeSelect.value = "airport";
+    changeEndLocationType();
+}
 
-    if ($(this).hasClass("active")) {
-        $(this).removeClass("active");
-        startTime.style.display = "none";
-        endTime.style.display = "none";
-    }
-    else {
-        $(".advanced_controls_button").removeClass("active");
-        $(this).addClass("active");
-        startTime.style.removeProperty("display");
-        endTime.style.removeProperty("display");
-    }
-});
+// Changing the advanced filter options
+let advancedFiltersSelect;
+let advancedFilterStartDatetime;
+let advancedFilterEndDatetime;
 
-// Changes selection for each location in the dropdown menu
-$(document).on("change", "#start_filter, #end_filter", function() {
-    const target = $(this).data('target');
-    const show = $("option:selected", this).data('show');
-    $(target).children().addClass('hide');
-    $(show).removeClass('hide');
+function changeAdvancedFilters() {
+    const advancedFilters = advancedFiltersSelect.value;
+
+    if (advancedFilters === "find-added" || advancedFilters === "find-removed") {
+        document.getElementById("advanced-filters").style.display = "block";
+    } else {
+        document.getElementById("advanced-filters").style.display = "none";
+    }
+}
+
+function resetAdvancedFilters() {
+    advancedFiltersSelect.value = "none";
+    changeAdvancedFilters();
+}
+
+// Configures the dynamic filter window layout
+document.addEventListener("DOMContentLoaded", () => {
+    const filterForm = document.getElementById("filter-form");
+
+    // Start Datetime
+    startDatetimeHotbar = document.getElementById("start-datetime-hotbar");
+    startDatetimeMenu = document.getElementById("start-datetime");
+
+    // Default Values
+    startDatetimeHotbar.value = DEFAULT_START;
+    startDatetimeMenu.value = DEFAULT_START;
+
+    // Event Listeners
+    startDatetimeHotbar.addEventListener("change", matchStartHotbartoMenu);
+    startDatetimeMenu.addEventListener("change", matchStartMenutoHotbar);
+
+    // End Datetime
+    endDatetimeHotbar = document.getElementById("end-datetime-hotbar");
+    endDatetimeMenu = document.getElementById("end-datetime");
+
+    // Default Values
+    endDatetimeHotbar.value = DEFAULT_END;
+    endDatetimeMenu.value = DEFAULT_END;
+
+    // Event Listeners
+    endDatetimeHotbar.addEventListener("change", matchEndHotbartoMenu);
+    endDatetimeMenu.addEventListener("change", matchEndMenutoHotbar);
+
+    // Start Location
+    startLocationTypeSelect = document.getElementById("start-location-type");
+    startCountryDiv = document.getElementById("start-country-div");
+    startAirportDiv = document.getElementById("start-airport-div");
+    startContinentDiv = document.getElementById("start-continent-div");
+
+    // Event Listeners
+    startLocationTypeSelect.addEventListener("change", changeStartLocationType);
+    filterForm.addEventListener("reset", resetStartLocation);
+
+    // End Location
+    endLocationTypeSelect = document.getElementById("end-location-type");
+    endAirportDiv = document.getElementById("end-airport-div");
+    endCountryDiv = document.getElementById("end-country-div");
+    endContinentDiv = document.getElementById("end-continent-div");
+
+    // Event Listenters
+    endLocationTypeSelect.addEventListener("change", changeEndLocationType);
+    filterForm.addEventListener("reset", resetEndLocation);
+
+    // Advanced Filter Options
+    advancedFiltersSelect = document.getElementById("advanced-filters-select");
+    advancedFilterStartDatetime = document.getElementById("secondary-start-datetime");
+    advancedFilterEndDatetime = document.getElementById("secondary-end-datetime");
+
+    // Default Values
+    advancedFilterStartDatetime.value = DEFAULT_SECONDARY_START;
+    advancedFilterEndDatetime.value = DEFAULT_SECONDARY_END;
+
+    // Event Listeners
+    advancedFiltersSelect.addEventListener("change", changeAdvancedFilters);
+    filterForm.addEventListener("reset", resetAdvancedFilters);
+
+    // Remove need for Shift/Ctrl + Click in multiselect menus
+    $(document).on("mousedown", "option", function (e) {
+        e.preventDefault();
+        $(this).prop("selected", !$(this).prop("selected"));
+        return false;
+    });
+
+    setFilterMenuData();
 });
 
 // Sets the filter menu data
+function removeOptions(selectElement) {
+    var i, L = selectElement.options.length - 1;
+    for (i = L; i >= 0; i--) {
+        selectElement.remove(i);
+    }
+}
+
 async function setFilterMenuData() {
     const airportData = await fetch("../static/airports.json")
         .then(response => {
@@ -106,15 +190,28 @@ async function setFilterMenuData() {
     const airportCodes = Object.keys(airportData);
 
     // Set airports
-    const airportStartMenu = document.getElementById("airport_start_info");
-    const airportEndMenu = document.getElementById("airport_end_info");
+    const airportStartMenu = document.getElementById("start-airport-select");
+    const airportStartHotbar = document.getElementById("start-airport-hotbar");
+    const airportEndMenu = document.getElementById("end-airport-select");
+    const airportEndHotbar = document.getElementById("end-airport-hotbar");
+    
+    // Clear current options
+    // removeOptions(airportStartMenu);
+    // removeOptions(airportStartHotbar);
+    // removeOptions(airportEndMenu);
+    // removeOptions(airportEndHotbar);
+    
+    // Add new options
     for (let i = 0; i < airportCodes.length; i++) {
         const currentAirport = airportData[airportCodes[i]];
         const opt = document.createElement("option");
         opt.value = airportCodes[i];
         opt.textContent = airportCodes[i] + ": " + currentAirport["name"];
+
         airportStartMenu.appendChild(opt);
+        airportStartHotbar.appendChild(opt.cloneNode(true));
         airportEndMenu.appendChild(opt.cloneNode(true));
+        airportEndHotbar.appendChild(opt.cloneNode(true));
     }
 
     // Set countries
@@ -133,32 +230,21 @@ async function setFilterMenuData() {
         return countries[a].localeCompare(countries[b]);
     });
 
-    const countryStartMenu = document.getElementById("country_start_info");
-    const countryEndMenu = document.getElementById("country_end_info");
+    const countryStartMenu = document.getElementById("start-country-select");
+    const countryEndMenu = document.getElementById("end-country-select");
+
+    // Clear current options
+    // removeOptions(countryStartMenu);
+    // removeOptions(countryEndMenu);
+
+    // Add new options
     for (let i = 0; i < sorted_country_codes.length; i++) {
         const code = sorted_country_codes[i];
         const opt = document.createElement("option");
         opt.value = code;
         opt.textContent = countries[code];
+
         countryStartMenu.appendChild(opt);
         countryEndMenu.appendChild(opt.cloneNode(true));
     }
 }
-
-// Triggers on start of the webpage creation
-$(function(){
-    void setFilterMenuData();
-
-    // Reset the filter menu
-    $('#clear_filter').trigger('click');
-
-    // Displays the selection for the first item in the dropdown menu
-    $('#start_filter').trigger('change');
-    $('#end_filter').trigger('change');
-
-    // Hide the time selection for the advanced controls
-    const startTime = document.getElementById("secondary_start_time");
-    const endTime = document.getElementById("secondary_end_time");
-    startTime.style.display = "none";
-    endTime.style.display = "none";
-});

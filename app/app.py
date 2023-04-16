@@ -38,17 +38,25 @@ def form():
 
     flights.filter_by_cargo(req.is_cargo, req.is_passenger)
 
-    flights.filter_by_stops(req)
+    flights.filter_by_stops(req.num_layovers)
 
     if req.adv_req.filter_added == 'true':
-        flights.filter_by_added(req)
+        flights.filter_by_added(req.adv_req)
 
     if req.adv_req.filter_removed == 'true':
-        flights.filter_by_removed(req)
+        flights.filter_by_removed(req.adv_req)
 
-    ret_val = []
+    ret_val = set()
     for _, row in flights.details.iterrows():
-        ret_val.append([row['ORIGIN_AIRPORT'], row['DESTINATION_AIRPORT']])
+        origin_airport = row['ORIGIN_AIRPORT']
+        destination_airport = row['DESTINATION_AIRPORT']
+        airline = row['AIRLINE']
+        is_cargo = str(row['CARGO']).lower()
 
-    print("\nReturn Dataframe:\n", ret_val)
-    return f'{ret_val}'
+        ret_val.add((origin_airport, destination_airport, airline, is_cargo))
+
+    ret_val_list = []
+    for item in ret_val:
+        ret_val_list.append([item[0], item[1], item[2], item[3]])
+    print("\nReturn Dataframe:\n", ret_val_list)
+    return f'{ret_val_list}'
