@@ -1,4 +1,4 @@
-name: Javascript Auto Format
+name: JavaScript Auto Format
 on: pull_request
 jobs:
   format:
