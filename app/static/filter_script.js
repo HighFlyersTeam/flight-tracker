@@ -1,6 +1,32 @@
 // Times are in UTC time
-const DEFAULT_START = "2018-01-01T04:00:00";
-const DEFAULT_END = "2018-12-31T17:00:00";
+const DEFAULT_START = "2000-01-01T04:00:00";
+const DEFAULT_END = "2023-12-31T17:00:00";
+const DEFAULT_SECONDARY_START = "2010-01-01T04:00:00";
+const DEFAULT_SECONDARY_END = "2012-12-31T17:00:00";
+
+// Matching start datetime between hotbar and menu
+let startDatetimeHotbar;
+let startDatetimeMenu;
+
+function matchStartHotbartoMenu() {
+    startDatetimeMenu.value = startDatetimeHotbar.value;
+}
+
+function matchStartMenutoHotbar() {
+    startDatetimeHotbar.value = startDatetimeMenu.value;
+}
+
+// Matching end datetime between hotbar and menu
+let endDatetimeHotbar;
+let endDatetimeMenu;
+
+function matchEndHotbartoMenu() {
+    endDatetimeMenu.value = endDatetimeHotbar.value;
+}
+
+function matchEndMenutoHotbar() {
+    endDatetimeHotbar.value = endDatetimeMenu.value;
+}
 
 // Changing the start location type
 let startLocationTypeSelect;
@@ -58,6 +84,8 @@ function resetEndLocation() {
 
 // Changing the advanced filter options
 let advancedFiltersSelect;
+let advancedFilterStartDatetime;
+let advancedFilterEndDatetime;
 
 function changeAdvancedFilters() {
     const advancedFilters = advancedFiltersSelect.value;
@@ -77,6 +105,30 @@ function resetAdvancedFilters() {
 // Configures the dynamic filter window layout
 document.addEventListener("DOMContentLoaded", () => {
     const filterForm = document.getElementById("filter-form");
+
+    // Start Datetime
+    startDatetimeHotbar = document.getElementById("start-datetime-hotbar");
+    startDatetimeMenu = document.getElementById("start-datetime");
+
+    // Default Values
+    startDatetimeHotbar.value = DEFAULT_START;
+    startDatetimeMenu.value = DEFAULT_START;
+
+    // Event Listeners
+    startDatetimeHotbar.addEventListener("change", matchStartHotbartoMenu);
+    startDatetimeMenu.addEventListener("change", matchStartMenutoHotbar);
+
+    // End Datetime
+    endDatetimeHotbar = document.getElementById("end-datetime-hotbar");
+    endDatetimeMenu = document.getElementById("end-datetime");
+
+    // Default Values
+    endDatetimeHotbar.value = DEFAULT_END;
+    endDatetimeMenu.value = DEFAULT_END;
+
+    // Event Listeners
+    endDatetimeHotbar.addEventListener("change", matchEndHotbartoMenu);
+    endDatetimeMenu.addEventListener("change", matchEndMenutoHotbar);
 
     // Start Location
     startLocationTypeSelect = document.getElementById("start-location-type");
@@ -100,6 +152,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Advanced Filter Options
     advancedFiltersSelect = document.getElementById("advanced-filters-select");
+    advancedFilterStartDatetime = document.getElementById("secondary-start-datetime");
+    advancedFilterEndDatetime = document.getElementById("secondary-end-datetime");
+
+    // Default Values
+    advancedFilterStartDatetime.value = DEFAULT_SECONDARY_START;
+    advancedFilterEndDatetime.value = DEFAULT_SECONDARY_END;
 
     // Event Listeners
     advancedFiltersSelect.addEventListener("change", changeAdvancedFilters);
