@@ -1,4 +1,4 @@
-name: Python Auto Format
+name: CSS Auto Format
 on: pull_request
 jobs:
   format:
@@ -9,10 +9,8 @@ jobs:
       - uses: actions/checkout@v1
         with:
           ref: ${{ github.head_ref }}
-      - name: black
-        uses: lgeiger/black-action@v1.0.1
-        with:
-          args: .
+      - name: prettier
+        run: npx prettier --write ./**/*.css
       - name: Check for modified files
         id: git-check
         run: echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> $GITHUB_OUTPUT
@@ -22,5 +20,5 @@ jobs:
           git config --global user.name 'Charles Tian'
           git config --global user.email 'charlestian23@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git commit -am "Automated Python formatting changes"
+          git commit -am "Automated changes"
           git push
