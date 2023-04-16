@@ -137,7 +137,7 @@ function getDataFromFilterMenu() {
 
     // Airlines
     let airlines = $("#airlines").val();
-    if (airlines.length == 0) {
+    if (airlines.length === 0) {
         airlines = [];
         $("#airlines" + " option").each(function() {
             airlines.push($(this).val());
