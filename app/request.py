@@ -5,6 +5,9 @@ class Request:
     """
     This class is used to parse the request from the frontend
     """
+    # pylint: disable=too-many-instance-attributes
+    # pylint: disable=too-many-locals
+    # pylint: disable=too-few-public-methods
     def __init__(self, json_request):
         self.details = self.parse_cookie(json_request)
 
