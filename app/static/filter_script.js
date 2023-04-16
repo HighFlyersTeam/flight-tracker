@@ -182,12 +182,35 @@ function removeOptions(selectElement) {
 }
 
 async function setFilterMenuData() {
+    const airlineData = await fetch("../static/airlines.json")
+        .then(response => {
+            return response.json();
+        });
+
+    const airlineCodes = Object.keys(airlineData);
+    airlineCodes.sort(function(a, b) {
+        return airlineData[a].localeCompare(airlineData[b]);
+    });
+
+    // Set airlines
+    const airlineMenu = document.getElementById("airlines");
+
+    // Add airline options
+    for (let i = 0; i < airlineCodes.length; i++) {
+        const opt = document.createElement("option");
+        opt.value = airlineCodes[i];
+        opt.textContent = airlineData[airlineCodes[i]];
+
+        airlineMenu.appendChild(opt);
+    }
+
     const airportData = await fetch("../static/airports.json")
         .then(response => {
             return response.json();
         });
 
     const airportCodes = Object.keys(airportData);
+    airportCodes.sort();
 
     // Set airports
     const airportStartMenu = document.getElementById("start-airport-select");
@@ -222,11 +245,11 @@ async function setFilterMenuData() {
             countries[currentAirport["country_code"]] = currentAirport["country"];
     }
 
-    const sorted_country_codes = [];
+    const sortedCountryCodes = [];
     for (const key in countries)
-        sorted_country_codes[sorted_country_codes.length] = key;
+        sortedCountryCodes[sortedCountryCodes.length] = key;
 
-    sorted_country_codes.sort(function(a, b) {
+    sortedCountryCodes.sort(function(a, b) {
         return countries[a].localeCompare(countries[b]);
     });
 
@@ -238,8 +261,8 @@ async function setFilterMenuData() {
     // removeOptions(countryEndMenu);
 
     // Add new options
-    for (let i = 0; i < sorted_country_codes.length; i++) {
-        const code = sorted_country_codes[i];
+    for (let i = 0; i < sortedCountryCodes.length; i++) {
+        const code = sortedCountryCodes[i];
         const opt = document.createElement("option");
         opt.value = code;
         opt.textContent = countries[code];
