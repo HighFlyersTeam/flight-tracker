@@ -1,4 +1,4 @@
-name: Python Auto Format
+name: python-auto-format
 on: pull_request, push
 jobs:
   format:
