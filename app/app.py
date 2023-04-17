@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request
 from flight_info import FlightInfo
 from request import Request
-FILENAME = "data.csv"
+FILENAME = "./data/testing_data.csv"
 
 app = Flask(__name__)
 flights = FlightInfo(FILENAME)
@@ -41,10 +41,10 @@ def form():
     flights.filter_by_stops(req.num_layovers)
 
     if req.adv_req.filter_added == 'true':
-        flights.filter_by_added(req.adv_req)
+        flights.filter_by_added(req)
 
     if req.adv_req.filter_removed == 'true':
-        flights.filter_by_removed(req.adv_req)
+        flights.filter_by_removed(req)
 
     ret_val = set()
     for _, row in flights.details.iterrows():
