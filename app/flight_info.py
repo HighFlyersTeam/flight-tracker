@@ -257,7 +257,7 @@ class FlightInfo:
                 stops: number of stops
         """
         origin = req.origin_values
-        print((origin))
+        # print((origin))
         destination = req.dest_values
         stops = req.num_layovers
         start_date = req.start_date
@@ -272,64 +272,45 @@ class FlightInfo:
                                                  '%Y-%m-%d-%H-%M')
         visited = []
         path = []
-
-        if(int(req.num_layovers) > 0):
-            flight_one = self.full_data
-            flight_two = self.full_data
-            flight_three = self.full_data
-            flight_four = self.full_data
-            flight_five = self.full_data
-            hongkong = ["VHHH"]
-            mexico = ["MMMX"]
-
-            flight_one = flight_one[flight_one["DEPARTURE_TIME"] > depart_time]  
-            flight_one = flight_one[flight_one["ARRIVAL_TIME"] < arrive_time]   
-            flight_one = flight_one[flight_one["ORIGIN_AIRPORT"].isin(origin)]
-            flight_one = flight_one.query("DESTINATION_AIRPORT == @hongkong")
-            # print(flight_one)
-            flight_two = flight_two[flight_two["DEPARTURE_TIME"] > depart_time]  
-            flight_two = flight_two[flight_two["ARRIVAL_TIME"] < arrive_time]   
-            flight_two = flight_two[flight_two["ORIGIN_AIRPORT"].isin(origin)]
-            flight_two = flight_two.query("DESTINATION_AIRPORT == @mexico")
-            # print(flight_two)
-            flight_three = flight_three[flight_three["DEPARTURE_TIME"] > depart_time]
-            flight_three = flight_three[flight_three["ARRIVAL_TIME"] < arrive_time]
-            flight_three = flight_three.query("ORIGIN_AIRPORT == @hongkong")
-            flight_three = flight_three[flight_three["DESTINATION_AIRPORT"].isin(destination)]
-            # print(flight_three)
-            flight_four = flight_four[flight_four["DEPARTURE_TIME"] > depart_time]
-            flight_four = flight_four[flight_four["ARRIVAL_TIME"] < arrive_time]
-            flight_four = flight_four.query("ORIGIN_AIRPORT == @mexico")
-            flight_four = flight_four[flight_four["DESTINATION_AIRPORT"].isin(destination)]
-            # print(flight_four)
-            flight_five = flight_five[flight_five["DEPARTURE_TIME"] > depart_time]
-            flight_five = flight_five[flight_five["ARRIVAL_TIME"] < arrive_time]
-            flight_five = flight_five[flight_five["ORIGIN_AIRPORT"].isin(origin)]
-            flight_five = flight_five[flight_five["DESTINATION_AIRPORT"].isin(destination)]
-            # print(type(flight_five))
-
-            flights = [flight_one, flight_two, flight_three, flight_four, flight_five]
-            self.details = pd.concat(flights)
-
-        # print(all_flights)
-        # stop_helper(self.full_data ,origin,destination,stops,visited,path)
-        # print(path)
-        
+        flightinfo = []
+        temp = []
+        if(int(stops) > 0):
+            stop_helper(self.full_data,self.full_data,origin,destination,
+            int(stops),depart_time,arrive_time,
+            visited,path,flightinfo,temp)
+            flatten = [element for sublist in flightinfo for element in sublist]
+            combined = pd.concat(flatten).drop_duplicates()
+            eu = ["EU"]
+            KATL = ["KATL"]
+            KLAX = ["KLAX"]
+            combined = combined.query("DESTINATION_CONTINENT != @eu")
+            combined = combined.query("DESTINATION_AIRPORT != @KATL")
+            combined = combined.query("DESTINATION_AIRPORT != @KLAX")
+            self.details=combined
 
         
-def stop_helper(flights,origin,destination,stops,visited=[],path=[]):
-    flights = flights.query("ORIGIN_AIRPORT == @origin")
-    print(flights)
-    visited.append(origin)
-    path.append(origin)
-    if origin == destination:
-        return path
-    paths = []
-    # print(flights["DESTINATION_AIRPORT"])
-    # if int(stops) > 0:
-    #     for dest in flights["DESTINATION_AIRPORT"]:
-    #         print(dest)
-    #         if dest not in visited:
-    #             new_path = stop_helper(flights,dest,destination,int(stops)-1,visited,path)
-    #             print(new_path)
+def stop_helper(flights,flights_copy,origin,destination,stops,depart_time,arrive_time,visited,path=[],flightinfo=[],temp=[]):
 
+    if (origin == destination):
+        print("end")
+        path.append(destination)
+        if(path not in visited):
+            visited.append(path)
+            flightinfo.append(temp)
+        return 
+
+    #make a copy of all flights
+    flights_copy = flights.copy()
+    flights_copy = flights_copy[flights_copy["ORIGIN_AIRPORT"].isin(origin)]
+    flights_copy = flights_copy.query("DEPARTURE_TIME > @depart_time")
+    flights_copy = flights_copy[flights_copy["ARRIVAL_TIME"] < arrive_time]
+
+    for dest in flights_copy["DESTINATION_AIRPORT"]:
+        if dest not in path:
+            print(dest)
+            lst_dest = [dest]
+            path.append(origin)
+            temp.append(flights_copy)
+            stop_helper(flights,flights_copy,lst_dest,destination,int(stops),depart_time,arrive_time,visited,path,flightinfo,temp)
+            temp = []
+            path = []
