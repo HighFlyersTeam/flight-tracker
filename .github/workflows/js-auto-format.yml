@@ -1,4 +1,4 @@
-name: HTML, CSS, JavaScript Auto Format
+name: JavaScript Auto Format
 on: pull_request
 jobs:
   format:
@@ -10,15 +10,15 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: prettier
-        run: npx prettier --write ./**/*.{html,css,js}
+        run: npx prettier --write ./**/*.js
       - name: Check for modified files
         id: git-check
         run: echo "modified=$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)" >> $GITHUB_OUTPUT
       - name: Push changes
         if: steps.git-check.outputs.modified == 'true'
         run: |
-          git config --global user.name 'Charles Tian'
-          git config --global user.email 'charlestian23@users.noreply.github.com'
+          git config --global user.name 'Ivan Ho'
+          git config --global user.email 'Corppet@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git commit -am "Automated changes"
+          git commit -am "Javascript Automated changes"
           git push
