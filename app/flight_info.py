@@ -68,6 +68,16 @@ class FlightInfo:
             dest_type: type of destination filter (airport, country, continent)
             dest_values: list of destination values to filter by
         """
+
+        for i in origin_values:
+            if(i == 'NA'):
+                origin_values.remove(i)
+                origin_values.append("UA")
+        for i in dest_values:
+            if(i == 'NA'):
+                dest_values.remove(i)
+                dest_values.append("UA")
+
         if origin_type == 'airport':
             self.details = self.details[self.details["ORIGIN_AIRPORT"].isin(
                 origin_values)]
@@ -87,6 +97,9 @@ class FlightInfo:
         elif dest_type == 'continent':
             self.details = self.details[self.details["DESTINATION_CONTINENT"].isin(
                 dest_values)]
+
+
+
 
     def filter_by_time(self,
                        start_date,
@@ -145,9 +158,9 @@ class FlightInfo:
             is_passenger: boolean for if passenger flights should be included
         """
         if is_cargo == 'true' and is_passenger == 'false':
-            self.details = self.details[self.details["CARGO"] == True]
+            self.details = self.details[self.details["CARGO"] == 1]
         elif is_cargo == 'false' and is_passenger == 'true':
-            self.details = self.details[self.details["CARGO"] == False]
+            self.details = self.details[self.details["CARGO"] == 0]
 
     def filter_by_added(self, req):
         """
@@ -237,15 +250,17 @@ class FlightInfo:
 
         self.details = removed_flights
 
+    def stop_helper(self,stops,airports):
+        
+        return
+
     def filter_by_stops(self, stops):
         """
         Filter by stops
             parameters:
                 stops: number of stops
         """
-        return (
-            self.details[self.details["DIVERTED"] == 0]
-            [self.details["CANCELLED"] == 0][self.details["CARGO"] == 0]
-            [self.details["ELAPSED_TIME"] > datetime.timedelta(minutes=0)]
-            [self.details.groupby(["YEAR", "MONTH", "DAY", "AIRLINE", "FLIGHT_NUMBER"])
-            ["DIVERTED"].transform("sum") == stops])
+        if(stops == 0):
+            return
+        
+        
