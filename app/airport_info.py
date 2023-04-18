@@ -5,15 +5,12 @@ with open("./data/countries.json", encoding="utf8") as csv_file:
     country_data = json.load(csv_file)
 
 
-"""
-Get the country code from the country name.
-:param country: The country name.
-:return: The country code.
-"""
-
-
 def get_country_code(country):
-    """Get Country Code"""
+    """
+    Get the country code from the country name.
+    :param country: The country name.
+    :return: The country code.
+    """
     if country == "North Korea":
         country = "Korea (Democratic People's Republic of"
     elif country == "South Korea":
@@ -44,6 +41,7 @@ def get_country_code(country):
 data = {}
 INDENT = 4
 
+# The flights you want to limit to
 limit = ["VHHH", "ZSPD", "EGLL", "KJFK", "KLAX", "KATL", "EDDF", "MMMX"]
 
 with open("./data/airports.dat.txt", encoding="utf8") as csv_file:
@@ -65,7 +63,7 @@ with open("./data/airports.dat.txt", encoding="utf8") as csv_file:
 
         icao_code = row[5]
 
-        if icao_code in limit:
+        if icao_code in limit or len(limit) == 0:
             data[icao_code] = current_airport
 
 json_object = json.dumps(data, indent=INDENT)
