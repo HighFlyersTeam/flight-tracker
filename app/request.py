@@ -5,10 +5,6 @@ class Request:
     """
     This class is used to parse the request from the frontend
     """
-
-    # pylint: disable=too-many-instance-attributes
-    # pylint: disable=too-many-locals
-    # pylint: disable=too-few-public-methods
     def __init__(self, json_request):
         self.details = self.parse_cookie(json_request)
 
@@ -94,9 +90,6 @@ class AdvancedRequest:
     This class is used to parse the advanced request from the frontend
     """
 
-    # pylint: disable=too-many-instance-attributes
-    # pylint: disable=too-many-locals
-    # pylint: disable=too-few-public-methods
     def __init__(self, start_date, start_time, end_date, end_time, added, removed):
         self.filter_added = added
         self.filter_removed = removed
