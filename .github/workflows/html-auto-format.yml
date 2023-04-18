@@ -20,5 +20,5 @@ jobs:
           git config --global user.name 'Ivan Ho'
           git config --global user.email 'Corppet@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.AUTO_FORMAT_SECRET }}@github.com/${{ github.repository }}
-          git commit -am "HTML Automated changes"
+          git commit -am "Automated HTML formatting changes"
           git push
