@@ -7,44 +7,46 @@ class FlightData:
     FlightData class
         Attributes: None
     """
+
     # pylint: disable=too-many-instance-attributes
     # pylint: disable=too-many-locals
     # pylint: disable=too-few-public-methods
     # pylint: disable=too-many-arguments
 
-    def __init__(self,
-                 year,
-                 month,
-                 day,
-                 day_of_week,
-                 airline,
-                 flight_number,
-                 tail_number,
-                 origin_airport,
-                 destination_airport,
-                 scheduled_dep,
-                 dep_time,
-                 dep_delay,
-                 taxi_out,
-                 wheels_off,
-                 scheduled_time,
-                 elapsed_time,
-                 air_time,
-                 distance,
-                 wheels_on,
-                 taxi_in,
-                 scheduled_arr,
-                 arr_time,
-                 arr_delay,
-                 diverted,
-                 cancelled,
-                 cancellation_code,
-                 air_system_delay,
-                 security_delay,
-                 airline_delay,
-                 late_aircraft_delay,
-                 weather_delay):
-
+    def __init__(
+        self,
+        year,
+        month,
+        day,
+        day_of_week,
+        airline,
+        flight_number,
+        tail_number,
+        origin_airport,
+        destination_airport,
+        scheduled_dep,
+        dep_time,
+        dep_delay,
+        taxi_out,
+        wheels_off,
+        scheduled_time,
+        elapsed_time,
+        air_time,
+        distance,
+        wheels_on,
+        taxi_in,
+        scheduled_arr,
+        arr_time,
+        arr_delay,
+        diverted,
+        cancelled,
+        cancellation_code,
+        air_system_delay,
+        security_delay,
+        airline_delay,
+        late_aircraft_delay,
+        weather_delay,
+    ):
         self.year = year
         self.month = month
         self.day = day
