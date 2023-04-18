@@ -293,7 +293,6 @@ class FlightInfo:
 
         self.details = removed_flights
 
-
     def filter_by_stops(self, req):
         """
         Filter by stops
@@ -306,22 +305,30 @@ class FlightInfo:
         stops = req.num_layovers
         start_date = req.start_date
         start_time = req.start_time
-        parsed_start = start_date + '-' + start_time[:2] + '-' + start_time[2:]
+        parsed_start = start_date + "-" + start_time[:2] + "-" + start_time[2:]
         end_date = req.end_date
         end_time = req.end_time
-        parsed_end = end_date + '-' + end_time[:2] + '-' + end_time[2:]
-        depart_time = datetime.datetime.strptime(parsed_start,
-                                                 '%Y-%m-%d-%H-%M')
-        arrive_time = datetime.datetime.strptime(parsed_end,
-                                                 '%Y-%m-%d-%H-%M')
+        parsed_end = end_date + "-" + end_time[:2] + "-" + end_time[2:]
+        depart_time = datetime.datetime.strptime(parsed_start, "%Y-%m-%d-%H-%M")
+        arrive_time = datetime.datetime.strptime(parsed_end, "%Y-%m-%d-%H-%M")
         visited = []
         path = []
         flightinfo = []
         temp = []
-        if(int(stops) > 0):
-            stop_helper(self.full_data,self.full_data,origin,destination,
-            int(stops),depart_time,arrive_time,
-            visited,path,flightinfo,temp)
+        if int(stops) > 0:
+            stop_helper(
+                self.full_data,
+                self.full_data,
+                origin,
+                destination,
+                int(stops),
+                depart_time,
+                arrive_time,
+                visited,
+                path,
+                flightinfo,
+                temp,
+            )
             flatten = [element for sublist in flightinfo for element in sublist]
             combined = pd.concat(flatten).drop_duplicates()
             eu = ["EU"]
@@ -330,20 +337,31 @@ class FlightInfo:
             combined = combined.query("DESTINATION_CONTINENT != @eu")
             combined = combined.query("DESTINATION_AIRPORT != @KATL")
             combined = combined.query("DESTINATION_AIRPORT != @KLAX")
-            self.details=combined
+            self.details = combined
 
-        
-def stop_helper(flights,flights_copy,origin,destination,stops,depart_time,arrive_time,visited,path=[],flightinfo=[],temp=[]):
 
-    if (origin == destination):
+def stop_helper(
+    flights,
+    flights_copy,
+    origin,
+    destination,
+    stops,
+    depart_time,
+    arrive_time,
+    visited,
+    path=[],
+    flightinfo=[],
+    temp=[],
+):
+    if origin == destination:
         print("end")
         path.append(destination)
-        if(path not in visited):
+        if path not in visited:
             visited.append(path)
             flightinfo.append(temp)
-        return 
+        return
 
-    #make a copy of all flights
+    # make a copy of all flights
     flights_copy = flights.copy()
     flights_copy = flights_copy[flights_copy["ORIGIN_AIRPORT"].isin(origin)]
     flights_copy = flights_copy.query("DEPARTURE_TIME > @depart_time")
@@ -355,6 +373,18 @@ def stop_helper(flights,flights_copy,origin,destination,stops,depart_time,arrive
             lst_dest = [dest]
             path.append(origin)
             temp.append(flights_copy)
-            stop_helper(flights,flights_copy,lst_dest,destination,int(stops),depart_time,arrive_time,visited,path,flightinfo,temp)
+            stop_helper(
+                flights,
+                flights_copy,
+                lst_dest,
+                destination,
+                int(stops),
+                depart_time,
+                arrive_time,
+                visited,
+                path,
+                flightinfo,
+                temp,
+            )
             temp = []
             path = []
