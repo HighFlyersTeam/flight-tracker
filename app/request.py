@@ -5,6 +5,7 @@ class Request:
     """
     This class is used to parse the request from the frontend
     """
+
     def __init__(self, json_request):
         self.details = self.parse_cookie(json_request)
 
