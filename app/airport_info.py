@@ -1,4 +1,3 @@
-
 import csv
 import json
 
@@ -11,6 +10,8 @@ Get the country code from the country name.
 :param country: The country name.
 :return: The country code.
 """
+
+
 def get_country_code(country):
     """Get Country Code"""
     if country == "North Korea":
@@ -46,7 +47,7 @@ INDENT = 4
 limit = ["VHHH", "ZSPD", "EGLL", "KJFK", "KLAX", "KATL", "EDDF", "MMMX"]
 
 with open("./data/airports.dat.txt", encoding="utf8") as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
+    csv_reader = csv.reader(csv_file, delimiter=",")
     for row in csv_reader:
         current_airport = {"name": row[1], "city": row[2]}
 
