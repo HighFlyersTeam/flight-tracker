@@ -321,7 +321,7 @@ class FlightInfo:
                 self.full_data,
                 origin,
                 destination,
-                int(stops)+1,
+                int(stops) + 1,
                 depart_time,
                 arrive_time,
                 visited,
@@ -350,19 +350,21 @@ def stop_helper(
 ):
     # print(origin)
     if stops == 0:
-        return 
-    
+        return
+
     if origin == destination:
         flag = 0
         for info in flightinfo:
-            if(info.equals(flights_copy)):
+            if info.equals(flights_copy):
                 flag = 1
-        # print(flag)        
+        # print(flag)
         if flag == 0:
             # visited.append(path)
-            # temp = 
+            # temp =
             # print(temp)
-            flights_copy = flights_copy[flights_copy["DESTINATION_AIRPORT"].isin(destination)]
+            flights_copy = flights_copy[
+                flights_copy["DESTINATION_AIRPORT"].isin(destination)
+            ]
             # print(flights_copy)
             flightinfo.append(flights_copy)
             # print(temp)
@@ -384,7 +386,7 @@ def stop_helper(
                 flights_copy,
                 lst_dest,
                 destination,
-                int(stops)-1,
+                int(stops) - 1,
                 depart_time,
                 arrive_time,
                 visited,
@@ -392,13 +394,11 @@ def stop_helper(
                 flightinfo,
                 temp,
             )
-            
-            if(next!=None):
+
+            if next != None:
                 temp.append(origin)
-            stops = int(stops)+1
+            stops = int(stops) + 1
     # print(temp[0])
     for i in range(len(temp)):
         tmp = flights_copy[flights_copy["DESTINATION_AIRPORT"].isin(temp[i])]
         flightinfo.append(tmp)
-
-
