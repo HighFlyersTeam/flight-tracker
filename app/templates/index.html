@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <title>Flight Tracker</title>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <title>Flight Tracker</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- Local Files -->
-    <link href="../static/style.css" rel="stylesheet"/>
+    <link href="../static/style.css" rel="stylesheet" />
     <script type="module" src="../static/display_routes_script.js"></script>
     <script type="module" src="../static/map_script.js"></script>
     <script src="../static/filter_script.js"></script>
-    
+
     <!-- Google Maps -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
+
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <!-- Header -->
-    <header class="d-flex align-items-center flex-wrap justify-content-center py-3">
+    <header
+      class="d-flex align-items-center flex-wrap justify-content-center py-3"
+    >
       <svg class="bi me-2" width="20" height="30">
         <use xlink:href="#bootstrap"></use>
       </svg>
@@ -31,36 +38,56 @@
         <div class="row g-3 align-items-center">
           <!-- Departure Date and Time -->
           <div class="col-md-2">
-            <label for="departure-date" class="form-label">Start Date and Time</label>
-            <input type="datetime-local" id="start-datetime-hotbar" name="start-datetime" class="form-control" required>
+            <label for="departure-date" class="form-label"
+              >Start Date and Time</label
+            >
+            <input
+              type="datetime-local"
+              id="start-datetime-hotbar"
+              name="start-datetime"
+              class="form-control"
+              required
+            />
           </div>
           <!-- Arrival Date and Time -->
           <div class="col-md-2">
-            <label for="return-date" class="form-label">End Date and Time</label>
-            <input type="datetime-local" id="end-datetime-hotbar" name="end-datetime" class="form-control" required>
+            <label for="return-date" class="form-label"
+              >End Date and Time</label
+            >
+            <input
+              type="datetime-local"
+              id="end-datetime-hotbar"
+              name="end-datetime"
+              class="form-control"
+              required
+            />
           </div>
           <!-- Departure Airport -->
           <div class="col-md-2">
-            <label for="departure-airport" class="form-label">Starting Airport</label>
+            <label for="departure-airport" class="form-label"
+              >Starting Airport</label
+            >
             <select class="form-select" id="start-airport-hotbar" required>
               <option value="">Choose...</option>
               <!--
-              <option>EWR</option>
-              <option>LAX</option>
-              <option>PVG</option>
-              -->
+                            <option>EWR</option>
+                            <option>LAX</option>
+                            <option>PVG</option>
+                            -->
             </select>
           </div>
           <!-- Arrival Airport -->
           <div class="col-md-2">
-            <label for="arrival-airport" class="form-label">Ending Airport</label>
+            <label for="arrival-airport" class="form-label"
+              >Ending Airport</label
+            >
             <select class="form-select" id="end-airport-hotbar" required>
               <option value="">Choose...</option>
               <!--
-              <option>EWR</option>
-              <option>LAX</option>
-              <option>PVG</option>
-              -->
+                            <option>EWR</option>
+                            <option>LAX</option>
+                            <option>PVG</option>
+                            -->
             </select>
           </div>
           <!-- Buttons -->
@@ -68,94 +95,143 @@
             <div class="row g-3">
               <!-- Search Flights -->
               <div class="col-md-4">
-                <button id="search-flights" class="btn btn-primary">Search Flights</button>
+                <button id="search-flights" class="btn btn-primary">
+                  Search Flights
+                </button>
                 <script type="module">
                   import { displayQuickFilteredFlights } from "../static/display_routes_script.js";
-                  document.querySelector('#search-flights').addEventListener('click', displayQuickFilteredFlights);
+                  document
+                    .querySelector("#search-flights")
+                    .addEventListener("click", displayQuickFilteredFlights);
                 </script>
               </div>
               <!-- More Filters -->
               <div class="col-md-4">
-                <button id="filter-window" class="btn btn-secondary" data-bs-toggle="offcanvas"
-                        data-bs-target="#filter-options" aria-controls="filter-options">
+                <button
+                  id="filter-window"
+                  class="btn btn-secondary"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#filter-options"
+                  aria-controls="filter-options"
+                >
                   More Filters
                 </button>
               </div>
               <!-- Help -->
               <div class="col-md-4">
-                <button id="help-window" class="btn btn-toolbar" data-bs-toggle="modal"
-                        data-bs-target="#help-modal">Help</button>
+                <button
+                  id="help-window"
+                  class="btn btn-toolbar"
+                  data-bs-toggle="modal"
+                  data-bs-target="#help-modal"
+                >
+                  Help
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </header>
-    
+
     <!-- Google Map -->
     <div id="map">
       <script
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&callback=initMap&v=weekly"
-              defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&callback=initMap&v=weekly"
+        defer
       ></script>
     </div>
-    
+
     <!-- Filter Offcanvas -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="filter-options" aria-labelledby="filter-options-label">
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="filter-options"
+      aria-labelledby="filter-options-label"
+    >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="filter-options-label">Filter Flights</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <h5 class="offcanvas-title" id="filter-options-label">
+          Filter Flights
+        </h5>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="offcanvas-body">
         <form id="filter-form">
           <div class="row mb-3">
             <!-- Departure Date and Time -->
             <div class="col">
-              <label for="departure-date" class="form-label">Start Date and Time</label>
-              <input type="datetime-local" id="start-datetime" name="start-datetime" class="form-control">
+              <label for="departure-date" class="form-label"
+                >Start Date and Time</label
+              >
+              <input
+                type="datetime-local"
+                id="start-datetime"
+                name="start-datetime"
+                class="form-control"
+              />
             </div>
             <!-- Arrival Date and Time -->
             <div class="col">
-              <label for="arrival-date" class="form-label">End Date and Time</label>
-              <input type="datetime-local" id="end-datetime" name="end-datetime" class="form-control">
+              <label for="arrival-date" class="form-label"
+                >End Date and Time</label
+              >
+              <input
+                type="datetime-local"
+                id="end-datetime"
+                name="end-datetime"
+                class="form-control"
+              />
             </div>
           </div>
           <!-- Start Location -->
           <strong>Start Location</strong>
           <div class="row mb-3">
             <div class="col-3">
-              <label for="start-location-type" class="form-label">Location Type</label>
-              <select class="form-select" id='start-location-type'>
+              <label for="start-location-type" class="form-label"
+                >Location Type</label
+              >
+              <select class="form-select" id="start-location-type">
                 <option value="airport">Airport</option>
                 <option value="country">Country</option>
                 <option value="continent">Continent</option>
               </select>
             </div>
             <div class="col">
-              <label for="start-airport-select" class="form-label">Location Options</label>
+              <label for="start-airport-select" class="form-label"
+                >Location Options</label
+              >
               <!-- Airport -->
               <div id="start-airport-div" class="mb-3">
                 <select class="form-select" id="start-airport-select" multiple>
                   <!--
-                  <option value="JFK">John F. Kennedy International Airport</option>
-                  <option value="LAX">Los Angeles International Airport</option>
-                  <option value="LHR">Heathrow Airport</option>
-                  -->
+                                    <option value="JFK">John F. Kennedy International Airport</option>
+                                    <option value="LAX">Los Angeles International Airport</option>
+                                    <option value="LHR">Heathrow Airport</option>
+                                    -->
                 </select>
               </div>
               <!-- Country -->
               <div id="start-country-div" class="mb-3">
                 <select class="form-select" id="start-country-select" multiple>
                   <!--
-                  <option value="US">United States</option>
-                  <option value="GB">United Kingdom</option>
-                  <option value="FR">France</option>
-                  -->
+                                    <option value="US">United States</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="FR">France</option>
+                                    -->
                 </select>
               </div>
               <!-- Continent -->
               <div id="start-continent-div" class="mb-3">
-                <select class="form-select" id="start-continent-select" multiple>
+                <select
+                  class="form-select"
+                  id="start-continent-select"
+                  multiple
+                >
                   <option value="NA">North America</option>
                   <option value="SA">South America</option>
                   <option value="EU">Europe</option>
@@ -171,33 +247,37 @@
           <strong>End Location</strong>
           <div class="row mb-3">
             <div class="col-3">
-              <label for="end-location-type" class="form-label">Location Type</label>
-              <select class="form-select" id='end-location-type'>
+              <label for="end-location-type" class="form-label"
+                >Location Type</label
+              >
+              <select class="form-select" id="end-location-type">
                 <option value="airport">Airport</option>
                 <option value="country">Country</option>
                 <option value="continent">Continent</option>
               </select>
             </div>
             <div class="col">
-              <label for="end-airport-select" class="form-label">Location Options</label>
+              <label for="end-airport-select" class="form-label"
+                >Location Options</label
+              >
               <!-- Airport -->
               <div id="end-airport-div" class="mb-3">
                 <select class="form-select" id="end-airport-select" multiple>
                   <!--
-                  <option value="JFK">John F. Kennedy International Airport</option>
-                  <option value="LAX">Los Angeles International Airport</option>
-                  <option value="LHR">Heathrow Airport</option>
-                  -->
+                                    <option value="JFK">John F. Kennedy International Airport</option>
+                                    <option value="LAX">Los Angeles International Airport</option>
+                                    <option value="LHR">Heathrow Airport</option>
+                                    -->
                 </select>
               </div>
               <!-- Country -->
               <div id="end-country-div" class="mb-3">
                 <select class="form-select" id="end-country-select" multiple>
                   <!--
-                  <option value="US">United States</option>
-                  <option value="GB">United Kingdom</option>
-                  <option value="FR">France</option>
-                  -->
+                                    <option value="US">United States</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="FR">France</option>
+                                    -->
                 </select>
               </div>
               <!-- Continent -->
@@ -219,51 +299,110 @@
             <div class="col">
               <label for="days-of-week">Days of the Week</label>
               <!--
-              <select class="form-select" id='days-of-week' multiple size="7">
-                  <option value="monday">Monday</option>
-                  <option value="tuesday">Tuesday</option>
-                  <option value="wednesday">Wednesday</option>
-                  <option value="thursday">Thursday</option>
-                  <option value="friday">Friday</option>
-                  <option value="saturday">Saturday</option>
-                  <option value="sunday">Sunday</option>
-              </select>
-              -->
+                            <select class="form-select" id='days-of-week' multiple size="7">
+                                <option value="monday">Monday</option>
+                                <option value="tuesday">Tuesday</option>
+                                <option value="wednesday">Wednesday</option>
+                                <option value="thursday">Thursday</option>
+                                <option value="friday">Friday</option>
+                                <option value="saturday">Saturday</option>
+                                <option value="sunday">Sunday</option>
+                            </select>
+                            -->
               <div class="row g-0 row-cols-2">
                 <div class="form-check">
-                  <input type="checkbox" id="monday" name="days-of-week" value="Monday" class="form-check-input">
+                  <input
+                    type="checkbox"
+                    id="monday"
+                    name="days-of-week"
+                    value="Monday"
+                    class="form-check-input"
+                  />
                   <label for="monday" class="form-check-label">Monday</label>
                 </div>
                 <div class="form-check">
-                  <input type="checkbox" id="tuesday" name="days-of-week" value="Tuesday" class="form-check-input">
+                  <input
+                    type="checkbox"
+                    id="tuesday"
+                    name="days-of-week"
+                    value="Tuesday"
+                    class="form-check-input"
+                  />
                   <label for="tuesday" class="form-check-label">Tuesday</label>
                 </div>
                 <div class="form-check">
-                  <input type="checkbox" id="wednesday" name="days-of-week" value="Wednesday" class="form-check-input">
-                  <label for="wednesday" class="form-check-label">Wednesday</label>
+                  <input
+                    type="checkbox"
+                    id="wednesday"
+                    name="days-of-week"
+                    value="Wednesday"
+                    class="form-check-input"
+                  />
+                  <label for="wednesday" class="form-check-label"
+                    >Wednesday</label
+                  >
                 </div>
                 <div class="form-check">
-                  <input type="checkbox" id="thursday" name="days-of-week" value="Thursday" class="form-check-input">
-                  <label for="thursday" class="form-check-label">Thursday</label>
+                  <input
+                    type="checkbox"
+                    id="thursday"
+                    name="days-of-week"
+                    value="Thursday"
+                    class="form-check-input"
+                  />
+                  <label for="thursday" class="form-check-label"
+                    >Thursday</label
+                  >
                 </div>
                 <div class="form-check">
-                  <input type="checkbox" id="friday" name="days-of-week" value="Friday" class="form-check-input">
+                  <input
+                    type="checkbox"
+                    id="friday"
+                    name="days-of-week"
+                    value="Friday"
+                    class="form-check-input"
+                  />
                   <label for="friday" class="form-check-label">Friday</label>
                 </div>
                 <div class="form-check">
-                  <input type="checkbox" id="saturday" name="days-of-week" value="Saturday" class="form-check-input">
-                  <label for="saturday" class="form-check-label">Saturday</label>
+                  <input
+                    type="checkbox"
+                    id="saturday"
+                    name="days-of-week"
+                    value="Saturday"
+                    class="form-check-input"
+                  />
+                  <label for="saturday" class="form-check-label"
+                    >Saturday</label
+                  >
                 </div>
                 <div class="form-check">
-                  <input type="checkbox" id="sunday" name="days-of-week" value="Sunday" class="form-check-input">
+                  <input
+                    type="checkbox"
+                    id="sunday"
+                    name="days-of-week"
+                    value="Sunday"
+                    class="form-check-input"
+                  />
                   <label for="sunday" class="form-check-label">Sunday</label>
                 </div>
               </div>
             </div>
             <!-- Maximum Layovers -->
             <div class="col">
-              <label for="layover-count" class="form-label">Maximum Layovers</label>
-              <input type="number" id="layovers" name="layovers" class="form-control" min="0" max="13" step="1" value="0">
+              <label for="layover-count" class="form-label"
+                >Maximum Layovers</label
+              >
+              <input
+                type="number"
+                id="layovers"
+                name="layovers"
+                class="form-control"
+                min="0"
+                max="13"
+                step="1"
+                value="0"
+              />
             </div>
           </div>
           <div class="row mb-3">
@@ -271,33 +410,64 @@
             <div class="col">
               <label for="airline-select" class="form-label">Airlines</label>
               <select class="form-select" id="airlines" multiple>
-                <!--                                <option value="DL">Delta Airlines</option>-->
-                <!--                                <option value="AA">American Airlines</option>-->
-                <!--                                <option value="5X">UPS</option>-->
-                <!--                                <option value="FX">FedEx</option>-->
+                <!--
+                                <option value="DL">Delta Airlines</option>
+                                <option value="AA">American Airlines</option>
+                                <option value="5X">UPS</option>
+                                <option value="FX">FedEx</option>
+                                -->
               </select>
             </div>
             <!-- Airline Type -->
             <div class="col">
-              <label for="airline-type-select" class="form-label">Airline Type</label>
+              <label for="airline-type-select" class="form-label"
+                >Airline Type</label
+              >
               <div class="form-check">
-                <input type="radio" id="airline-type-all" name="airline-type" value="all" class="form-check-input" checked>
-                <label for="airline-type-all" class="form-check-label">All</label>
+                <input
+                  type="radio"
+                  id="airline-type-all"
+                  name="airline-type"
+                  value="all"
+                  class="form-check-input"
+                  checked
+                />
+                <label for="airline-type-all" class="form-check-label"
+                  >All</label
+                >
               </div>
               <div class="form-check">
-                <input type="radio" id="airline-type-passenger" name="airline-type" value="passenger" class="form-check-input">
-                <label for="airline-type-passenger" class="form-check-label">Passenger</label>
+                <input
+                  type="radio"
+                  id="airline-type-passenger"
+                  name="airline-type"
+                  value="passenger"
+                  class="form-check-input"
+                />
+                <label for="airline-type-passenger" class="form-check-label"
+                  >Passenger</label
+                >
               </div>
               <div class="form-check">
-                <input type="radio" id="airline-type-cargo" name="airline-type" value="cargo" class="form-check-input">
-                <label for="airline-type-cargo" class="form-check-label">Cargo</label>
+                <input
+                  type="radio"
+                  id="airline-type-cargo"
+                  name="airline-type"
+                  value="cargo"
+                  class="form-check-input"
+                />
+                <label for="airline-type-cargo" class="form-check-label"
+                  >Cargo</label
+                >
               </div>
             </div>
           </div>
-          <hr class="hr"/>
+          <hr class="hr" />
           <!-- Advanced Filters Options-->
           <div class="row mb-3 g-0">
-            <label for="advanced-filters-select" class="form-label">Advanced Options</label>
+            <label for="advanced-filters-select" class="form-label"
+              >Advanced Options</label
+            >
             <select class="form-select" id="advanced-filters-select">
               <option value="none">None</option>
               <option value="find-added">Find Added Flights</option>
@@ -309,110 +479,189 @@
             <div class="row mb-3">
               <!-- Departure Date and Time -->
               <div class="col">
-                <label for="secondary-departure-date" class="form-label">Secondary Start</label>
-                <input type="datetime-local" id="secondary-start-datetime" name="secondary-start-date" class="form-control">
+                <label for="secondary-departure-date" class="form-label"
+                  >Secondary Start</label
+                >
+                <input
+                  type="datetime-local"
+                  id="secondary-start-datetime"
+                  name="secondary-start-date"
+                  class="form-control"
+                />
               </div>
               <!-- Arrival Date and Time -->
               <div class="col">
-                <label for="secondary-arrival-date" class="form-label">Secondary End</label>
-                <input type="datetime-local" id="secondary-end-datetime" name="secondary-end-date" class="form-control">
+                <label for="secondary-arrival-date" class="form-label"
+                  >Secondary End</label
+                >
+                <input
+                  type="datetime-local"
+                  id="secondary-end-datetime"
+                  name="secondary-end-date"
+                  class="form-control"
+                />
               </div>
             </div>
           </div>
           <div class="row mb-3">
             <!-- Find Routes -->
             <div class="col d-grid">
-              <button type="button" class="btn btn-primary" id="find-routes-button"
-                      data-bs-dismiss="offcanvas">Find Routes</button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="find-routes-button"
+                data-bs-dismiss="offcanvas"
+              >
+                Find Routes
+              </button>
               <script type="module">
                 import { displayFilteredFlights } from "../static/display_routes_script.js";
-                document.querySelector('#find-routes-button').addEventListener('click', displayFilteredFlights);
+                document
+                  .querySelector("#find-routes-button")
+                  .addEventListener("click", displayFilteredFlights);
               </script>
             </div>
             <!-- Clear Filters -->
             <div class="col d-grid">
-              <button type="reset" class="btn btn-secondary">Clear Filters</button>
+              <button type="reset" class="btn btn-secondary">
+                Clear Filters
+              </button>
             </div>
           </div>
         </form>
       </div>
     </div>
-    
+
     <!-- Help Modal -->
-    <div class="modal fade" id="help-modal" tabindex="-1" aria-labelledby="help-modal-label" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="help-modal"
+      tabindex="-1"
+      aria-labelledby="help-modal-label"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="help-modal-label">Help</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
-            <img src="../static/Logo.png" alt="Logo" id="help-logo-img">
-            <p>Welcome to <strong>Flight Tracker</strong>, a visualizer for all available and past flights!</p>
+            <img src="../static/Logo.png" alt="Logo" id="help-logo-img" />
             <p>
-              To find flights, fill in the respective information at the top:
-            <ul>
-              <li><strong>Start Date and Time:</strong> The earliest starting date and time of the desired route(s).</li>
-              <li><strong>End Date and Time:</strong> The latest ending date and time of the desired route(s)</li>
-              <br>
-              <li><strong>Starting Airport:</strong> The departure airport of the desired route(s).</li>
-              <li><strong>Ending Airport:</strong> The arrival airport of the desired route(s).</li>
-            </ul>
-            After filling in the information, select <strong>Search Flights</strong> to filter and visualize
-            flight paths that match the given criteria.
+              Welcome to <strong>Flight Tracker</strong>, a visualizer for all
+              available and past flights!
             </p>
             <p>
-              For more filtering options, select <strong>More Filters</strong> at the top right to open up the
+              To find flights, fill in the respective information at the top:
+            </p>
+            <ul>
+              <li>
+                <strong>Start Date and Time:</strong> The earliest starting date
+                and time of the desired route(s).
+              </li>
+              <li>
+                <strong>End Date and Time:</strong> The latest ending date and
+                time of the desired route(s)
+              </li>
+              <br />
+              <li>
+                <strong>Starting Airport:</strong> The departure airport of the
+                desired route(s).
+              </li>
+              <li>
+                <strong>Ending Airport:</strong> The arrival airport of the
+                desired route(s).
+              </li>
+            </ul>
+            <p>
+              After filling in the information, select
+              <strong>Search Flights</strong> to filter and visualize flight
+              paths that match the given criteria.
+            </p>
+            <p>
+              For more filtering options, select
+              <strong>More Filters</strong> at the top right to open up the
               filter menu. The additional options are as follows:
+            </p>
             <h1 class="h5">Basic Filters</h1>
             <ul>
               <li>
-                <strong>Start Location:</strong> The starting location of the route (can be filtered
-                via <strong>airport</strong>, <strong>country</strong>, or <strong>continent</strong>).
+                <strong>Start Location:</strong> The starting location of the
+                route (can be filtered via <strong>airport</strong>,
+                <strong>country</strong>, or <strong>continent</strong>).
               </li>
               <li>
-                <strong>End Location:</strong> The ending location of the route (can be filtered
-                via <strong>airport</strong>, <strong>country</strong>, or <strong>continent</strong>).
+                <strong>End Location:</strong> The ending location of the route
+                (can be filtered via <strong>airport</strong>,
+                <strong>country</strong>, or <strong>continent</strong>).
               </li>
-              <li><strong>Days of the Week:</strong> The day(s) of the week for the flights to occur on.</li>
-              <li><strong>Maximum Layovers:</strong> The maximum number of layovers for a single route.</li>
-              <li><strong>Airlines:</strong> The airline(s) that the flights withina route can be operated by.</li>
-              <li><strong>Airline Type:</strong> The possibles type(s) of airline that the flights are operated by.
+              <li>
+                <strong>Days of the Week:</strong> The day(s) of the week for
+                the flights to occur on.
+              </li>
+              <li>
+                <strong>Maximum Layovers:</strong> The maximum number of
+                layovers for a single route.
+              </li>
+              <li>
+                <strong>Airlines:</strong> The airline(s) that the flights
+                withina route can be operated by.
+              </li>
+              <li>
+                <strong>Airline Type:</strong> The possibles type(s) of airline
+                that the flights are operated by.
               </li>
             </ul>
-            <br>
+            <br />
             <h1 class="h5">Advanced Filters</h1>
             <ul>
               <li>
-                <strong>Find Added Flights:</strong> Find flights that were added between the original timeframe and the
-                new
-                timeframe. The new timeframe cannot overlap the original timeframe.
+                <strong>Find Added Flights:</strong> Find flights that were
+                added between the original timeframe and the new timeframe. The
+                new timeframe cannot overlap the original timeframe.
               </li>
               <li>
-                <strong>Find Removed Flights:</strong> Find flights that were removed between the original timeframe and
-                the new
-                timeframe. The new timeframe cannot overlap the original timeframe.
+                <strong>Find Removed Flights:</strong> Find flights that were
+                removed between the original timeframe and the new timeframe.
+                The new timeframe cannot overlap the original timeframe.
               </li>
             </ul>
-            Once you are finished, select <strong>Confirm</strong> to apply the filters and
-            <strong>Cancel</strong> to close the filter window without applying the filters.
-            <strong>Clear Filters</strong> will clear all filter information in the filter window.
+            <p>
+              Once you are finished, select <strong>Confirm</strong> to apply
+              the filters and <strong>Cancel</strong> to close the filter window
+              without applying the filters. <strong>Clear Filters</strong> will
+              clear all filter information in the filter window.
             </p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
     </div>
-    
+
     <script type="text/javascript">
-      $(window).on('load', function() {
-        $('#help-modal').modal('show');
+      $(window).on("load", function () {
+        $("#help-modal").modal("show");
       });
     </script>
     <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
