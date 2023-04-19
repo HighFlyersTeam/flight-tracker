@@ -5,28 +5,28 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <!-- Local Files -->
     <link href="../static/style.css" rel="stylesheet" />
     <script type="module" src="../static/display_routes_script.js"></script>
     <script type="module" src="../static/map_script.js"></script>
     <script src="../static/filter_script.js"></script>
-    
+
     <!-- Google Maps -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
+
     <!-- Bootstrap CSS -->
     <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
     />
   </head>
   <body>
     <!-- Header -->
     <header
-            class="d-flex align-items-center flex-wrap justify-content-center py-3"
+      class="d-flex align-items-center flex-wrap justify-content-center py-3"
     >
       <svg class="bi me-2" width="20" height="30">
         <use xlink:href="#bootstrap"></use>
@@ -38,33 +38,33 @@
           <!-- Departure Date and Time -->
           <div class="col-md-2">
             <label for="departure-date" class="form-label"
-            >Start Date and Time</label
+              >Start Date and Time</label
             >
             <input
-                    type="datetime-local"
-                    id="start-datetime-hotbar"
-                    name="start-datetime"
-                    class="form-control"
-                    required
+              type="datetime-local"
+              id="start-datetime-hotbar"
+              name="start-datetime"
+              class="form-control"
+              required
             />
           </div>
           <!-- Arrival Date and Time -->
           <div class="col-md-2">
             <label for="return-date" class="form-label"
-            >End Date and Time</label
+              >End Date and Time</label
             >
             <input
-                    type="datetime-local"
-                    id="end-datetime-hotbar"
-                    name="end-datetime"
-                    class="form-control"
-                    required
+              type="datetime-local"
+              id="end-datetime-hotbar"
+              name="end-datetime"
+              class="form-control"
+              required
             />
           </div>
           <!-- Departure Airport -->
           <div class="col-md-2">
             <label for="departure-airport" class="form-label"
-            >Starting Airport</label
+              >Starting Airport</label
             >
             <select class="form-select" id="start-airport-hotbar" required>
               <option value="">Choose...</option>
@@ -78,7 +78,7 @@
           <!-- Arrival Airport -->
           <div class="col-md-2">
             <label for="arrival-airport" class="form-label"
-            >Ending Airport</label
+              >Ending Airport</label
             >
             <select class="form-select" id="end-airport-hotbar" required>
               <option value="">Choose...</option>
@@ -100,18 +100,18 @@
                 <script type="module">
                   import { displayQuickFilteredFlights } from "../static/display_routes_script.js";
                   document
-                          .querySelector("#search-flights")
-                          .addEventListener("click", displayQuickFilteredFlights);
+                    .querySelector("#search-flights")
+                    .addEventListener("click", displayQuickFilteredFlights);
                 </script>
               </div>
               <!-- More Filters -->
               <div class="col-md-4">
                 <button
-                        id="filter-window"
-                        class="btn btn-secondary"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#filter-options"
-                        aria-controls="filter-options"
+                  id="filter-window"
+                  class="btn btn-secondary"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#filter-options"
+                  aria-controls="filter-options"
                 >
                   More Filters
                 </button>
@@ -119,10 +119,10 @@
               <!-- Help -->
               <div class="col-md-4">
                 <button
-                        id="help-window"
-                        class="btn btn-toolbar"
-                        data-bs-toggle="modal"
-                        data-bs-target="#help-modal"
+                  id="help-window"
+                  class="btn btn-toolbar"
+                  data-bs-toggle="modal"
+                  data-bs-target="#help-modal"
                 >
                   Help
                 </button>
@@ -132,31 +132,31 @@
         </div>
       </div>
     </header>
-    
+
     <!-- Google Map -->
     <div id="map">
       <script
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&callback=initMap&v=weekly"
-              defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo47MXllMAmuhYtlXdjjXaWEpot8A4_CY&callback=initMap&v=weekly"
+        defer
       ></script>
     </div>
-    
+
     <!-- Filter Offcanvas -->
     <div
-            class="offcanvas offcanvas-end"
-            tabindex="-1"
-            id="filter-options"
-            aria-labelledby="filter-options-label"
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="filter-options"
+      aria-labelledby="filter-options-label"
     >
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="filter-options-label">
           Filter Flights
         </h5>
         <button
-                type="button"
-                class="btn-close text-reset"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
         ></button>
       </div>
       <div class="offcanvas-body">
@@ -165,25 +165,25 @@
             <!-- Departure Date and Time -->
             <div class="col">
               <label for="departure-date" class="form-label"
-              >Start Date and Time</label
+                >Start Date and Time</label
               >
               <input
-                      type="datetime-local"
-                      id="start-datetime"
-                      name="start-datetime"
-                      class="form-control"
+                type="datetime-local"
+                id="start-datetime"
+                name="start-datetime"
+                class="form-control"
               />
             </div>
             <!-- Arrival Date and Time -->
             <div class="col">
               <label for="arrival-date" class="form-label"
-              >End Date and Time</label
+                >End Date and Time</label
               >
               <input
-                      type="datetime-local"
-                      id="end-datetime"
-                      name="end-datetime"
-                      class="form-control"
+                type="datetime-local"
+                id="end-datetime"
+                name="end-datetime"
+                class="form-control"
               />
             </div>
           </div>
@@ -192,7 +192,7 @@
           <div class="row mb-3">
             <div class="col-3">
               <label for="start-location-type" class="form-label"
-              >Location Type</label
+                >Location Type</label
               >
               <select class="form-select" id="start-location-type">
                 <option value="airport">Airport</option>
@@ -202,7 +202,7 @@
             </div>
             <div class="col">
               <label for="start-airport-select" class="form-label"
-              >Location Options</label
+                >Location Options</label
               >
               <!-- Airport -->
               <div id="start-airport-div" class="mb-3">
@@ -227,9 +227,9 @@
               <!-- Continent -->
               <div id="start-continent-div" class="mb-3">
                 <select
-                        class="form-select"
-                        id="start-continent-select"
-                        multiple
+                  class="form-select"
+                  id="start-continent-select"
+                  multiple
                 >
                   <option value="NA">North America</option>
                   <option value="SA">South America</option>
@@ -247,7 +247,7 @@
           <div class="row mb-3">
             <div class="col-3">
               <label for="end-location-type" class="form-label"
-              >Location Type</label
+                >Location Type</label
               >
               <select class="form-select" id="end-location-type">
                 <option value="airport">Airport</option>
@@ -257,7 +257,7 @@
             </div>
             <div class="col">
               <label for="end-airport-select" class="form-label"
-              >Location Options</label
+                >Location Options</label
               >
               <!-- Airport -->
               <div id="end-airport-div" class="mb-3">
@@ -311,77 +311,77 @@
               <div class="row g-0 row-cols-2">
                 <div class="form-check">
                   <input
-                          type="checkbox"
-                          id="monday"
-                          name="days-of-week"
-                          value="Monday"
-                          class="form-check-input"
+                    type="checkbox"
+                    id="monday"
+                    name="days-of-week"
+                    value="Monday"
+                    class="form-check-input"
                   />
                   <label for="monday" class="form-check-label">Monday</label>
                 </div>
                 <div class="form-check">
                   <input
-                          type="checkbox"
-                          id="tuesday"
-                          name="days-of-week"
-                          value="Tuesday"
-                          class="form-check-input"
+                    type="checkbox"
+                    id="tuesday"
+                    name="days-of-week"
+                    value="Tuesday"
+                    class="form-check-input"
                   />
                   <label for="tuesday" class="form-check-label">Tuesday</label>
                 </div>
                 <div class="form-check">
                   <input
-                          type="checkbox"
-                          id="wednesday"
-                          name="days-of-week"
-                          value="Wednesday"
-                          class="form-check-input"
+                    type="checkbox"
+                    id="wednesday"
+                    name="days-of-week"
+                    value="Wednesday"
+                    class="form-check-input"
                   />
                   <label for="wednesday" class="form-check-label"
-                  >Wednesday</label
+                    >Wednesday</label
                   >
                 </div>
                 <div class="form-check">
                   <input
-                          type="checkbox"
-                          id="thursday"
-                          name="days-of-week"
-                          value="Thursday"
-                          class="form-check-input"
+                    type="checkbox"
+                    id="thursday"
+                    name="days-of-week"
+                    value="Thursday"
+                    class="form-check-input"
                   />
                   <label for="thursday" class="form-check-label"
-                  >Thursday</label
+                    >Thursday</label
                   >
                 </div>
                 <div class="form-check">
                   <input
-                          type="checkbox"
-                          id="friday"
-                          name="days-of-week"
-                          value="Friday"
-                          class="form-check-input"
+                    type="checkbox"
+                    id="friday"
+                    name="days-of-week"
+                    value="Friday"
+                    class="form-check-input"
                   />
                   <label for="friday" class="form-check-label">Friday</label>
                 </div>
                 <div class="form-check">
                   <input
-                          type="checkbox"
-                          id="saturday"
-                          name="days-of-week"
-                          value="Saturday"
-                          class="form-check-input"
+                    type="checkbox"
+                    id="saturday"
+                    name="days-of-week"
+                    value="Saturday"
+                    class="form-check-input"
                   />
                   <label for="saturday" class="form-check-label"
-                  >Saturday</label
+                    >Saturday</label
                   >
                 </div>
                 <div class="form-check">
                   <input
-                          type="checkbox"
-                          id="sunday"
-                          name="days-of-week"
-                          value="Sunday"
-                          class="form-check-input"
+                    type="checkbox"
+                    id="sunday"
+                    name="days-of-week"
+                    value="Sunday"
+                    class="form-check-input"
                   />
                   <label for="sunday" class="form-check-label">Sunday</label>
                 </div>
@@ -390,17 +390,17 @@
             <!-- Maximum Layovers -->
             <div class="col">
               <label for="layover-count" class="form-label"
-              >Maximum Layovers</label
+                >Maximum Layovers</label
               >
               <input
-                      type="number"
-                      id="layovers"
-                      name="layovers"
-                      class="form-control"
-                      min="0"
-                      max="13"
-                      step="1"
-                      value="0"
+                type="number"
+                id="layovers"
+                name="layovers"
+                class="form-control"
+                min="0"
+                max="13"
+                step="1"
+                value="0"
               />
             </div>
           </div>
@@ -420,43 +420,43 @@
             <!-- Airline Type -->
             <div class="col">
               <label for="airline-type-select" class="form-label"
-              >Airline Type</label
+                >Airline Type</label
               >
               <div class="form-check">
                 <input
-                        type="radio"
-                        id="airline-type-all"
-                        name="airline-type"
-                        value="all"
-                        class="form-check-input"
-                        checked
+                  type="radio"
+                  id="airline-type-all"
+                  name="airline-type"
+                  value="all"
+                  class="form-check-input"
+                  checked
                 />
                 <label for="airline-type-all" class="form-check-label"
-                >All</label
+                  >All</label
                 >
               </div>
               <div class="form-check">
                 <input
-                        type="radio"
-                        id="airline-type-passenger"
-                        name="airline-type"
-                        value="passenger"
-                        class="form-check-input"
+                  type="radio"
+                  id="airline-type-passenger"
+                  name="airline-type"
+                  value="passenger"
+                  class="form-check-input"
                 />
                 <label for="airline-type-passenger" class="form-check-label"
-                >Passenger</label
+                  >Passenger</label
                 >
               </div>
               <div class="form-check">
                 <input
-                        type="radio"
-                        id="airline-type-cargo"
-                        name="airline-type"
-                        value="cargo"
-                        class="form-check-input"
+                  type="radio"
+                  id="airline-type-cargo"
+                  name="airline-type"
+                  value="cargo"
+                  class="form-check-input"
                 />
                 <label for="airline-type-cargo" class="form-check-label"
-                >Cargo</label
+                  >Cargo</label
                 >
               </div>
             </div>
@@ -465,7 +465,7 @@
           <!-- Advanced Filters Options-->
           <div class="row mb-3 g-0">
             <label for="advanced-filters-select" class="form-label"
-            >Advanced Options</label
+              >Advanced Options</label
             >
             <select class="form-select" id="advanced-filters-select">
               <option value="none">None</option>
@@ -479,25 +479,25 @@
               <!-- Departure Date and Time -->
               <div class="col">
                 <label for="secondary-departure-date" class="form-label"
-                >Secondary Start</label
+                  >Secondary Start</label
                 >
                 <input
-                        type="datetime-local"
-                        id="secondary-start-datetime"
-                        name="secondary-start-date"
-                        class="form-control"
+                  type="datetime-local"
+                  id="secondary-start-datetime"
+                  name="secondary-start-date"
+                  class="form-control"
                 />
               </div>
               <!-- Arrival Date and Time -->
               <div class="col">
                 <label for="secondary-arrival-date" class="form-label"
-                >Secondary End</label
+                  >Secondary End</label
                 >
                 <input
-                        type="datetime-local"
-                        id="secondary-end-datetime"
-                        name="secondary-end-date"
-                        class="form-control"
+                  type="datetime-local"
+                  id="secondary-end-datetime"
+                  name="secondary-end-date"
+                  class="form-control"
                 />
               </div>
             </div>
@@ -506,18 +506,18 @@
             <!-- Find Routes -->
             <div class="col d-grid">
               <button
-                      type="button"
-                      class="btn btn-primary"
-                      id="find-routes-button"
-                      data-bs-dismiss="offcanvas"
+                type="button"
+                class="btn btn-primary"
+                id="find-routes-button"
+                data-bs-dismiss="offcanvas"
               >
                 Find Routes
               </button>
               <script type="module">
                 import { displayFilteredFlights } from "../static/display_routes_script.js";
                 document
-                        .querySelector("#find-routes-button")
-                        .addEventListener("click", displayFilteredFlights);
+                  .querySelector("#find-routes-button")
+                  .addEventListener("click", displayFilteredFlights);
               </script>
             </div>
             <!-- Clear Filters -->
@@ -530,24 +530,24 @@
         </form>
       </div>
     </div>
-    
+
     <!-- Help Modal -->
     <div
-            class="modal fade"
-            id="help-modal"
-            tabindex="-1"
-            aria-labelledby="help-modal-label"
-            aria-hidden="true"
+      class="modal fade"
+      id="help-modal"
+      tabindex="-1"
+      aria-labelledby="help-modal-label"
+      aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="help-modal-label">Help</h5>
             <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
             ></button>
           </div>
           <div class="modal-body">
@@ -640,9 +640,9 @@
           </div>
           <div class="modal-footer">
             <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
             >
               Close
             </button>
@@ -650,7 +650,7 @@
         </div>
       </div>
     </div>
-    
+
     <script type="text/javascript">
       $(window).on("load", function () {
         $("#help-modal").modal("show");
@@ -658,9 +658,9 @@
     </script>
     <!-- Bootstrap Bundle with Popper -->
     <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
     ></script>
   </body>
 </html>
