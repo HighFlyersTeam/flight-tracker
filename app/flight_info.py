@@ -321,7 +321,7 @@ class FlightInfo:
                 self.full_data,
                 origin,
                 destination,
-                int(stops),
+                int(stops)+1,
                 depart_time,
                 arrive_time,
                 visited,
@@ -329,14 +329,9 @@ class FlightInfo:
                 flightinfo,
                 temp,
             )
-            flatten = [element for sublist in flightinfo for element in sublist]
-            combined = pd.concat(flatten).drop_duplicates()
-            eu = ["EU"]
-            KATL = ["KATL"]
-            KLAX = ["KLAX"]
-            combined = combined.query("DESTINATION_CONTINENT != @eu")
-            combined = combined.query("DESTINATION_AIRPORT != @KATL")
-            combined = combined.query("DESTINATION_AIRPORT != @KLAX")
+            combined = pd.concat(flightinfo).drop_duplicates()
+            print(combined)
+
             self.details = combined
 
 
@@ -353,13 +348,25 @@ def stop_helper(
     flightinfo=[],
     temp=[],
 ):
+    # print(origin)
+    if stops == 0:
+        return 
+    
     if origin == destination:
-        print("end")
-        path.append(destination)
-        if path not in visited:
-            visited.append(path)
-            flightinfo.append(temp)
-        return
+        flag = 0
+        for info in flightinfo:
+            if(info.equals(flights_copy)):
+                flag = 1
+        # print(flag)        
+        if flag == 0:
+            # visited.append(path)
+            # temp = 
+            # print(temp)
+            flights_copy = flights_copy[flights_copy["DESTINATION_AIRPORT"].isin(destination)]
+            # print(flights_copy)
+            flightinfo.append(flights_copy)
+            # print(temp)
+        return origin
 
     # make a copy of all flights
     flights_copy = flights.copy()
@@ -369,16 +376,15 @@ def stop_helper(
 
     for dest in flights_copy["DESTINATION_AIRPORT"]:
         if dest not in path:
-            print(dest)
+            # print(dest)
             lst_dest = [dest]
-            path.append(origin)
-            temp.append(flights_copy)
-            stop_helper(
+
+            next = stop_helper(
                 flights,
                 flights_copy,
                 lst_dest,
                 destination,
-                int(stops),
+                int(stops)-1,
                 depart_time,
                 arrive_time,
                 visited,
@@ -386,5 +392,13 @@ def stop_helper(
                 flightinfo,
                 temp,
             )
-            temp = []
-            path = []
+            
+            if(next!=None):
+                temp.append(origin)
+            stops = int(stops)+1
+    # print(temp[0])
+    for i in range(len(temp)):
+        tmp = flights_copy[flights_copy["DESTINATION_AIRPORT"].isin(temp[i])]
+        flightinfo.append(tmp)
+
+
