@@ -23,7 +23,7 @@ Flight planning is a difficult problem to solve for any shipping or passenger ai
 ## Use Cases
 Flight Tracker's interface allows the user to set various different filters to help them visualize and plan flights. Some of these filters include, but are not limited to, a starting and ending time, day of week, specific airlines, cargo and/or passenger airlines, starting destination, and ending destination.
 
-## Requirments
+## Requirements
 - pandas ~= 1.3.2
 - numpy ~= 1.21.1
 - Flask ~= 2.0.1
