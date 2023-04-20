@@ -23,8 +23,22 @@ Flight planning is a difficult problem to solve for any shipping or passenger ai
 ## Use Cases
 Flight Tracker's interface allows the user to set various different filters to help them visualize and plan flights. Some of these filters include, but are not limited to, a starting and ending time, day of week, specific airlines, cargo and/or passenger airlines, starting destination, and ending destination.
 
+## Requirments
+- pandas ~= 1.3.2
+- numpy ~= 1.21.1
+- Flask ~= 2.0.1
+
 ## Local Deployment Setup Guide
-Under construction... please come back later.
+Flight Tracker is built using all the requirements listed in the "requirements.txt" file. To install
+you will need to follow the following steps:
+1. Clone the repo into a local directory
+2. Install NPM if you have not already
+3. Run npm init in the chosen directory
+4. Run npm install to install all the required packages
+5. Install the Google Maps API with npm install @types/google__maps
+6. In the directory run flask run
+7. Open the link in your browser
+8. Enjoy!
 
 ## Contributing
 Contributions to Flight Tracker are greatly appreciated. Please note that we use the code styles imposed by [Black](https://black.readthedocs.io/en/stable/) for Python and [Prettier](https://prettier.io/docs/en/) for HTML, CSS, and JavaScript. We have auto-formatters and linters in place to ensure that all contributions adhere to these code styles.
