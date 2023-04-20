@@ -13,6 +13,7 @@ Please visit [http://highflyers.pythonanywhere.com](http://highflyers.pythonanyw
 ## Table of Contents
 - [Background](#background)
 - [Use Cases](#use-cases)
+- [Requirements](#requirements)
 - [Local Deployment Setup Guide](#local-deployment-setup-guide)
 - [Contributing](#contributing)
 - [License](#license)
