@@ -32,12 +32,12 @@ Flight Tracker's interface allows the user to set various different filters to h
 ## Local Deployment Setup Guide
 Flight Tracker is built using all the requirements listed in the "requirements.txt" file. To install
 you will need to follow the following steps:
-1. Clone the repo into a local directory
+1. Clone the repository into a local directory
 2. Install NPM if you have not already
-3. Run npm init in the chosen directory
-4. Run npm install to install all the required packages
-5. Install the Google Maps API with npm install @types/google__maps
-6. In the directory run flask run
+3. Run `npm init` in the chosen directory
+4. Run `npm install` to install all the required packages
+5. Install the Google Maps API with `npm install @types/google__maps`
+6. In the directory, run `flask run`
 7. Open the link in your browser
 8. Enjoy!
 
