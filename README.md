@@ -1,7 +1,7 @@
 # Flight Tracker
 
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="./images/Logo Whiteout.png">
+  <source media="(prefers-color-scheme: dark)" srcset="./images/Logo Whiteout.png">
   <source media="(prefers-color-scheme: light)" srcset="./images/Logo No BG.png">
   <img align="right" alt="Change image based on background theme." src="./images/Logo Whiteout.png">
 </picture>
